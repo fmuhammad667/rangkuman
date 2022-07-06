@@ -1,0 +1,38 @@
+10 Ekstensi VISUAL STUDIO CODE untuk HTML
+source : https://www.youtube.com/watch?v=o4e2MGr9wnE
+WEB PROGRAMMING UNPAS (WPU)
+
+1. Sublime text keymap
+jika kita berpindah dari sublime text ke vscode dan kita terbiasa dengan shortcutnya maka kita bisa gunakan juga menggunakan ekstensi ini
+
+2. Open in Browser
+untuk membuka elemen html menuju browser, karena default dari vscode itu tidak bisa 
+
+2.A. Live server
+konsepnya hampir sama dengan Open in browser, namun jika menggunakan liveserver kita tidak perlu reload, dan secara otomatis website akan terubah
+
+3. Auto rename tag
+disaat kita mengubah tag html, kita tidak perlu mengubah tag pembuka dan tag penutup. karena secara otomatis tag pembuka/penutup akan terubah sesuai dengan yang kita ubah
+
+4. Intellisense for css clasnames
+ini memudahkan disaat kita menggunakan framework, kita tidak perlu masuk-keluar web untuk membuka dokument
+
+5. CSS Peak
+ini kita melihat elemen yang kita buat terkena css apa, dengan cara arahkan ke elemennya dan tekan ctrl
+
+6. Indent Rainbow
+membantu kita melihat indentasi menggunakan warna 
+
+7. Bracket pair Colorized 
+hampir sama dengan indent rainbow, namun ekstensi ini dikhususkan untuk tanda kurung kurawal 
+
+8. Beautify
+untuk merapihkan format, bisa dengan cara klik kanan dan format atau secara otomatis dengan men-settingnya
+preferences > settings > text editor > formatting > format on save (ceklis)
+
+9. PHP Intellisense
+disaat kita mengetik sesuatu keluar auto complete-nya, karena defaultnya divs code tidak terlalu lengkap
+
+10. One dark pro
+ini merupakan tema dari code editor bernama Atom 
+ 
