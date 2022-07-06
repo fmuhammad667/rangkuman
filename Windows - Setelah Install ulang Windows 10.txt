@@ -1,0 +1,39 @@
+Hal yang perlu dilakukan setelah install Windows 10
+
+- Setting resolusi layar
+  Biasanya disaat install ulang windows default dari resolusinya rendah, kita bisa setnya menjadi Full HD
+  Klik kanan > Display Settings > Display resolution > naikkan resolusi layar (1366 x 768)
+
+- Mengganti Drive letter 
+  Jika Drive letternya tidak sesuai semisal setelah drive C: langsung ke E: kita bisa merubahnya
+  Caranya klik kanan pada This PC > manage > disk management > pilih local disk E: >
+  lalu Klik kanan > Change Drive letter... > lalu pilih change > dan ganti sesuai keinginan
+
+- Aktivasi Windows
+  Jika tidak melakukan aktivasi biasanya akan tertulis watermark dibagian kanan windows, yang lainnya jika tidak
+  melakukan aktivasi yaitu kita tidak bisa merubah wallpaper, tema, dsb. Untuk melakukan Aktivasi kita bisa beli Lisensinya
+  Cara untuk aktivasi tinggal masuk ke Settings > update & security > Activation > change product key > masukan product key 
+  lalu next, dan ikuti step-nya. Jika sudah otomatis windows akan teraktivasi
+
+- Back-up Windows
+  Sebelum install aplikasi alangkah baiknya kita backup terlebih dahulu agar saat install aplikasi driver atau software lalu error
+  Kita bisa restore ke windows yang kita backup, jika tidak maka khawatir kita membuang waktu untuk menginstall ulang kembali windows
+  untuk melakukan back-up ada 2 cara, yakni Restore Point dan System Image
+  
+  .untuk membuat restore point ketik diwindows > restore > create a restore point > lalu klik local disk C: dan pastikan ia ON
+   (jika off kita pilih configure, lalu turn on protectionnya, kemudian pada max usage ubah antara 3% atau 5% dan jika sudah klik apply)
+   lalu OK, dan OK lagi). Jadi jika disaat kita melakukan install driver atau aplikasi error, kita bisa kembali lagi dalam waktu yang telah
+   kita buat direstore
+
+- Setting Personalize Windows
+  ubah taskbar windows ataupun wallpaper sesuai dengan selera
+
+- Menginstall dan meng-update driver pada laptop/PC
+  Driver berfungsi agar hardware dapat berkomunkasi dengan sistem, ataupun aplikasi yang di-install
+  Untuk melihat driver yang belum terinstall kita bisa klik kanan pada menu windows > Device manager > jika ada komponen yang ada tanda seru-nya
+  maka itu adalah komponen yang perlu kita install
+  Untuk mendownload driver kita bisa ke windows update > lalu windows update > otomatis ia akan memberi suggest komponen driver yang perlu di-update
+
+- Install Aplikasi yang diperlukan
+  Seperti Browser(Chrome), File Extractor(Winrar), Media Player(VLC), Aplikasi Office(MS.Office), Aplikasi Reader(PDF Reader)
+  Aplikasi Download(IDM), Antivirus tambahan(Smadav, Malwarebytes) 
