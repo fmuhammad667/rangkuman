@@ -1,0 +1,53 @@
+10 EXTENSION VSCODE untuk PROGRAMMER JAVASCRIPT
+source : https://www.youtube.com/watch?v=ALqdERR1acY
+WEB PROGRAMMING UNPAS
+
+1.ESlint
+digunakan untuk mencari kesalahan pada javascript
+kita perlu menginstal node.js terlebih dahulu, alasannya agar kita dapat menggunakan npm untuk mendapatkan script orang yang telah disimpan didalam librarynya node. 
+jika diphp namanya adalah composer
+npm install eslint --save-dev
+npm init @eslint/config
+
+2. Prettier
+digunakan untuk merapihkan kode javascript, untuk memakainya kita perlu menekan ctrl + shift + p
+
+3.Javascript ES6 code Snippets
+untuk menambahkan snippets yang tersedia diekstensinya, agar mempersingkat codingan kita
+kita bisa melihat dokumentasinya https://marketplace.visualstudio.com/items?itemName=xabikos.JavaScriptSnippets
+
+4. Better coments
+untuk membuat komentar lebih rapih lagi dan berwarna sesuai kondisi, caranya dengan menambahkan *,!,? atau TODO setelah komentar 
+defaultnya komentar yaitu berwarna abu-abu
+
+5. Rest Client
+untuk terhubung ke sebuah API, baik public atau local. biasanya kita membuat API dibantu dengan rest client atau postman
+tapi jika ingin lebih simpel kita bisa memasukannya divscode dengan ekstensi ini 
+dokumentasi https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+
+6. ES6 String HTML
+digunakan untuk membuat template literal pada javascript dengan cara menuliskan petik dan dibelakangnya dengan komentar html
+template literal yaitu kita membuat string dan dibungkus dengan tanda petik, defaultnya divscode yaitu berwarna hijau 
+
+7. Carbon now Sh
+digunakan untuk megeksporkan source code kita agar mudah didistribusikan, sebenarnya ia terhubung kedalam layanan carbon.now.sh(website) 
+atau kita bisa blok kodenya lalu jalankan command pallete (ctrl+shift+p) tulis carbon maka akan otomatis ke website dengan kode yang kita blok
+
+8. Codesnap
+konsepnya hampir sama dengan carbon now sh dan ini bisa kita jadikan sebagai alternatif, caranya kita blok kodenya lalu klik kanan
+maka terdapat sugestion codesnap, kita bisa perbesar dengan ctrl+(+) atau memperkecil ctrl+(-)
+kekurangannya yaitu gambar mengikuti kodenya, tidak seperti carbon now sh yang bisa kita configurasi gambarnya
+
+9. Fonts
+masuk ke setting > dan ubah fonts
+kita perlu mendownload terlebih dahulu fontsnya dan instal ke sistem, lalu panggil nama fontsnya 
+
+10. Themes
+yaitu bisa kita menggunakan one dark pro atau material theme, dan mayukai
+
++ tambahan :
+11. material icon theme
+untuk merubah file default dari vscode menjadi menarik
+
+
+
