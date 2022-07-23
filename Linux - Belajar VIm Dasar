@@ -1,0 +1,330 @@
+Belajar VIM
+Materi : youtube (Indonesia Belajar)
+link : https://youtube.com/playlist?list=PL2O3HdJI4voE_mHibdvrDqNj_vZaKCZGC
+
+
+
+Eps.1 
+CARA KELUAR DARI VIM 
+
+Untuk keluar dari vim, Kita perlu masuk ke normal mode dengan menekan esc, lalu ketik shift dan ketik titik dua lalu tulis quit (:quit/:q)
+Jika kita terlanjur sudah menulis, dan kita tidak ingin melakukan proses save dari yang kita tulis
+Maka cara untuk keluarnya tetap sama yakni dengan menekan (esc) untuk ke normal mode 
+cuman terdapat sintaks yang berbeda yaitu menambahkan tanda seru setelah tulisan q-nya, untuk  penulisannya (:q!)
+ini direpersentasikan kita keluar dari vim (quit) tanpa men-save prosesnya
+
+
+
+Eps. 2  
+MODE PADA VIM
+
+Terdapat 4 mode dalam VIM
+1. Normal mode, yaitu mode pertama disaat kita membuka VIM 
+   untuk berpindah dari mode lain ke normal mode, kita perlu menekan tombol esc
+   beberapa hal yang kita bisa lakukan dinormal mode, yaitu navigasi file, dan juga proses copy, paste, delete, ataupun replace
+   
+2. Inset mode, dalam proses insert mode kita bisa menuliskan document
+   pertama kita perlu ke normal mode dan menekan tombol (i)
+   
+3. Visual mode, karena di-vim tidak menggunakan mouse, maka untuk select kalimat/kata kita bisa menggunakan mode visual
+   kita perlu kembali terlebih dahulu ke normal mode, dan menekan tombol (v) 
+  
+4. Command mode, Digunakan untuk menjalankan perintah command pada vim  
+   dinormal mode kita bisa tuliskan perintahnya dengan langsung menggunakan titik dua (:) diikuti perintah yang akan dijalankan
+   Salah satunya yaitu command yang kita gunakan untuk keluar tanpa melakukan saving (:q!)
+
+
+   
+Eps. 3 
+Membuat File menggunakan VIM 
+
+Cara membuat file dengan VIM, yaitu dengan menuliskan langsung nama file setelah menulis vim atau neovim diterminal
+dan cara menulisnya kita perlu masuk ke insert mode, dengan cara menekan esc dilanjut dengan tombol (i)
+untuk save file vim kita bisa tulis command (:write) pada normal mode
+alternativenya kita bisa tulis (:w) sebagai ringkasan dari write
+bila kita ingin menyimpan dan langsung keluar dari vim kita bisa tulis command (:wq)
+kita bisa mudah menyimpulkannya yang mana w adalah write dan q adalah quit
+untuk melihat file yang kita telah tadi kita buat divim, kita bisa melihatnya diterminal menggunakan (ls)
+untuk membuka file yang telah dibuat, kita bisa tuliskan vim beserta nama file yang kita buat 
+contohnya vim namaFile.txt (file yang telah dibuat)
+alternative lain jika vim sudah terbuka dan kita ingin mengakses file lain, kita bisa gunakan command :edit namafile-nya 
+atau kita bisa meringkasnya (:e namafile-nya)
+Proses merubah isi dari file bisa kita lakukan kembali dengan masuk ke mode insert (i)
+jika kita ingin keluar dari vim dan mengabaikan perubahan kita bisa keluar menggunakan command (:q!)
+
+
+
+Eps. 4 - Navigasi pada VIM
+
+jenis-jenis navigasi vim, diantaranya :
+Navigasi Dasar, Navigasi Baris, Navigasi Kata, Navigasi Jendela, dan Scrooling
+untuk navigasi kita bisa lakukan pada mode normal
+
+Navigasi Dasar, menggeserkan cursor
+tombol (h) untuk menggeser cursor ke kiri.
+tombol (j) untuk menggeser cursor ke bawah.
+tombol (k) untuk menggeser cursor ke atas.
+tombol (l) untuk menggeser cursor ke kanan.
+kita juga bisa gunakan tanda panah pada keyboard untuk memindahkan kursor
+ 
+Navigasi Baris:
+tombol (0) (angka nol) untuk memindahkan cursor ke awal baris.
+tombol ($) (dollar) untuk memindahkan cursor ke akhir baris.
+
+Navigasi Kata, ada 3 tombol utama
+tombol (b) artinya begin untuk memindahkan cursor ke awal Kata, layaknya menekan ctrl jika didalam windows (bergerak ke belakang)
+tombol (w) artinya word untuk memindahkan cursor ke awal kata berikutnya (bergerak maju)
+tombol (e) artinya end untuk memindahkan cursor ke huruf akhir kata dari kata yang sedang kita pilih 
+
+Navigasi Jendela, berfungsi untuk memindahkan cursor kita relative terhadap jendela vim
+tombol (H) artinya High yakni tinggi (H besar) untuk memindahkan cursor ke posisi atas
+tombol (L) artinya Low yakni rendah (L besar) untuk memindahkan cursor ke posisi bawah
+tombol (M) artinya middle atau tengah (M besar) untuk memindahkan cursor ke posisi tengah
+
+Scrolling, terdapat 2 macam yakni satu halaman penuh dan setengah halaman
+(Ctrl+f) untuk melakukan forward scrolling (satu halaman ke depan)
+(Ctrl+b) untuk melakukan backward scrolling (satu halaman ke belakang)
+(Ctrl+u) untuk melakukan scroll up (setengah halaman ke atas)
+(Ctrl+d) untuk melakukan scroll down (setengah halaman ke bawah)
+
+Navigasi Tambahan:
+tombol gg (g kecil dua kali) untuk melompat ke awal file
+tombol G (G besar) untuk melompat ke akhir file
+
+
+
+Eps. 5
+Copy, Cut, Paste, Undo, Redo
+
+COPY :
+Copy, Istilah copy pada vim yakni yank, untuk copy kita bisa pilih teksnya terlebih dahulu 
+ini bisa kita lakukan pada mode visual dengan menekan v pada mode normal
+setelah teks terpilih langkah selanjutnya untuk melakukann copy bisa kita ketik menekan tombol (y)
+setelah melakukan copy pada teks yang dipilih, vim akan kembali ke mode normal
+untuk melakukan paste, arahkan kursor ke tempat yang kita inginkan, lalu tekan (p)
+otomatis teks yang dicopy akan ter-paste
+
+CUT :
+Untuk melakukan cut, pertama-tama kita bisa pilih teks terlebih dahulu pada mode visual
+sama seperti halnya kita melakukan proses copy tadi, untuk melakukan cut kita bisa menekan tombol (d)
+untuk keyword (d) di-vim juga terkadang biasa digunakan untuk menghapus sekumpulan teks, yakni delete
+dengan cara menekannya dua kali (dd), maka satu baris akan terhapus
+
+UNDO :
+sewaktu bekerja dalam teks, tentu kita tak bisa lepas dari kesalahan dalam mengerjakannya 
+untuk melakuakn undo kita bisa menekan tombol (u) pada normal mode 
+
+REDO :
+untuk melakukan melakukan redo, dan membatalkan proses undo kita bisa menekan tombol (ctrl+r)
+
+
+ 
+Eps. 6
+Pencarian teks (search) pada vim
+
+umumnya diteks editor untuk mencari teks/kata kita bisa mengetik (ctrl + F)
+pada vim pencarian dilakukan dalam mode normal, pencarian pada vim bisa kita gunakan menggunakan tombol slash (/) 
+diikuti dengan kata yang akan dicari dan diakhiri dengan enter
+untuk menuju pencarian berikutnya gunakan tombol (n) kecil
+begitu juga sebaliknya untuk menuju pencarian sebelumnya gunakan (N) besar
+simpelnya (n) kecil untuk pencarian maju, dan (N) besar digunakan untuk pencarian mundur
+proses pencarian vim digunakan pada cursor aktif saat ini 
+artinya jika cursor sedang berada ditengah ia akan mencari yang terdekat 
+untuk proses mencari pencarian dari awal file kita bisa gunakan tombol (ggn) (kecil) secara langsung disaat mode pencarian
+(gg) akan memindahkan ke cursor ke baris pertama, sedangkan (n) akan memindahkan cursor ke text yang akan dicari
+pola serupa bisa kita terapkan untuk pencarian diakhir dokumen
+dengan menekan tombol G (besar) dan N (besar) 
+(G) besar akan memindahkan kursor ke akhir dari dokumen, dan (N) besar untuk melakukan pencarian mundur
+vim juga bisa digunakan untuk melakukan pencarian kata yang sedang ditunjuk oleh cursor
+caranya arahkan terlebih dahulu ke kata yang kita inginkan lalu tekan tombol bintag (*) atau tombol pagar (#) 
+tombol bintang digunakan untuk melakukan pencarian ke depan, dan pagar digunakan untuk melakukan pencarian ke belakang
+
+untuk memudahkan pencarian kita bisa manfaatkan fitur highlight search pada vim dengan mengetikkan command (:set hlsearch)
+maka semua kata yang dicari akan diberi highligt atau mode warna
+untuk menon-aktifkan fitur highlight ini kita bisa mengetikkan command (:set nohlsearch)
+
+vim juga mendukung incremental search, dimana pencarian akan dimulai disaat kita mengetikkan kata yang dicari tanpa harus menekan tombol enter
+fitur ini bisa diaktifkan menggunakan command (:set incsearch)
+jika kita melihat fiturnya, belum juga kita menekan tombol enter, vim akan mencari kata tersebut
+
+source : 
+- Tombol / digunakan untuk memulai proses pencarian dengan diikuti kata yang akan dicari lalu diakhiri tombol enter
+- Tombol n digunakan untuk melakukan pencarian ke depan
+- Tombol N digunakan untuk melakukan pencarian ke belakang
+- Tombol ggn digunakan untuk melakukan proses pencarian dimulai dari awal dokumen
+- Tombol GN digunakan untuk melakukan proses pencarian dimulai dari akhir dokumen
+- Tombol * digunakan untuk melakukan proses pencarian (ke depan) untuk kata yang sedang ditunjuk kursor
+- Tombol # digunakan untuk melakukan proses pencarian (ke belakang) untuk kata yang sedang ditunjuk kursor
+- Command :set hlsearch untuk mengaktifkan fitur highlight search
+- Command :set nohlsearch untuk menonaktifkan fitur highlight search
+- Command :set incsearch untuk mengaktifkan fitur incremental search
+
+
+
+Eps. 7 
+Mengenal Konfigurasi pada VIM 
+
+konfigurasi bisa kita lakukan pada mode Command (:)
+pada VIM untuk menonaktifkan suatu fitur kita bisa tuliskan (:set no...) dilanjut dengan fitur yang akan kita non-aktifkan 
+
+LINE NUMBER :
+konfigurasi untuk menampilkan nomor baris yaitu (line number) dengan mengeksekusi command (:set number)
+untuk menonakttifkannya kita bisa menulis (:set nonumber)
+vim juga mempunyai fiture line number relatif terhadap cursor saat ini, fitur ini dikenal (relative number)
+dengan menulis (:set relativenumber)
+line number yang diatas atau bawah merupakan line number yang relatif pada cursor, sedangkan yang ditengah merupakan line number yang asli
+fitur ini dapat dinonaktifkan dengan menuliskan command (:set norelativenumber)
+
+CURSOR LINE :
+fitur berikutnya adalah untuk menampilkan baris yang sedang ditunjuk oleh cursor
+kita bisa mengaktifkannya dengan cara menuliskan (:set cursorline)
+cara menonaktifkannya yaitu (:set nocursorline)
+
+SHOW MODE :
+fitur selanjutnya ialah menampilkan mode yang sedang aktif disisi kiri bawah atau show mode
+cara mengaktifkannya yaitu dengan command (:set showmode)
+ini sangat berguna untuk melihat kita sedang berada pada mode apa
+jika tidak ada tulisan mode, maka kita sedang berada dimode normal
+cara menonaktifkannya yaitu dengan command (:set noshowmode)
+
+VISUAL BELL :
+pada vim dalam situasi tertentu akan menghasilkan bunyi beep
+vim juga menyediakan fitur untuk mengalihkan suara beep ini ke bentuk visual
+fitur ini dinamakan visual bell, fitur ini dapat diaktifkan menggunakan command (:set visualbell)
+contohnya disaat kita berpindah mode, maka akan terdapat cahaya flash pada vim
+untuk menonaktifkannya kita bisa tuliskan (:set novisualbell)
+
+SYNTAX HIGHLIGHTING :
+vim merupakan teks editor berbasis terminal, maka ia juga mempunyai fitur sintaks highlighting
+untuk mengaktifkannya kita bisa tuliskan (:syntax on) tanpa menggunakan set
+kita juga bisa merubah temanya, atau istilahnya color scheme, yaitu dengan menggunakan command (:colorscheme default) untuk default
+untuk yang lain misalnya (:colorscheme desert) dan masih banyak lagi
+untuk menonaktifkannya kita bisa tuliskan (:syntax off) 
+
+Source :
+-  :set number untuk mengaktifkan fitur line number
+-  :set relativenumber untuk mengaktifkan fitur relative line number
+-  :set cursorline untuk mengaktifkan fitur cursor line
+-  :set showmode untuk mengaktifkan fitur show mode
+-  :set visualbell untuk mengaktifkan fitur visual bell
+-  :syntax on untuk mengaktifkan fitur syntax highlighting
+-  :colorscheme desert untuk mengubah tema warna ke tema desert, tema warna lain yang bisa dipilih di antaranya: default, industry
+
+
+
+Eps. 8  
+Cara menyimpan konfigurasi vim kedalam suatu file
+
+Pada vim jika kita melakukan konfigurasi, maka ia hanya akan berlaku pada vim itu saja.
+Sedangkan jika kita membuat atau membuka vim yang baru, maka kita harus melakukan konfigurasi ulang
+contoh kita membuat sebuah file menggunakan vim dengan nama random. Disini jika kita konfigurasi vim-nya lalu save dan quit 
+jika kita buka kembali file tersebut menggunakan vim
+maka yang kita dapati adalah ia akan menjadi seperti semula kembali alias konfigurasinya hilang
+agar konfigurasinya dapat berlaku pada setiap kali kita membuka vim
+maka kita perlu melakukan save ke sebuah file konfigurasi 
+terdapat perbedaan antara neovim dan vim terkait lokasi dan nama file konfigurasinya
+
+VIM :
+Untuk vim disimpan pada sebuah file yang bernama vimrc, file ini berada pada directory (.vim) pada home directory 
+Tergantung sistem operasinya terkadang juga nama directorynya ialah (.vimrc)
+jika tidak ada kita bisa buat sendiri directory-nya
+contohnya kita membuat directory (jika memang  tidak ada) lalu membuat file baru didalam directory-nya dengan nama vimrc
+dan menuliskan konfigurasinya, diantaranya set number, set cursorline, set relativenumber dan save 
+jika kita masuk ke vim maka ia sudah otomatis terkonfigurasi, konfigurasinya akan tersimpan setiap kali kita membuka vim
+
+NEOVIM :
+Untuk neovim disimpan dalam sebuah file yang bernama (init.vim)
+File ini ditempatkan dalam directory .config/vim/
+untuk konfigurasinya kita pindah terlebih dahulu ke directory .config dan masuk ke lagi directory nvim (cd .config/nvim)
+jika tidak ada, maka kita membuat directory-nya secara manual dan membuat file init.vim didalam directory-nya 
+dengan menggunakan vim atau juga teks editor lain
+lalu terapkan konfigurasinya seperti set number dsb, dan save.
+Maka otomatis setiap kali kita membuka neovim ia otomatis akan terkonfigurasi 
+
+MENYAMAKAN KONFIGURASI ANTARA VIM JUGA DENGAN NEOVIM 
+jika kita menggunakan vim dan neovim secara bergantian 
+kita bisa set agar neovim/vim yang kita pakai sesuai seperti konfigurasi pada vim/neovim kita 
+caranya kita kembali ke directory nvim (cd ./config/nvim/init.vim) masuk dan ubah filenya menggunakan vim/teks editor 
+lalu ketik source dan arahkan ke file vimrc milik kita sesuai sesuai dengan letak directory, beserta file-nya
+contohnya (source ~/.vim/vimrc) lalu save dan keluar
+jika kita masuk kembali ke neovim/vim, maka ia mempunyai konfigurasi yang sama dengan vim/neovim
+
+Source :
+- Lokasi dan nama file konfigurasi pada Vim: ~/.vim/vimrc atau ~/.vimrc
+- Lokasi dan nama file konfigurasi pada NeoVim: ~/.config/nvim/init.vim 
+- Untuk menjadikan NeoVim menerapkan konfigurasi yang sama dengan Vim, sertakan konfigurasi berikut pada file ini.vim: source ~/.vim/vimrc
+
+
+
+Eps (Tambahan) 
+Instalasi VimPlug/vim pluggin manager pada vim
+
+terdapat beberapa pluggin manager pada vim, diantaranya vim plug
+untuk proses mendownloadnya kita bisa masuk ke websitenya digithub (https://github.com/junegunn/vim-plug)
+sebelum mendownloadnya pastikan diterminal kita sudah menginstall curl, jika tidak ada pastikan curl di-install terlebih dahulu
+jika sudah terinstall. kita bisa scroll ke-bawah page-nya. 
+Disana terdapat cara instalasi menggunakan UNIX menggunakan terminal
+copy teks-nya 
+(curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim)
+dan paste text tersebut ke terminal, lalu enter
+proses instalasi ini terbilang cepat, jika sudah terdownload kita perlu menghubungkannya ke vim
+caranya yaitu kita masuk ke directory (.vim) lalu membuat file dengan nama vimrc (jika tidak ada kita bisa membuatnya secara manual)
+kita bisa kembali ke page websitenya, jika kita scroll ke bawah terdapat bagian example
+kita bisa copykan bagian awal beserta akhir terlebih dahulu, dan kosongkan bagian tengah
+
+call plug#begin()
+...
+kosongkan bagian tengahnya
+...
+call plug#end()
+
+untuk memilih dan melihat pluggin apa saja yang tersedia kita bisa melihatnya diwebsite (vim awesome) 
+disana terdapat banyak sekali pluggin yang bisa kita pakai 
+contohnya kita menambahkan pluggin untuk colorscheme dan vimairline 
+terdapat beberapa cara untuk melakukan proses instalasi
+jika kita lihat terdapat 4 yakni : Vundle, NeoBundle, VimPlug, Pathogen
+disini yang akan kita pakai adalah vimplug
+untuk vimplug, kita bisa copy text disampingnya, contohnya pluggin pada colorscheme (Plug 'sainnhe/vim-color-forest-night')
+setelah kita copy kita tinggal paste pada file vimrc, tengah-tengah antara call plug#begin() dan call plug#ned(), lalu save
+quit terlebih dahulu, lalu untuk selanjutnya kita install Plugginnya dengan menekan tombol (:PlugInstall) dan enter
+jika terdapat tulisan done, maka ia sudah berhasil terinstall, 
+untuk tampilan dari terminalnya, tampilannya akan terbagi menjadi 2
+kita perlu keluar dari vim-nya, untuk menutupnya kita bisa keluar menggunakan command (:q) dua kali
+disaat kita membuka vim kembali, maka pluggin sudah terinstall
+untuk cara pakainya kita bisa lihat kembali page-nya dibrowser, disana terdapat bagian (using) untuk cara memakainya
+contoh untuk pluggin yang saya download ialah (vim-color-forest-night) dan cara untuk memakainya
+yaitu menuliskan command (:colorscheme everforest)
+atau setelah menuliskan (:colorscheme) kita bisa tekan tab maka ia terdapat suggest untuk kita pilih 
+
+untuk proses instalasi pluggin yang lain caranya sama saja, kita tinggal cari pluggin yang kita inginkan 
+lalu copy sesuai installasi yang kita pakai diantaranya VimPlug
+lalu paste dibagian tengah antara call plug#begin() dan call plug#end()
+
+call plug#begin()
+Plug 'sainnhe/vim-color-forest-night'
+Plug 'vim-airline/vim-airline-themes'
+....
+call plug#end()
+
+lalu save, dan exit
+buka kembali file vimrc lalu install dengan command (:PlugInstall) dan tunggu sampai done (selesai)
+lalu quit dan quit, maka ia akan terinstall
+
+Kita juga dapat melakukan UPDATE pada pluggin
+cara untuk melakukan update pluggin, kita bisa tekan esc dan ketikan command (:PlugUpdate)
+
+Jika update adalah melakukan update pada pluggin yang terinstall, 
+Maka kita pun bisa mengupgrade-nya, untuk upgrade ialah upgrade dari vim plugginnya
+caranya menuliskan command (:PlugUpgrade)
+
+untuk menghapus pluggin yang terinstall, caranya kita bisa beri komentar pada pluggin yang kita install 
+dengan menambahkan tanda pagar (#) atau juga dihapus barisnya
+lalu save, setelah ter-save lalu ketik command (:PlugClean),
+setelah menulis demikian kita akan diminta untuk melakukan konfirmasi 
+apakah kita akan melakukan penghapusan apa tidak ? y untuk menghapus dan N sebagai pembatalan dari hapus 
+
+untuk mengembalikannya kembali kita bisa hapus tanda komentar, jika memang baris plugginnya kita beri komentar
+jika terhapus kita bisa copy ulang diwebsite vim awesome
+lalu setelahnya kita bisa install ulang dengan command (:PlugInstall)
+dan jika sudah maka ia akan terisntall
