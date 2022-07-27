@@ -1,0 +1,304 @@
+Cara membuat Snippet pada VSCODE (QuickTip#11)
+Source : Youtube (Web Programming Unpas)
+link video : https://www.youtube.com/watch?v=3DoV7DwNxoA&ab_channel=WebProgrammingUNPAS
+
+Snippet merupakan baris kode yang otomatis kita buat dan ditampilkan dengan hanya mengetikan beberapa keyword saja
+Meski diVSCODE terdapat snippet bawaan, namun kadang-kadang dalam kasus tertenutu 
+snippet tersebut tidak cukup untuk mempermudah kita dalam menulis program 
+
+Cara untuk membuat snippet diVSCODE 
+Pertama kita bisa ke Preference lalu menuju user snippet 
+untuk windows (File > Preference > Configure user snippet)
+Jika sudah masuk ke configure snippet disana banyak sekali list pilihan bahasa pemrograman. 
+Disana juga terdapat opsi, kita dapat menyimpannya spesifik diprogram tertentu 
+atau kita juga dapat memilihnya melalui global
+
+
+
+=== SPESIFIK (BUKAN GLOBAL) ==========
+
+Kita cari terlebih dahulu bahasa yang kita inginkan. Contoh misalnya javascript
+Ketika diklik kita akan masuk ke sebuah file dengan nama javascript(sesuai dengan bahasa yang dipilih).json 
+Disana terdapat banyak sekali komentar, itu merupakan cara sekaligus contoh dari pembuatan snippet 
+Karena formatnya JSON maka disaat membuat snippet, kita harus membuatnya/menulisnya berada didalam object JSON-nya 
+tepat berada didalam kurung kurawal ({ })
+Terdapat beberapa hal yang perlu kita tulis didalamnya yaitu :
+1. NAMA SNIPPET-NYA
+2. PREFIX, dan juga 
+3. BODY
+4. DESCRIPTION (opsional) 
+Kita juga dapat menambahkan DESCRIPTION untuk mendeskripsikan snippet yang kita buat namun ia opsional
+
+Untuk penulisannya kita dapat mencontek atau meniru diteks atas yang dikomentari
+seperti misal kita membuat snippet untuk menampilkan console.log();
+
+// membuat syntax console log
+"print to console":{			  		// Nama Snippet
+"prefix": "clog",					// Prefix
+"body": "console.log();"				// Body
+"description": "untuk menampilkan console.log()"	// Description 
+}
+
+Pertama kita tulis NAMA SNIPPETnya terlebih dahulu, untuk namanya sendiri bersifat bebas tergantung kita 
+setiap teks yang ditulis harus berada dididalam kutip dua ("), karena formatnya JSON
+lalu titik dua dan buka kurung kurawal ({}), diikuti dengan PREFIX 
+prefix ini berfungsi disaat kita menuliskan keyword sebelum menekan tab. Contoh disini ialah "clog"
+dilanjut dengan menuliskan BODY, body ini berfungsi sebagai hasil disaat menekan keyword dan tab-nya
+hasil setelah menulis clog lalu tekan tab maka akan menghasilkan value dari body yang disini ialah console.log();
+untuk value dari body kita bisa gunakan tanda kutip (") jika memang isinya satu baris
+kita juga dapat menggunakan kurung siku ([ ]) jika isinya lebih dari satu baris
+yang wajib hanya 2 diatas, untuk DESCRIPTION kita bisa menambahkannya ataupun tidak
+ia akan muncul dalam bentuk sebagai keterangan disaat keyword yang diketik hampir sesuai dengan keyword yang kita gunakan dalam prefix 
+keterangan yang dikiri ialah prefix, dan yang ditengah ialah deskripsi, sedangkan diakhir ialah body 
+yang mana jika menekan tab/enter maka akan berubah menjadi demikian
+jika kita tidak menambahkan deskripsinya pun ia akan terwakili oleh judul
+yang wajib hanyalah ketiga sebelum dari description
+
+Jika sudah, kita dapat mencoba membuat sebuah file dengan format sesuai snippet kita
+dan mencoba menggunakan snippet pertama yang kita buat
+
+
+=== TAB STOP ==========
+
+Kita juga dapat menambahkan sesuatu yang disebut TAB STOP
+simpelnya disaat kita telah menekan keyword dan tab, cursornya akan berpindah sesuai dengan yang kita inginkan
+caranya dengan menggunakan tanda dolar disertai angka ($1)
+seperti contoh kita ingin agar disaat menekan clog dan tab, cursor berada didalam kurung 
+maka penulisannya ialah seperti dibawah, Contoh cara Penulisannya : 
+
+// membuat syntax console log
+"print to console":{
+"prefix": "clog",
+"body": "console.log($1);"
+"description": "untuk menampilkan console.log()"
+}
+
+jika kita coba, disaat menulis keyword dan menekan tab, ia akan berada didalam kurung
+
+
+
+=== PHP ==========
+
+jika menggunakan sublime text disaat menulis php dan menekan tombol tab ia akan otomatis membuat tag php
+berbeda dengan vscode disaat melakukan hal demikian ia tidak bisa
+terdapat beberapa kemungkinan antara snippetnya emang tidak ada, atau juga kita menginstall extension yang mana menyebabkan ia tertimpa
+namun kita juga dapat membuat snippet versi sendiri dengan cara sebelumnya
+
+// PHP Tag
+"PHP tag": {
+"prefix": "php",
+"body": "<?php $1 ?>",
+"description": "Tag PHP"
+}
+
+// kita simpan $1 diatas agar Tab Stopnya tersimpan ditengah
+
+Jika kita membuatnya file diphp ia tidak akan muncul, itu karena tag php tidak berada didalam script php 
+Padahal ia kita buat untuk membuat tag php, dan itu salah
+Seharusnya kita simpan difile html, meski kita membuat sebuah file dengan ekstensi php
+Namun yang pertama ialah html dahulu, dan jika kita pindahkan ke file html maka ia akan berjalan
+
+kita juga dapat membuat snippet baru dengan menambahkan tanda koma (,) diakhir kurung kurawal penutup 
+seperti contoh kita akan membuat snippet tag php dengan menampilkan echo
+
+// PHP Tag
+"PHP tag": {
+"prefix": "php",
+"body": "<?php $1 ?>",
+"description": "Tag PHP"
+},				// tanda koma
+
+// snippet php inline echo
+"PHP Tag inline for echo":{
+"prefix": "phpe",
+"body": "<?php echo $$1; ?>",
+"description": "Tag inline echo php"
+}
+
+pada body diatas terdapat double dollar ($$), maksudnya yang satu berfungsi untuk tab stop dan yang satu lagi ialah string
+karena kita ingin disaat kita menekan tab ia terdapat tanda dolar, sebagaimana tanda dolar dalam php direpersentasikan variable
+
+Selanjutnya kita dapat menulis beberapa tab stop sekaligus, seperti misal kita bekerja dengan sebuah framework CI (php)
+Disaat kita menggunakan codeigneter biasanya kita sering menulis variable this 
+lalu masuk ke bagian ini menggunakan tanda panah, lalu masuk lagi, dan menulis didalam kurung 
+contoh penulisannya :
+
+$this->A->B(C/D);
+
+Dibanding kita menulis manual kita bisa membuatnya menggunakan snippet
+Berhubung kode tersebut berada dalam scope php, kita bisa menambahkannya diphp
+
+"$this in CodeIgniter":{
+"prefix": "this",
+"body": "\\$this->$1->$2('$3');$0"
+}
+
+sedikit catatan :
+// $0 merepersentasikan akhir, maksudnya tab stop terakhir
+// disaat kita check, mungkin ia sudah benar, namun terdapat kejanggalan 
+yaitu disaat kita telah melakukan tab di dolar ketiga yaitu pada bagian didalam kurung, lalu menekan tab kembali 
+ia tidak akan menuju posisi tab stop akhir ($0), namun akan berpindah ke bagian awal yakni pada tulisan this
+itu karena dikata this terdapat tanda dolar ($this) sehingga setelah tab stop ketiga ia akan berpindah ke $this
+Jika kita mencoba menggunakan double dollar ($$) seperti kasus sebelumnya maka hasilnya akan sama
+yakni akan berpindah ke depan terlebih dahulu, meskipun setelahnya jika kita tab kembali, ia akan kembali ke tab stop akhir
+maka untuk kasus ini caranya ialah menggunakan escape sequel dua kali (\\)
+yang pertama berfungsi untuk menjadikan dollar bukan tab stop
+dan yang kedua ialah membuat backslash pertama jadi escape (menjadikannya string)
+
+
+
+=== PLACEHOLDER ==========
+
+selain dari melakukan tab stop yang berfungsi untuk mengatur loncat-loncat tab
+kita dapat memberikan yang namanya placeholder, yakni nilai awal 
+contoh disaat kita membuat file html dan membuat Form input
+misalnya kita membuat sebuah form lalu disana terdapat tag label
+pada tag label defaultnya jika menggunakan vscode ia mempunyai atribut for
+yang mana for ini harus mempunyai value yang sama dengan atribut id pada tag input nantinya
+belum lagi pada tag input terdapat atribut type-nya dan juga name yang berfungsi untuk mengirim data pada php
+dan itu merupakan satu kesatuan.
+
+<label for="username">Username : </label>
+<input type="text" name="username" id="username">
+
+kita bisa gunakan snippet untuk melalukan generate 
+
+// input pada form
+"Input label":{
+"prefix": "formel",
+"body": [
+"<label for=\"username\">Username : </label>",
+"<input type=\"text\" name=\"username\" id=\"username\">"
+]
+}
+
+catatan :
+karena valuenya lebih dari satu baris,maka kita gunakan kurung siku terlebih dahulu ([ ])
+lalu didalamnya kita menggunakan petik dua (")
+terdapat juga problem disaat kita membuat petik dua didalam petik dua, maka caranya kita perlu escape dikutipnya (\" \")
+ini artinya kutip tersebut bakal dijadikan string, sehingga ia tidak terpengaruh ataupun error pada penulisannya
+untuk menulis baris yang ke-2, diujung kita bisa tambahkan koma setelah kutip dua akhir(")
+"<label for=\"${2:username}\">${3:Username :} </label>"(,)	// tanda koma
+lalu kita tulis kembali didalam kutip dua
+
+"<label for=\"username\">Username : </label>",
+"<input type=\"text\" name=\"username\" id=\"username\">"
+
+kita bisa memberi tab stop sekaligus placeholder
+yang pertama misalnya kita tentukan terlebih dahulu tab stopnya, misal kita beri yang pertama di input type
+caranya kita kasih tanda dolar ($) sebagai tanda tab stopnya namun tidak langsung memberinya angka satu ($1)
+seperti hal sebelumnya, namun kita kasih terlebih dahulu kurung kurawal setelah dolarnya
+dan bungkus teks didalam kurung kurawalnya ( ${1: TEKS } )
+ini akan menjadinya template, lalu tinggal tambahkan 1 dan titik dua
+
+"<input type=\"${1:text}\" name=\"username\" id=\"username\">"
+
+disaat kita coba, dengan menulis prefix (formel) lalu tab 
+cursornya akan berada pada input type, dengan valuenya yaitu text, jika kita menginginkan type text, kita tinggal tab saja
+namun jika kita inginkan yang lain, kita tinggal rubah saja dengan mudah
+selanjutnya untuk loncat ke tab yang lain misalnya, caranya tetap sama namun dengan angka yang berurutan, contohnya
+
+"<label for=\"${2:username}\">Username : </label>",
+"<input type=\"${1:text}\" name=\"${2:username}\" id=\"${2:username}\">"
+
+jadi disaat kita selesai pada tab stop yang pertama, dan kita tekan tab lagi selain ia akan berpindah
+dan mempunyai value awal, tapi ia juga menyeleksi ketiganya sekaligus, tentu ini memudahkan kita
+
+misal untuk tab stop dan placeholder yang ketiga kita akan mengubah isi/value dari tag label
+
+"<label for=\"${2:username}\">${3:Username :} </label>",
+"<input type=\"${1:text}\" name=\"${2:username}\" id=\"${2:username}\">"
+
+disaat kita menjalankannya ia sudah benar, dan kerennya lagi disaat sudah ditab stop ke tiga
+dan kita tab lagi, ia akan langsung ke ujung akhir pada baris 2, jadi kita tidak perlu mengaturnya menggunakan $0
+
+
+
+=== INDENTASI MENGGUNAKAN TAB ==========
+
+Selain menambahkan Placeholder, kita juga dapat menambahkan tab
+kadang-kadang kita ingin kodingan kita rapih dan terdapat indentasi
+
+mungkin ini akan berhubungan dengan trik sebelumnya
+sebelumnya untuk menghubungkan antara label dan input, maka value dari atribut "for" di-label dan atribut "id" di-input harus sama 
+Akan tetapi kita juga dapat merubah gaya penulisannya tanpa menggunakan for dan id
+yaitu dengan cara memasukan inputnya ke dalam label, jadi inputnya tidak butuh id 
+dan juga untuk label kita tidak perlu menggunakan for
+
+<label>
+    Masukan nama : 
+    <input type="text" name="test" id="test">
+</label>
+
+jika kita jalankan, maka visualnya juga sama dengan sebelumnya 
+dan untuk hasilnya juga pada saat kita klik teksnya ia akan saling terhubung
+misalnya saja kita ingin membuat form demikian, jika kita lihat ia terdapat indentasi didalamnya
+untuk melakukan indentasi kita tinggal gunakan (\t)
+
+"Input in label": {
+"prefix": "labeli",
+"body": [
+"<label>",
+"\t${3:Username :}",
+"\t<input type=\"${1:text}\" name=\"${2:username}\">",
+"</label>"
+]
+}
+
+catatan :
+\t merupakan spesial karakter dari tab
+
+
+
+=== CHOICE (PILIHAN) ==========
+
+Kita juga dapat menambahkan apa yang disebut dengan choice, atau pilihan
+jadi pada saat kita menekan tab, lalu kita bisa pilih nilai yang ada sesuai didalam snippetnya
+seperti misal disaat kita membuat form, terdapat atribut action dan method
+dan untuk method kita bisa pilih, antara get dan post 
+dan pilihan tersebut dinamakan choice, pilihan tersebut bisa kita simpan didalam snippet
+caranya sama seperti placeholder dengan menambahkan dollar $ untuk tab stop 
+lalu memasukan teks kedalam kurung kurawal, namun tidak menggunakan titik dua ( ${1: teks } )
+untuk choice setelah angka satu kita tidak menggunakan titik dua (:) 
+tapi memakai tanda garis lurus (|) lalu tulis isi dari choice, pisahkan dengan koma
+dan tutup menggunakan tanda garis lurus (|) kembali, contohnya ( ${1|get,post,.....} )
+untuk contoh choice
+
+// form
+"form for request method":{
+"prefix": "reqmet",
+"body": "<form method=\"${1|get,post|}\" action=\"$2\">$3</form>",
+"description": "form untuk mengirim data menggunakan methode request"
+}
+
+
+
+=== SNIPPET GLOBAL ==========
+
+untuk pembuatan snippet GLOBAL 
+untuk membuat snippet global caranya kita masuk ke preference > configure user snippet > lalu pilih yang global
+setelah pilih global, lalu kita beri nama snippetnya 
+nanti ia akan dibuatkan file snippet sendiri dengan format JSON
+untuk pembuatannaya pun sama seperti sebelumnya, namun yang membedakannya terdapat property yang namanya scope 
+scope tersebut berfungsi sebagai informasi ia akan berjalan dibahasa mana saja
+
+jadi semisal, sebelumnya kalian membuat snippet console.log($1) dan ia hanya spesifik berjalan dijavascript
+sedangkan untuk html snippet tersebut tidak akan pernah bisa kita jalankan, begitu juga bahasa lainnya
+namun jika kita ingin ia bisa dijalankan pada bahasa lain seperti dihtml, javascript, php, dsb.
+maka menggunakan snippet global merupakan solusinya, namun untuk snippet global lebih enak dipakai untuk data pribadi
+semisal no.ktp, atm, dan lainnya. yang mana kita tidak perlu susah payah untuk mengingatnya kembali
+contohnya 
+
+"nomor telepon whatts'App":{
+"scope": "html, php, javascript",
+"prefix": "biowa",
+"body": "085798162140"
+},
+
+"nim":{
+"scope": "html, php, javascript",
+"prefix": "nim",
+"body": "213051023"
+}
+
+
