@@ -1,0 +1,626 @@
+Belajar tmux
+Source : Youtube (Indonesia Belajar)
+link Playlist : https://youtube.com/playlist?list=PL2O3HdJI4voHLld3txIVmV7IIuiBGyOWh
+
+
+
+Eps.1
+Pengenalan tmux
+
+tmux atau terminal multiplexer yaitu aplikasi yang berbasis konsol 
+yang memungkinkan kita untuk menangani lebih satu terminal melalui satu layar 
+tmux populer dikalangan para sys-administrator yang biasa mengelola sistem via ssh
+bisa juga untuk kalangan para programmer yang suka bekerja menggunakan via terminal 
+tmux bisa juga dipadukan pada vim untuk menunjang pekerjaan mereka 
+vim bisa diinstall menggunakan packet manager sesuai distribusi linux yang digunakan 
+untuk ubuntu (sudo apt install tmux)
+untuk manjaro (sudo pacman -S tmux)
+setelah terinstall kita bisa jalankan dengan menuliskan (tmux) diterminal 
+hal petama kali, yang perlu diketahui saat belajar tmux adalah prefix 
+yakni keyboard shortcut yang dilakukan sebelum memberi instruksi ke tmux
+defaultnya prefix yang digunakan pada tmux adalah (ctrl+b)
+salah satu fitur yang umum digunakan untuk tmux diantaranya
+pane (yaitu membagi layar), dan windows (untuk membuat tab baru)
+
+
+
+Eps.2  
+Screen Splitting (Pane)
+
+salah satu fitur favorit pada tmux adalah kemampuan untuk membagi layar 
+atau dikenal screen splitting, pada tmux fitur ini sering disebut pane
+pane sendiri terbagi menjadi 2 macam 
+pertama adalah pane yang membagi layar secara vertikal 
+dan yang kedua adalah pane yang membagi layar secara horizontal 
+prefix digunakan untuk mengawali perintah pada tmux
+default dari prefix yaitu dengan menekan (ctrl+b)
+untuk membagi layar secara vertikal
+kita bisa ketikan prefix dilanjut dengan tombol persen (prefix + %)
+untuk membagi layar secara horizontal 
+kita bisa ketikan prefix dilanjut dengan petik dua (prefix + ")
+setelah kita memiliki beberapa pane 
+kita dapat menampilkan nomor pada pane dengan menggunakan (prefix + q)
+untuk merubah posisi pane layout kita dapat mengetikan (prefix + spasi)
+
+selanjutnya yaitu navigasi pada pane
+setidaknya terdapat 2 cara untuk berpindah dari pane satu ke pane yang lain
+cara pertama yaitu dengan menekan (prefix + o) atau juga menekan (prefix + ;) 
+(prefix + o) digunakan untuk berpindah menuju pane berikutnya
+sedangkan (prefix + ;) digunakan untuk berpindah ke pane sebelumnya 
+untuk cara yang kedua yaitu menggunakan (prefix + tombol arah panah) 
+sesuai dengan pane yang akan kita pilih 
+salah satu dampak negatif dari screen splitting yaitu kita bekerja dengan banyak layar
+yang terkadang layarnya berukuran kecil, terutama jika kita memiliki banyak pane 
+dan ini merupakan kelemahan dari screen splitting 
+solusi untuk hal ini bisa kita lakukan dengan cara menggunakan zooming pane 
+jadi kita bisa melakukan zooming pada pane kita 
+untuk melakukan zoom-in atau zoom-out 
+pertama kita perlu memilih pane yang akan kita zoom-in/zoom-out terlebih dahulu 
+setelah itu kita bisa melakukan zoom-in, untuk melakukannya kita bisa gunakan (prefix + z) 
+kombinasi dari (prefix + z) juga digunakan untuk zoom-out
+
+mengubah ukuran pane atau dikenal dengan istilah pane resizing
+untuk melakukan pane resizing, kita bisa gunakan (prefix + tanda panah(arahkan ke-atas/bawah atau kiri/kanan))
+untuk memilih terlebih dahulu pane yang akan kita resizing
+yang perlu diperhatikan pada saat melakukan resizing 
+adalah tombol ctrl perlu ditekan pada saat proses resizing berlangsung dan tidak boleh dilepas
+begitu juga pada saat menekan tanda panah, kita harus menekan sambil menahannya 
+
+cara menukar posisi Pane 
+caranya bisa kita lakukan menggunakan prefix tombol kurawal buka ({) atau tutup (})
+tombol kurawal buka digunakan untuk menggeser pane ke kiri (prefix + {) 
+sebaliknya, tombol kurawal tutup digunakan untuk menggeser pane ke kanan (prefix + })
+
+cara untuk menutup pane
+terdapat 2 cara
+pertama yaitu menggunakan command (exit)
+kedua yaitu menekan (ctrl + d)
+
+
+
+Eps. 3
+Window dasar untuk membuat Multipe Tab
+
+Selain pane kelebihan dari tmux ialah mempunyai fitur multiple tab
+fasilitas multiple tab ini umum dijumpai seperti pada gnome, iterm, dan xfce
+tetapi terdapat beberapa terminal emulator yang berfokus berfungsi untuk fungsionalitas dasar 
+dan tidak mempunyai multiple tab diantaranya xterm, termix, dan este
+fasilitas tab pada terminal minimalis bisa ditangani oleh tmux
+pada tmux, fitur multiple tab ini dikenal dengan nama windows 
+
+untuk membuat sebuah windows baru pada tmux 
+dapat ditampilkan dengan menekan (prefix + c) 
+jika kita lihat ke-bawah terdapat angka 0 dan 1
+itu merupakan index dari window pada tmux 
+perubahan tersebut dapat kita lihat kembali dengan menambahkan windowsnya
+maka index pada nomor dibawah akan bertambah menjadi 3
+
+untuk berpindah dari window ke window lain
+terdapat beberapa cara
+yang pertama dengan menekan (prefix + n) atau juga (prefix + p)
+untuk (prefix + n) digunakan untuk ke window berikutnya (next)
+sedangkan, untuk (prefix + p) digunakan untuk berpindah ke window sebelumnya (previous)
+cara yang kedua untuk berpindah window yaitu dengan memanfaatkan index pada tiap window
+ini bisa kita lakukan dengan menekan (prefix + no. index-nya) 
+misal jika kita ingin berpindah ke window pertama kita tinggal ketik (prefix + 0)
+cara ketiga untuk pindah window dapat dilakukan dengan cara menampilkan daftar window yang tersedia 
+dengan cara menekan (prefix + w) lalu pilih window dari yang kita inginkan lalu enter
+
+didalam sebuah window, kita dapat memiliki beberapa pane 
+dengan kata lain window seperti wadah yang dapat menampung beberapa pane 
+pada tmux setiap window dapat kita beri nama 
+untuk memberi nama ataupun merubah nama pada window dapat menggunakan (prefix + ,)
+semisal untuk window pertama kita akan mengubah namanya menjadi satu
+maka kita cukup menekan tombol (prefix + ,) dilanjut dengan nama sesuai kita, lalu enter
+pada saat namanya telah kita rubah, kita dapat melihat namanya terubah dibagian bawah 
+dan juga disertai dengan tanda bintang, sebagai informasi kita berada pada window berapa
+untuk menutup window yang aktif, kita bisa gunakan dengan menekan tombol (prefix + &)
+disana terdapat konfirmasi apakah kita benar akan menutup window-nya, jika ya ketik huruf y
+
+
+
+Eps. 4
+Session pada tmux
+
+sebelumnya di-tmux kita dapat memiliki beberapa window
+dan didalam tiap window kita dapat memiliki beberapa pane
+window dapat dianalogikan sebuah wadah yang dapat memuat beberapa pane
+disini kita akan mengenal session
+session dapat dianalogikan sebuah wadah yang lebih besar yang dapat memuat beberapa window
+untuk memuat tmux session kita dapat mengeketikan (tmux) diterminal
+dengan demikian kita membuat sebuah tmux session yang baru
+kita dapat memberi nama pada session yang kita buat
+caranya kita perlu berada pada session yang aktif, lalu mengetikan (prefix + $) 
+untuk default dari nama session biasanya namanya berdasarkan nomor index (0) 
+kita dapat merubah nama session sesuai yang kita inginkan, jika sudah lalu enter
+pada saat selesai merubah nama dari session
+jika kita melihat kebawah, maka diujung kiri awal terdapat tanda kurung siku 
+disertai dengan nama yang kita input sebelumnya
+
+contoh kasus misalnya, kita membuat 3 window dengan nama config, monitoring, dan testing
+caranya dengan menggunakan (prefix + c) untuk membuat window baru
+dan mengubah nama windownya menggunakkan (prefix + ,)
+dari ketiga window tersebut ubah nama sessionnya menjadi dev
+dengan mengetikan (prefix + $) untuk merubah nama session
+pada setiap window kita beri pane, dengan mengetikan (prefix + %, ") 
+point disini kita dapat memahai session 
+jadi sesuai seperti sebelumnya session merupakan wadah besarnya 
+dimana ia dapat memuat beberapa window 
+dan juga disetiap window terdapat beberapa pane
+
+cara untuk melepas session atau dikenal dengan istilah session detech
+dengan mengetikkan (prefix + d) 
+dengan melakukan session detech ini 
+berarti kita melepas session yang kita miliki dari layar
+tetapi session tersebut tetap akan berjalan meski di-background 
+dan session tersebut juga bukan berarti terhapus namun lebih tepatnya dilepas/detech
+
+misalnya lagi, kita membuat 2 buah session baru dengan namanya sesuai keinginan kita
+untuk membuat session baru kita dapat mengetikkan (tmux) pada terminal
+lalu untuk sessionnya kita dapat merubah namanya menggunakan (prefix + $)
+disetiap session yang kita buat, jalankan command apa saja
+sebagai pembeda antara session dengan session yang lain, lalu pastikan juga kita detech session
+jika selesai maka setidaknya terdapat 3 session 
+satu yang telah kita buat diawal, dan 2 lagi session yang baru kita buat tadi
+untuk melihat tmux session mana saja yang sedang berjalan dibackgound kita dapat tuliskan (tmux ls)
+disana akan menampilkan session yang sedang berjalan, juga window lain yang dapat kita akses
+
+proses session detech ialah proses melepaskan session yang kita miliki pada layar kita untuk dilempar ke background 
+ia akan tetap aktif, dan kita pun masih dapat mengakses sessionnya
+untuk menempelkan kembali sebuah session yang sedang berjalan dibackground ke layar 
+ini juga dikenal dengan proses session attach
+misal kita ingin mengakses kembali session pertama kita 
+kita tinggal mengetik (tmux attach-session -t namaSession)
+contohnya untuk kasus saya, disession pertama saya beri nama session_1
+maka untuk menulisnya dapat mengetikan (tmux attach-session -t session_1) lalu enter
+jika kita lihat aplikasi yang berjalan sebelumnya masih tetap ada 
+jadi disaat melakukan attach-session ia akan melanjutkan kembali proses sebelumnya ke layar 
+bukan mengaktifkan kembali dari awal 
+
+untuk menutup session pada tmux diistilahkan dengan kill session
+semisal kita akan mematikan tmux session yang kita buat ke-2 
+dalam kasus saya, saya menamakannya session_2
+untuk penulisan kill-session, dapat kita lihat contohnya dibawah 
+(tmux kill-session -t [nama session yang akan kita akhiri)
+maka penulisannya ialah (tmux kill-session -t session_2), lalu enter
+jika kita check kembali menggunakan (tmux ls) ia tidak ada alias terhapus
+sehingga disaat kita panggil kembali ia tidak bisa, karena sudah berakhir
+
+
+
+Eps. 5
+File konfigurasi pada tmux 
+untuk manjaro (~/.tmux.conf)  
+untuk ubuntu (/etc/tmux.conf)
+
+konfigurasi pada tmux dapat dilakukan dengan memanfaatkan sebuah file bernama (tmux.conf/.tmux.conf)
+terdapat perbedaan dalam melakukan setting konfigurasi file tmux pada sistem operasi ubuntu dan juga manjaro linux
+
+untuk Ubuntu
+file ini harus berada didalam directory /etc/
+untuk masuk kedalam directory /etc/ kita perlu keluar dulu dari user directory
+dengan cara mengetikan (cd /) lalu enter
+maka kita akan masuk ke directory root, dengan ciri khas tanda (/) pada terminal
+selanjutnya kita berpindah directory menuju directory etc
+dengan mengetikkan (cd /etc/) lalu enter
+disana kita dapat men-check terlebih dahulu, apakah file tersebut sudah ada atau belum meggunakan commmand (ls)
+jika sekiranya file tersebut tidak ada, kita bisa membuatnya secara manual
+dengan mengetikan (touch tmux.conf) lalu enter
+setelah file terbuat, kita dapat melakukan setting ditmux menggunakan file ini
+dengan cara mengaksesnya ataupun merubahnya menggunakan teks editor
+
+Manjaro
+pada manjaro linux file ini bernama (.tmux.conf)
+dan untuk file ini berlokasi dihome directory (user) yang kita gunakan
+untuk menuju ke home directory dari user, dapat dilakukan menggunakan command (cd ~) 
+selanjutnya kita check di directory home, apakah file tersebut sudah tersedia atau belum
+jika filenya tidak ada, kita bisa membuat file-nya sendiri secara manual
+untuk membuat sebuah file kosong, kita bisa gunakan command (touch diikuti dengan nama filenya)
+contohnya dikasus ialah (touch .tmux.conf) lalu enter
+setelah terbuat kita dapat mengecek untuk memastikannya
+dengan cara menuliskan command (ls -a|grep .tmux.conf)
+jika sekiranya filenya ada, maka nama file-nnya akan muncul diterminal 
+kita juga dapat menggunakan cara lain yakni menuliskan command (ls -a) untuk mencarinyanya
+namun jika menggunakan (ls -a) outputnya akan menampilkan semua directory, termasuk untuk directory hidden
+otomatis kita perlu membacanya dari A-Z 
+ini berbanding dengan grep yang langsung menampilkan file-nya
+
+selanjutnya setelah kita membuat file tersebut, langkah berikutnya yaitu melakukan konfigurasi
+dengan membukanya menggunakan teks editor, baik vim ataupun yang lainnya
+
+Mengubah Prefix default 
+(set -g prefix C-a)
+
+konfigurasi pertama yang akan kita lakukan adalah mengubah default prefix dari (ctrl+b) ke (ctrl+a)
+proses pengubahan keyboard ini disebut juga remapping
+caranya dengan menulis (set -g) 
+(set -g) ini merepersentasikan kita akan melakukan setting yang berlaku secara global
+diikuti dengan kata (prefix,) yang menunjukkan kita akan mengubah prefix
+diikuti (C-a), artinya default dari prefix sekarang akan berubah menjadi tombol (ctrl+a)
+untuk menerapkan konfigurasi yang baru saja kita lakukan
+kita cukup menyimpan perubahan pada file ini, dengan melakukan save
+setelah tersave, kita bisa kembali ke tmux dan mencobanya
+
+sebelumnya karena file .tmux.conf ini baru kita buat
+kita perlu memberi tahu tmux mengenai keberadaan file ini
+caranya yaitu kita cuma mengetikan command source diikuti dengan lokasi file-nya (source ~/.tmux.conf) lalu enter
+dalam kasus saya diubuntu, disaat saya melakukan demikian ia akan error
+namun demikian, prefix tersebut tetap terganti, sepertinya proses tersebut sudah menyesuaikan sendiri
+jadi kita cuma perlu merubahnya lalu save 
+
+disaat kita kembali membuka tmux, default prefix tidak lagi berada di ctrl+b namun di ctrl+a
+proses remapping ini banyak dilakukan oleh pengguna tmux 
+mengingat posisi ctrl+b ini agak sedikit jauh untuk tangan dibandingkan dengan ctrl+a
+karenanya juga dapat menunjang kenyamanan dalam bekerja
+
+
+Mengubah Starting Index
+(set -g base-index 1)
+
+konfigurasi kedua yaitu mengubah default starting index
+defaultnya index pada tmux dimulai dengan angka 0
+default starting index ini terkadang membingungkan bagi para pemula
+kita dapat mengubahnya dengan cara mengakses kembali file .tmux.conf/tmux.conf
+dan menuliskan (set -g base-index 1)
+simpelnya set -g mengartikan kita akan melakukan konfigurasi global 
+dan base-index 1 artinya index dimulai dari angka 1
+namun konteks base-index ini hanya berlaku untuk sesi session
+artinya index yang dimulai dari satu ini, hanya berlaku untuk window
+
+
+Mengubah Starting Pane Index
+(setw -g pane-base-index 1)
+
+agar pane-index kita juga dimulai dari angka 1 
+maka kita perlu melakukan seting caranya kita tulis command (setw) 
+setw ini direpersentasikan kita melakukan setting disisi windowsnya 
+jika hanya set maka konfigurasi hanya akan dijalankan pada sesi session
+(setw -g pane-base-index 1) artinya kita melalukan setting index satu disisi windows, mengingat pane berada diwindow
+jika sudah kita bisa save filenya, lalu buka kembali tmux
+jika kita lihat, index dari window bukan lagi dimulai dari 0 tetapi dimulai dari angka 1
+jadi disaat kita melompat dari window ke window ke lain, kita tinggal ketik angkanya langsung
+termasuk juga untuk pane, disaat kita melakukan splitting layar, lalu kita check menggunakan (prefix + q)
+maka kita lihat index dari pane ia akan dimulai dari angka 1, bukan lagi 0
+
+
+
+Eps. 6
+Tmux Plugins Manager (TPM)
+TPM : https://github.com/tmux-plugins/tpm
+
+tmux plugins manager merupakan plugin yang secara khusus dibuat untuk mengelola plugins pada tmux
+tpm ini membantu kita dalam melakukan proses instalasi atau update plugins
+juga menghapus (meng-unistal) plugin yang tidak kita butuhkan
+untuk dapat menggunakan tpm, kita perlu menginstallnya terlebih dahulu
+proses instalasi ini, bisa kita lakukan dengan cara meng-cloning repository git dari tpm
+kita perlu memastikan git telah terinstall pada sistem operasi kita
+untuk menginstall git kita dapat menginstallnya menggunakan packet manager bawaan distro linux masing-masing
+untuk ubuntu (sudo apt install git)
+untuk manjaro (sudo pacman -S git)  
+setelah git terinstall, selanjutnya kita dapat melakukan cloning directory dari tpm
+caranya kita dapat meng-copy scriptnya dari homepage TPM 
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+lalu paste diterminal dan enter, maka proses cloning akan berlangsung
+setelah selesai, selanjutnya kita melakukan konfigurasi pada file .tmux.conf
+untuk manjaro, file ini berada di home directory dengan nama .tmux.conf
+
+untuk ubuntu, file konfigurasi sebelumnya yang kita buat, dengan file plugins ini berbeda
+sebelumnya saya mencoba mengakses file konfigurasi dan mengubahnya
+namun disaat melakukan load ia terdapat notifikasi error dengan kode 127 
+disaat saya mencoba membuat sebuah file dengan nama .tmux.conf dan di-load ternyata itu berhasil
+maka untuk ubuntu, prosesnya sama seperti manjaro 
+kita perlu membuat file baru di home directory (touch .tmux.conf)
+untuk ubuntu, file plugginnya berada di ~/.tmux.conf
+sedagkan file konfigurasi berada di /etc/tmux.conf
+
+setelah kita membuat file plugins, langkah selanjutnya yaitu kita akses file-nya menggunakan teks editor 
+kita dapat tuliskan dibaris paling akhir
+(run -b '~/.tmux/plugins/tpm/tpm') lalu save
+
+disini kita perlu melakukan load ulang file plugins
+dengan mengetikkan tmux source disertai lokasi dari file (.tmux.conf)
+untuk manjaro dan ubuntu, file plugins ini sama-sama berada di home directory
+maka kita tinggal mengetikkan command (tmux source ~/.tmux.conf) 
+didalam tmux itu sendiri, bukan didalam terminal
+setelah selesai proses load
+
+selanjutnya kita melakukan instalasi menggunakan TPM
+karena TPM dasarnya merupakan sebuah tmux plugin 
+maka memungkinkan bagi kita untuk mengelola tpm dengan tpm 
+pertama-tama kita perlu men-data plugin apa saja yang akan kita kelola menggunakan tpm
+ini bisa kita lakukan dengan melakukan konfigurasi file .tmux.conf/tmux.conf yang kita buat sebelumnya
+
+pertama-tama kita dapat membuka tmux session, lalu setelah terbuka
+langkah selanjutnya yaitu menggunakan teks editor, yakni vim dan membuka file tmux.conf
+sebelumnya isi dari file tersebut ialah
+
+.....
+run -b '~/.tmux/plugins/tpm/tpm'
+
+untuk menambahkan plugins, kita dapat menambahkan command khusus untuk memanggilnya
+caranya cukup menuliskan (set -g @plugin 'tmux-plugins/tpm') pada posisi atas 
+maka untuk tampilannya akan berubah menjadi demikian 
+
+set -g @plugin 'tmux-plugins/tpm'
+.....
+run -b '~/.tmux/plugins/tpm/tpm'
+
+terdapat hal yang perlu diperhatikan 
+(set -g @plugin 'tmux-plugins/tpm')
+untuk tulisan diatas merupakan perintah dasar dari plugin, dan kita perlu menyimpannya dipaling atas
+tulisan tersebut mempunyai 2 bagian yang dipisah menggunakan tanda garis miring (/)
+tanda yang pertama menunjukkan username dari git
+tanda yang kedua ialah nama plugins-nya
+
+lalu untuk menambahkan plugin, untuk kita install
+kita perlu menulisnya dibaris baru, ditengah-tengah antara teks awal dan teks akhir
+contohnya kita akan menginstall plugin yang bernama (tmux-sensible)
+untuk command-nya sendiri ialah (set -g @plugin 'tmux-plugins/tmux-sensible')
+maka untuk hasil akhir dari isi tampilan file-nya ialah 
+
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+......
+run -b '~/.tmux/plugins/tpm/tpm'
+
+sebelumnya kita perlu mengingat posisi teks run ini harus selalu berada dibaris akhir
+setelah selesai kita lakukan save, dan kita coba keluar dari teks editor
+dan memerintahkan tpm agar melakukan proses instalasi plugin-nya
+caranya kita gunakan prefix dilanjut dengan i besar (prefix + i(Kapital))
+disana terdapat notif, "tmux environment reloaded. Done, press ESCAPE to continue"
+kita tekan tombol escape, untuk keluar 
+
+TPM dapat digunakan untuk proses update dan unistall plugin
+
+untuk update pada TPM dapat dilakukan menggunakan prefix diikuti U besar (prefix + u(kapital))
+disana terdapat pilihan, kita dapat mengupdate plugin tertentu saja
+ataupun mengupdate keseluruhan plugin
+untuk mengupdate keseluruhan plugin kita cukup mengetikkan all, lalu enter
+disana proses yang terjadi dibelakang adalah proses update plugin
+jika update selesai maka terdapat notifikasi update succes, lalu tekan tombol esc untuk menutup notif
+
+untuk melakukan proses penghapusan plugin (unistall)
+pertama-tama kita perlu menghapus baris atau juga dapat memberi tanda pagar terhadap daftar plugin tmux kita
+kita perlu membuka file .tmux.conf/tmux.conf terlebih dahulu menggunakan code editor
+cara pertama kita dapat delete barisnya, atau
+cara kedua kita dapat memberi tanda komentar pada barisnya 
+penanda komentar ini dapat dilakukan menggunakan tanda pagar(#)
+komentar juga dapat berfungsi sebagai memberi keterangan tambahan
+seperti misalnya
+
+# DAFTAR PLUGINS
+set -g @plugin 'tmux-plugins/tpm'
+# set -g @plugin 'tmux-plugins/tmux-sensible'
+
+# PASTIKAN "RUN" SELALU BERADA DI BARIS PALING BAWAH
+run -b '~/.tmux/plugins/tpm/tpm'
+
+setelah kita hapus barisnya atau barisnya kita beri komentar
+selanjutnya kita perlu memerintah tpm untuk melakukan proses unistall
+ini dilakukan dengan menggunakan prefix dilanjutkan dengan tombol penekanan kombinasi
+yakni (Alt + U), (prefix + (alt + u))
+untuk pluginns-ya secara otomatis akan di-remove 
+
+
+
+Eps. 7
+tmux-sensible (tmux plugins)
+tmux-sensible : https://github.com/tmux-plugins/tmux-sensible
+
+tmux-sensible merupakan tmux plugin yang umum digunakan oleh pengguna tmux
+tmux-sensible akan menyertakan bebera konfigurasi umum yang biasa diterapkan oleh pengguna tmux
+dengan menggunakan tmux-sensible kita dapat menyederhanakan file konfigurasi tmux yang kita miliki 
+karena semua konfigurasi dasar telah ditangani oleh tmux-sensible
+cara paling mudah untuk menginstall tmux-sensible ialah menggunakan tpm
+untuk melakukan instalasi plugin menggunakan tpm 
+pertama kita perlu men-data plugin yang kita akan install pada file .tmux.conf
+kita perlu mengakses filenya menggunakan code editor dan membuka filenya
+untuk isi file dari .tmux.conf sebelumnya ialah
+
+# DAFTAR PLUGINS
+set -g @plugin 'tmux-plugins/tpm'
+
+# PASTIKAN "RUN" SELALU BERADA DI BARIS PALING BAWAH
+run -b '~/.tmux/plugins/tpm/tpm'
+
+dipertengahan antara teks atas dan juga bawah, kita tulis plugin
+set -g @plugin 'tmux-plugins/tmux-sensible'
+maka hasilnya ialah
+
+# DAFTAR PLUGINS
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+
+# PASTIKAN "RUN" SELALU BERADA DI BARIS PALING BAWAH
+run -b '~/.tmux/plugins/tpm/tpm'
+
+setelahnya kita lakukan proses save dan keluar dari file  
+
+selanjutnya kita dapat memerintahkan tpm, untuk memulai instalasi plugins
+dengan meggunakan prefix diikuti dengan i besar (prefix + i(besar))
+perlu diketahui instalasi ini harus berda didalam tmux (tmux), bukan didalam terminal
+jika sudah, maka proses instalasi akan berjalan dan selesai 
+proses instalasinya pun terbilang cukup cepat 
+
+salah satu konfigurasi dasar yang ditangani tmux-sensible
+diantaranya ialah pengaktifkan UTF-8 sebagai character encoding
+juga dukungan warna terhadap 256 warna pada terminal
+durasi refresh dari status line juga menjadi lebih sering yakni 5 detik
+lalu pengaturan ukuran buffer dan juga masih banyak yang lainnya
+pada intinya menggunakan tmux sensible ini, dapat menyederhanakan file konfigurasi 
+karena beberapa konfigurasi dasar sudah ditangani oleh plugins ini  
+makannya tidak heran ia populer dikalangan tmux
+
+
+
+Eps. 8
+tmux-pain-control (plugins)
+tmux-pain-control : https://github.com/tmux-plugins/tmux-pain-control
+
+selain tmux-sensible plugins lain yang cukup populer dikalangan pengguna tmux adalah tmux-pain-control
+tmux-pain-control memiliki fokus terhadap konfigurasi terkait pane pada tmux
+cara yang paling mudah untuk menginstall tmux-pain-control ini ialah menggunakan tpm
+untuk melakukan instalasi plugins pada tpm 
+pertama kita perlu men-data plugin yang akan kita install terlebih dahulu pada file tmux.conf kita
+kita dapat membuka filenya menggunakan teks editor seperti vim
+untuk filenya berada didalam home directory (~/.tmux.conf)
+untuk isi dari file sebelumnya, yakni hanya terdapat plugin tmux-sensible saja
+
+#Daftar Plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+
+#pastikan untuk run -b selalu berada dibaris paling akhir
+run -b '~/.tmux/plugins/tpm/tpm'
+
+untuk menambahkan plugin baru, khususnya tmux-pain-control
+kita dapat tulisakan dibaris setelah tmux-sensible
+set -g @plugin 'tmux-plugins/tmux-pain-control' 
+maka hasil dari isi filenya ialah
+
+#Daftar Plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'tmux-plugins/tmux-pain-control'          
+                
+#pastikan untuk run -b selalu berada dibaris paling akhir
+run -b '~/.tmux/plugins/tpm/tpm'
+
+jika sudah lalu save dan keluar dari file konfigurasinya
+selanjutnya kita perlu memerintahkan tpm agar menginstall plugins-nya
+dengan mengetikan prefix dilanjut dengan i besar (prefix + i(besar))
+maka proses instalasi akan berjalan dan selesai
+
+tmux-pain-control ini memfasilitasi kita dalam menangani beberapa keyword remapping terkait screen splitting
+dalam tmux screen-splitting ini dikenal dengan nama pane
+tentu difahami mengapa plugins ini bernama tmux-pain-control
+karena dalam bahasa inggris pane dan pain memiki pelafalan yang mirip
+plugin ini sebenarnya memakai nama pain control, dengan kata painnya merupakan pelesetan
+
+setelah tmux-pain-control ini terinstall, keyboard shortcut untuk melakukan screen splitting akan diremapping
+pada keyboard shortcut yang baru disaat kita menekan 
+prefix + |(tanda garis lurus)) maka akan melakukan screen spliting secara vertikal 
+dan (prefix -(min)) digunakan untuk melakukan screen splitting secara horizontal
+shorcut yang baru ini dibilang lebih intuitif 
+
+keyboard remapping lain yang dirubah ialah tombol navigasi pane
+selain menggunakan tombol arah panah untuk melakukan navigasi
+kita juga dapat menekan toombol h,j,k, dan l
+tombol h digunakan untuk ke pain disisi kiri
+tombol j digunakan untuk ke pain posisi bawah
+tombol k digunakan untuk ke pain posisi atas
+tombol l digunakan untuk ke pain posisi kanan
+untuk pengguna vim tentu keyboard shortcut ini familiar
+mengingat shortcutnya sama seperti melakukan navigasi pada vim
+sebelum melakukan naviagsi, kita perlu mengawali semua intruksi menggunakan prefix terlebih dahulu 
+
+tmux-pain-control juga melakukan remapping pada mekanisme ukuran pane
+atau dikenal dengan istilah pane resizing
+dengan tmux-pain-control ini, kita dapat menggunakan kembali tombol hjkl ini untuk melakukan file resizing
+hanya saja tombol hjkl yang kita pakai yaitu menggunakan huruf besar
+H (besar) digunakan untuk mengubah ukuran pane ke sisi kiri
+J (besar) digunakna untuk mengubah ukuran pane ke sisi bawah
+K (besar) digunakan untuk mengubah ukuran pane ke sisi atas
+l (besar) digunakan untuk mengubah ukuran pane ke sisi kanan
+
+
+
+Eps. 9
+tmux-themepack
+tmux-themepack : https://github.com/jimeh/tmux-themepack
+
+tmux-themepack adalah tmux plugin yang berfungsi untuk mengatur tampilan tmux dengan mudah
+ada beberapa theme yang disertakan dalam plugin ini
+cara paling mudah untuk menginstall themepack ialah dengan menggunakan tpm
+untuk menginstalasi plugin pada tpm, pertama-tama kita perlu men-data plugin pada file .tmux.conf
+kita dapat menggunakan teks editor vim, atau yang lain untuk mengakses file tersebut
+untuk posisi dari file berada di home directory (~/.tmux.conf)
+sebelumnya isi dari file .tmux.conf ialah 
+
+#Daftar Plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'tmux-plugins/tmux-pain-control'          
+                
+#pastikan untuk run -b selalu berada dibaris paling akhir
+run -b '~/.tmux/plugins/tpm/tpm'
+
+sebelumnya kita telah menginstall tmux-pain-control
+untuk menginstall tmux plugins yang baru 
+kita dapat menulisnya setelah baris dari sebelumnya yakni tmux-pain-control
+untuk penulisan dari instalasi tmux-themepack ialah
+set -g @plugin 'jimeh/tmux-themepack'
+jimeh disini merupakan username dari github 
+sedangkan tmux-themepack merupakan nama plugin-nya
+setelah kita menulisnya maka isi dari filenya ialah
+
+# DAFTAR PLUGINS
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'tmux-plugins/tmux-pain-control'
+set -g @plugin 'jimeh/tmux-themepack'
+
+# PASTIKAN "RUN" SELALU BERADA DI BARIS PALING BAWAH
+run -b '~/.tmux/plugins/tpm/tpm'
+
+setelahnya bisa kita save lalu keluar dari teks editor
+langkah selanjutnya kita perlu memerintah tpm agar menginstall plugins yang baru saja kita tambahkan
+untuk proses instalasi plugin ini kita perlu berada didalam tmux session
+bukan berada pada default terminal
+caranya dengan menekan prefix dilanjut dengan huruf i besar (prefix + i(besar))
+maka otomatis proses yang terjadi dibelakang ialah proses instalasi
+setelah proses instalasi selesai, maka terdapat notifikasi
+selanjutnya kita dapat keluar menggunakan tombol esc
+
+untuk menggunakan themepack
+kita perlu memilih dan mengaktifkan theme yang akan kita terapkan pada tmux
+ini dapat dilakukan dengan menambahkan entri pada file konfigurasi tmux kita
+kita perlu mengakses file konfigurasinya kembali (~/.tmux.conf) menggunakan teks editor
+konfigurasi yang perlu kita sertakan disini ialah dengan menambahkan teks
+set -g @themepack, disertai dengan nama theme yang akan kita gunakan
+seperti misalnya kita akan menggunakan powerline/double/blue
+maksud disini ialah powerline sebagai theme, double merupakan style/type
+dan juga warna yang akan kita terapkan yakni blue (biru)
+set -g @themepack 'powerline/double/blue'
+maka hasil dari penulisannya ialah
+
+# DAFTAR PLUGINS
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'tmux-plugins/tmux-pain-control'
+set -g @plugin 'jimeh/tmux-themepack
+set -g @themepack 'powerline/double/blue'
+
+# PASTIKAN "RUN" SELALU BERADA DI BARIS PALING BAWAH
+run -b '~/.tmux/plugins/tpm/tpm'
+
+setelahnya kita dapat melakukan save lalu keluar dari file konfigurasi 
+sebelumnya kita perlu memerintahkan tmux agar membaca ulang file konfigurasi yang baru saja kita modifikasi tadi
+karena tpm telah terinstall, maka proses konfigurasi dapat dilakukan
+dengan hanya menggunakan prefix diikuti i besar (prefix + i(besar))
+untuk melakukan instalasi pada plugins
+disini kita dapat langsung melihat perubahan pada tampilan tmux yang kita gunakan
+ada cukup banyak tmux-theme yang dibundle pada plugins ini
+daftar theme yang didukung dapat kita lihat langsung dihomepage-nya
+untuk merubah theme kita bisa mengakses file-nya kembali
+dan melakukan modifikasi menggunakan teks editor
+
+Format penamaan theme yang didukung oleh tmux-themepack
+'powerline/TIPE/WARNA'
+
+Beberapa pilihan untuk TIPE yang didukung, diantaranya
+default
+block
+double
+
+Beberapa pilihan untuk WARNA yang didukung:
+red
+green
+blue
+cyan
+magenta
+gray
+orange
+
+
+
