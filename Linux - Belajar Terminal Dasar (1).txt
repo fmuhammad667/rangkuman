@@ -1,0 +1,202 @@
+Belajar Terminal Linux
+Source : Youtube (COMPie ID)
+link Playlist : https://www.youtube.com/playlist?list=PL2QZACDvQZjw52ztaeMnk_JnxhBlKbRft
+
+Disaat pertama kali kita membuka Terminal, tampilan pertama yang muncul ialah teks disamping kiri
+seperti contoh teksnya ialah
+fadhil@fadhil-Thinkpad-X260:~$
+kasusnya pasti akan berbeda-beda, tergantung dari nama user komputer/desktop masing-masing
+
+penjelasan mengenai awal CLI
+fadhil@fadhil-Thinkpad-X260:~$
+
+maksud dari tulisan ini adalah
+fadhil (diawal, sebelum @), yakni menyatakan sebagai username
+fadhil-thinkpad-X260(setelah @), menjelaskan hostname atau nama komputer/device yang kita pakai
+~ (tanda tilde), dalam terminal tilde di repersentasikan bahwa kita sedang berada pada directory home
+$ (setelah tanda tilde), menunjukkan kita sedang pada mode user biasa
+
+Command-comand pada Terminal 
+
+Perintah Pertama : date
+berfungsi untuk melihat hari, tanggal, beserta waktu
+
+Perintah Kedua : pwd
+singkatan dari print working directory
+berfungsi untuk menampilkan posisi directory yang sedang kita akses pada saat menggunakan terminal
+
+Perintah Ketiga : cd
+singkatan dari change directory
+berfungsi untuk berpindah dari satu directory ke directory lainnya
+untuk kembali satu langkah ke directory sebelumnya, kita dapat tuliskan command (cd ..)
+jika kita ingin kembali ke home, kita bisa tuliskan command (cd) tanpa parameter apapun
+
+Perintah Ke-Empat : exit
+berfungsi untuk keluar dari sesi bash/terminal 
+
+Perintah Ke-Lima : ls
+singkatan dari list directory contents 
+berfungsi untuk menampilkan isi dari suatu directory yang sedang kita akses disaat menggunakan terminal
+jika kita ingin melihat isi dari suatu directory tanpa berpindah menggunakan command (cd)
+kita dapat tuliskan command (ls) dilanjut dengan menuliskan target directory-nya
+contoh untuk melihat isi dari directory Downloads, kita bisa mengetikkan command (ls Downloads/)
+atau menulisnya dari secara lengkap dari awal (ls /home/namaUser/Downloads/)
+
+Perintah Ke-Enam : mkdir
+singkatan dari make a directory 
+berfungsi untuk membuat sebuah directory
+jika ingin membuat directory dengan jumlah banyak, kita bisa tuliskan sekaligus dan pisah dengan menggunakan spasi
+contoh mkdir1 mkdir2 mkdir3 ... dsb
+jika ingin membuat directory didalam directory, kita bisa tuliskan command (mkdir)
+lalu nama directory yang kita akses, lalu directory yang kita akan buat 
+penulisan command-nya ialah (mkdir Desktop/namaDirectoryYangDibuat)
+contohnya, (mkdir Pictures/Foto\ Pribadi/)
+
+Perintah Ke-Tujuh : mkdir -v (parameter)
+berfungsi untuk menampilkan notifikasi secara tertulis bahwa directory telah dibuat
+
+Perintah Ke-Delapan : ls -p (parameter)
+berfungsi untuk membedakan antara directory dengan file 
+untuk membedakannya pada directory cirinya diujung teks terdapat tanda garis miring
+sedangkan untuk file, diujungnya tidak terdapat garis miring
+
+Perintah Ke-Sembilan : mkdir -p (paramter)
+p singkatan dari parents
+berfungsi untuk membuat directory beserta subDirectory 
+contoh penulisan command-nya ialah mkdir -p directory/subDirectory 
+kita bebas membuat directory dengan jumlah tanpa batas
+
+Perintah Ke-Sepuluh : less
+berfungsi untuk menampilkan file yang bisa kita buka menggunakan teks editor, seperti txt, py, inf, dll
+untuk menuju teks/halaman sebelumnya (ke-atas) kita tekan tombol b
+untuk menuju teks/halaman ke bawah (setelahnya) kita tekan tombol enter 
+untuk keluar dari less, tekan tombol q pada keyboard
+
+Perintah Ke-Sebelas : file
+berfungsi untuk mengetahui tipe/jenis dari file
+untuk memakai-nya kita bisa targetkan teks file ini ke file/directory untuk melihat hasilnya
+
+Perintah Ke-DuaBelas : clear & reset
+kedua sintaks tersebut mempunyai fungsi yang sama yakni adalah untuk membersihkan layar
+dari perintah sebelumnya yang kita jalankan atau eksekusi 
+namun terdapat perbedaan dari clear dan reset
+jika clear maka akan membersihkan layar, namun menyisakan histoy sebelumnya jika kita scroll keatas
+berbeda dengan reset ia akan me-reset semua layar, dan mengulang lagi dari awal
+
+Perintah Ke-TigaBelas : ls ..
+berfungsi untuk melihat parent directory sebelumnya (relative sesuai directory/file yang diakses saat ini)
+
+Perintah Ke-EmpatBelas : ls -l
+berfungsi untuk melihat directory secara detail 
+dimulai dari permission, owner, group, ukuran file/directory, tanggal dan waktu, dan terakhir nama file-nya
+
+Perintah Ke-LimaBelas : ls -a (bisa juga A(besar))
+berfungsi untuk melihat directory/file yang tampilannya tersembunyi
+untuk perbedaan dari a dengan A (kapital) 
+yakni untuk parameter a (kecil) pada teks baris pertama muncul tampilan simbol titik satu di ikuti dibawahnya terdapat titik dua 
+yakni berfungsi untuk melihat opsi bahwa di directory tersebut terdapat parent directory
+jika menggunakan parameter A (besar) maka simbol titik satu dan dua tersebut tidak ditampilkan
+
+Perintah Ke-EnamBelas : ln -s alamatFile/Directory alamatPasteSimbolicLink/untukMerubahNamaDariSymbolicLink (Opsional)
+berfungsi untuk membuat symbolic link, untuk penulisan alamat dari file/directory-nya harus jelas 
+untuk memudahkan jika sekiranya kita bingung dengan alamat file/directory yang sedang kita akses 
+kita bisa tuliskan command (pwd) untuk melihat alamat dari file
+contoh penulisan dari simbolic link 
+ln -s /home/fadhil/Downloads/xampp-linux-x64-8.1.6-0-installer.run ~/xampp-run
+
+setelah command ln -s yang pertama kita tulis ialah file/directory yang akan kita target (yang akan dijadikan simbolic link)
+tulisan yang kedua ialah tempat dari symbolic link yang akan kita tempatkan
+dalam kasus ini symbolic link ditempatkan di directory home, ini dapat kita lihat karena terdapat tanda tilde (~)
+terakhir setelah tanda tilde terdapat tanda garis miring, yakni berfungsi untuk memberi nama untuk symbolic link
+ini sifatnya opsional, jika kita tidak menuliskannya. Otomatis nama dari symbolic linknya akan merujuk pada apa yang ditargetnya
+
+Perintah Ke-TujuhBelas : ls -g
+fungsinya hampir sama dengan ls -l, ia menampilkan semua secara rinci
+namun bedanya untuk command ini (ls -g) ia tidak menampilkan owner, hanya grup saja yang ditampilkan
+
+Perintah Ke-DelapanBelas : ls -o
+kasusnya hampir sama dengan command sebelumnya yakni ls -g 
+jika sebelumnya pada (ls -g) ia menampilkan semuanya kecuali bagian owner, maka untuk ls -o ini pun sama dan merupakan kebalikannya 
+ia akan menampilkan semua, termasuk owner. Namun ia tidak menampilkan bagian grup
+
+Perintah KeSembilanBelas : ls -lh / ls -l -h (kombinasi)
+h disini artinya ialah human readable
+maksudnya ia akan menampilkan file secara mudah untuk bisa kita baca sebagai manusia 
+contohnya disini adalah untuk ukuran size file/directory yang angka-nya dibulatkan
+jika kita menggunakan parameter (ls -l), maka jika perhatikan tulisan dari size ukuran file/directory-nya tidak dibulatkan
+sehingga terkadang dalam kasus-kasus tertentu menyulitkan kita untuk membacanya
+ini berbanding terbalik jika kita menggunakan parameter (ls -lh), jika kita lihat kembali untuk tampilan angka pada sizenya
+ia akan dibulatkan sehingga membuat kita lebih gampang untuk membaca
+
+
+
+Perintah ke-duapuluh : rm namaFile
+untuk menghapus file kita bisa tuliskan rm 
+dilanjut dengan nama file yang akan kita hapus
+misal disini ialah menghapus file yang bernama test
+maka sintaksnya ialah rm test
+
+Perintah ke-duapuluhsatu : rm -i namaFile
+pada command rm sebelumnya dia akan mengeksekusi untuk menghapus file
+namun pada saat proses penghapusan file, ia akan menghapus tanpa ada notifikasi dan sebagainya
+kita dapat melakukan konfirmasi disaat melakukan penghapusan melalui terminal 
+dengan menambahkan parameter -i setelah kata rm
+disana terdapat konfirmasi apakah file tersebut akan kita hapus
+jika ya kita dapat menekan yes, atau menyingkatnya dengan huruf y
+atau jika tidak kita dapat menuliskan no, atau juga menyingkatnya menjadi huruf n
+
+Perintah ke-duapuluhdua : rm -v namaFile
+-v ini diartikan verbose
+jika pada parameter -i berfungsi untuk melakukan konfirmasi disaat penghapusan
+maka untuk parameter -v ia berfungsi untuk menampilkan notifikasi secara teks 
+bahwa file telah kita hapus
+
+Perintah ke-duapuluhtiga : rm -r namaDirectory
+untuk menghapus directory caranya berbeda dengan menghapus file
+jika kita menghapus menggunakan command rm directory maka ia akan error
+terlepas dari directory-nya yang memiliki isi ataupun tidak 
+maka disini terdapat parameter yang perlu dipakai untuk menghapus directory 
+untuk directory kosong kita dapat menambahkan parameter -r
+-r sendiri merupakan recursive
+
+Perintah keduapuluhtempat
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+Note :
+- root (/) : merupakan folder induk/akar dari directory didalam linux 
+- fungsi panah atas/bawah adalah untuk melihat history sintaks sebelumnya
+- symbolic link jika diwindows adalah shortcut, jika mac adalah alias
+  berfungsi untuk memanggil file atau folder dengan sekali klik
+  dengan cara menargetkannya, sehingga disaat dibuka yang dipanggil 
+  adalah file yang ditarget
+  pada symbolic link, jika melihat difile manager disaat melihat tampilannya terdapat tanda panah kecii dibagian bawah
+  atau juga disaat kita klik kanan > properties, kita dapat langsung mengenali disaat melihat type file/folder-nya
+  yakni bertuliskan "link .... "
+  pada mode terminal symbolic link dapat kita lihat dengan adanya tanda panah yang menargetkan pada file tertentu
+ dan juga dibagian permission huruf pertamanya adalah l, yang menunjukkan ia adalah link 
+- jika huruf pertama dalam permission adalah d maka ia adalah directory
+- fungsi tombol tab pada terminal ialah untuk auto-complete
+disaat kita menuliskan sesuatu lalu tab ia akan memberikan suggest
+
+
+
+
+
+
+
+
+
+
