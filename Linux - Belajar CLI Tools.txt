@@ -1,0 +1,594 @@
+Belajar CLI Tools
+Source : Youtube (Indonesia Belajar)
+Link Playlist: https://goo.gl/UvfnUY 
+
+
+
+Eps. 1 
+exa dan colorls
+berfungsi untuk menampilkan directory dengan text highlighting
+exa : https://the.exa.website/introduction
+colorls : https://github.com/athityakumar/colorls
+ 
+ 
+exa
+Untuk menampilkan directory menggunakan terminal, kita dapat mengetikan command (ls)
+namun jika kita merasa bosan dengan tampilan (ls) yang kaku dan hanya menampilkan tulisan warna putih saja
+kita bisa mempertimbangkan untuk menginstall exa ataupun colorls
+exa dapat di-install menggunakan packet manager bawaan distro linux masing-masing 
+beberapa alternative cara untuk mendownloadnya dan juga menginstallnya bisa kita akses dan lihat dihomepage exa
+jika menggunakan linux arch dan turunannya, kita bisa tuliskan pada terminal (sudo pacman -S exa) lalu enter
+jika menggunakan debian ataupun turunannya, termasuk ubuntu 
+dapat kita install menggunakan packet managernya, yakni dengan menulis (sudo apt-get install exa) lalu enter
+untuk menggunakannya, kita dapat menuliskan exa pada terminal lalu enter
+termasuk juga untuk parameter lainnya seperti exa -a, exa -l, atau exa -al dan sebagainya
+exa dan ls memiliki fungsi yang sama
+namun exa memiliki text highlighting yang memudahkan kita untuk membedakan file dan juga directory
+
+colorls
+selain dari exa, alternative lain untuk menggantikan ls ialah colorls 
+colorls ini tidak sepopuler exa, hal ini membuatnya tidak banyak dari distro linux yang tidak menyertakannya dalam repository-nya
+alternative untuk mendownloadnya kita dapat menginstall gem terlebih dahulu
+gem merupakan packet manager yang umum digunakan oleh programmer ruby
+untuk arch linux dan turunannya, colorls sudah tersedia dipacaur
+pacaur merupakan singkatan dari packet arch user repository
+untuk menginstallnya bisa kita ketikan pada terminal (pacaur -S colorls)
+dan tunggu sampai proses download juga instalasi selesai
+pada manjaro versi 21.04, pacaur sudah ter-integrasi pada add software
+sebelumnya kita perlu mengaktifkannya terlebih dahulu
+dengan cara masuk ke add software > titik tiga diatas > preferences
+disana kita akan dimintai password dari akun kita
+setelah kita masuk dipojok kanan atas terdapat kolom bertuliskan third party
+disaat kita klik, terdapat tulisan "enable AUR support" disana bisa kita aktifkan
+termasuk juga yang lain seperti flatpak dan juga snap
+setelahnya bisa kita tulis colorls pada kolom pencarian di add software, lalu kita dapat mendownload dan menginstallnya
+  
+pada kasus saya di ubuntu, yang pertama kita perlu install ruby terlebih dahulu
+namun kita perlu memastikan bahwa git telah terinstall dalam sistem operasi kita
+git pun dapat kita install menggunakan packet manager pada masing-masing distro linux
+setelah git terisntall selanjutnya kita bisa tuliskan (sudo apt install ruby ruby-dev git) lalu enter
+setelah terinstall, langkah selanjutnya ialah menginstall nerd-font dengan cara melakukan clonning repository-nya digithub
+(git clone https://github.com/ryanoasis/nerd-fonts.git)
+ukuran directoy ini terbilang sangat besar yakni hampir sekitar 9GB
+setelah proses cloning selesai, langkah selanjutnya kita dapat menginstal font-nya 
+dengan cara berpindah ke repository yang tadi kita cloning (cd nerd-font)
+lalu install font-nya dengan menuliskan command (./install.sh)
+terakhir kita install colorls-nya dengan cara melakukan clonning repository melalui github 
+(git clone https://github.com/athityakumar/colorls.git)
+setelah proses clonning selesai, step terakhir yaitu menginstallnya dengan menuliskan command pada terminal (sudo gem install colorls)
+jika sudah terinstall, kita dapat menggunakannya dengan cara mengetikan (colorls) saja
+kita juga dapat menambahkan parameter lainnya, seperti colorls, colorls -a, colorls -l, colorls -al
+
+
+
+Eps. 2 
+Download Manager
+berfungsi untuk mendownload sebuah file menggunakan terminal
+wget : https://www.gnu.org/software/wget/
+pget : https://github.com/Code-Hex/pget
+axel : https://github.com/axel-download-accelerator/axel
+aria2 : https://aria2.github.io/ 
+
+
+wget
+wget merupakan download manager yang populer dikalangan linux ataupun unix
+wget defaultnya sudah terinstall didalam sistem operasi linux 
+kita dapat menginstallnya menggunakan packet manager dari distribusi linux yang kita gunakan
+untuk ubuntu (sudo apt install wget)
+untuk manjaro linux (sudo pacman -S wget)
+untuk mendownload file menggunakan wget, caranya cukup mudah
+kita cuma menuliskan wget disertai url dari file yang akan kita download 
+contohnya wget file-nya (dalam bentuk url)
+
+pget
+pget sangat mirip dengan wget, pget memiliki performa lebih baik dari wget
+untuk proses instalasinya bisa kita install diterminal menggunakan packet manager dari distro linux masing-masing
+untuk manjaro kita dapat menginstallnya menggunakan pacaur
+kita dapat mengetikkan pada terminal (pacaur -S pget)
+untuk manjaro versi terbaru, pacaur sudah ter-integrasi dengan add software, kita dapat mengetikan pget di kolom pencarian
+sebelum proses penginstalan pget, terdapat suggest kita perlu menginstall go terlebih dahulu
+
+untuk Ubuntu, disaat menginstall pget menggunakan packet manager
+ia tidak akan ditemukan, itu karena nama yang tersedia didalam packet manager bukanlah pget 
+untuk melihat nama lain dari pget, kita bisa tuliskan pget terlebih dahulu diterminal
+disana akan terdapat suggest untuk nama lain dari pget
+meskipun namanya berbeda, namun intinya ia tetaplah pget
+untuk mendownload file menggunakan pget, caranya hampir sama dengan wget 
+kita cuma mengetik pget diikuti dengan url dari file yang akan kita didownload
+contohnya pget file-nya (dalam bentuk url)
+salah satu kelebihan dari pget 
+ialah kita bisa melanjutkan proses download jika sebelumnya proses downloadnya lost connect
+ataupun dengan sengaja kita lakukan cancel
+berbeda dengan wget yang mana disaat error ia akan memulai ulang dari awal
+
+axel
+axel tidak cuma berfungsi untuk download manager saja, namun juga untuk download axelerator
+artinya kita dapat mendownload file dengan lebih cepat 
+kita dapat menginstall axel dengan menggunakan packet manager dari masing-masing distro linux
+untuk ubuntu (sudo apt install axel)
+untuk manjaro (sudo pacman -S axel)
+mendownload file menggunakan axel cukup mudah
+hampir sama dengan yang lain, kita cuma menuliskan axel diikuti dengan url file yang akan kita download
+contohnya axel file-nya (dalam bentuk url)
+disaat kita melakukan downloading menggunakan axel, 
+kita dapati tampilan layar kita, dimana axel akan membuka koneksi secara paralel sewaktu mendownloadnya
+yang mana ia juga berfungsi untuk menampilkan proses kecepatan download itu sendiri
+axel juga mempunyai fitur yang sama seperti pget 
+yang dapat melanjutkan download jika sekiranya ia terputus atau gagal
+
+aria2
+kelebihan dari aria2 dibandingkan ke-3 download manager sebelumnya 
+ialah mendukung protokol yang tidak terbatas pada protokol http dan ftp saja
+ia mendukung lebih banyak protokol, termasuk diantaranya torent
+kita bisa menginstallnya menggunakan packet manager bawaan dari distro linux yang kita pakai
+untuk ubuntu (sudo apt install aria2c)
+untuk manjaro linux (sudo pacman -S aria2)
+cara melakukan downloading file menggunakan aria2 cukup mudah 
+sama dengan download manager yang lain, yaitu dengan menulis aria2c diikuti url-nya
+contohnya aria2c file-nya (url)
+serupa dengan pget dan axel, aria2 juga mendukung fitur melanjutkan download jika sebelumnya file-nya terputus
+
+meski sebenarnya terdapat banyak lagi download manager selain dari ke-empat tersebut, seperti curl, ctorrent, rtorrent, dsb
+
+
+
+Eps. 3 
+SYSTEM INFORMATION TOOLS
+menampilkan sistem informasi dari komputer yang kita gunakan
+uname : default bawaan
+archey : https://lclarkmichalek.github.io/archey3/
+screenfetch : https://github.com/KittyKatt/screenFetch
+neofetch : https://github.com/dylanaraps/neofetch
+
+
+uname
+uname biasanya secara default sudah terinstall dalam setiap distribusi linux
+cara menggunakannya adalah dengan mengetikan (uname -a)
+informasi yang ditampilkannya terbilang minimalis dan simpel
+maka karenanya dikembangkanlah command tools lain yang lebih informatif
+seperti yang akan diulas dibawah
+
+archey
+archey diperuntukkan bagi pengguna arc linux saja
+untuk arch linux dan turunannya semisal manjaro
+kita bisa mendownloadnya menggunakan packet manager bawaan
+untuk linux manjaro kita cukup mengetikan (sudo pacman -S archey3)
+untuk menggunakannya kita cukup ketikan (archey3) diterminal
+ia juga bisa dibilang sebagai CLI system informasi yang bagus
+karena terdapat logo distro linux yang disertakan dalam format ASCII 
+namun hanya saja terbatas pada logo arch linux saja
+meskipun semisal kita sedang menggunakan linux turunan dari arch
+
+screenfetch
+popularitas ASCII mendorong penggiat opensource untuk membangun tools serupa 
+yang dapat dinikmati oleh pengguna linux secara luas 
+tidak terpaku pada arch linux saja layaknya archey3
+maka terciptalah screenfetch
+untuk mendownloadnya kita bisa menggunakan packet manager bawaan distro linux masing-masing
+untuk ubuntu (sudo apt install screenfetch)
+untuk manjaro (sudo pacman -S screenfetch)
+cara memakai screenfetch yaitu kita tinggal tuliskan (screenfetch) pada terminal
+screenfetch ini bisa dibilang populer di system information CLI tools
+mengingat banyak yang melakukan screenshot system menggunakan screenftech ini 
+
+neofetch
+neofetch merupakan pengembangan lebih lanjut dari screenfetch
+serupa dengan screenfetch, ia bisa diinstall pada berbagai distro linux 
+sesuai dengan packet manager sistem operasi linux yang dipakai
+untuk linux ubuntu (sudo apt install neofetch)
+untuk linux manjaro (sudo pacman -S neofetch)
+untuk menggunakannya kita perlu mengetik (neofetch) pada terminal lalu enter 
+mengenai tampilannya ia juga tidak kalah bagus dari screenfetch 
+
+
+
+Eps.4
+System Monitoring tools
+untuk melihat (monitoring) pada sistem kita
+top : bawaan disto linux 
+htop : http://hisham.hm/htop/
+nmon : http://nmon.sourceforge.net/pmwiki.php
+glances : https://nicolargo.github.io/glances/
+gtop : https://github.com/aksakalli/gtop
+vtop : https://github.com/MrRio/vtop
+gotop : https://github.com/cjbassi/gotop
+
+
+top
+top merupakan system monitoring tools yang secara default sudah terinstall di-distribusi linux
+untuk menggunakannya kita dapat mengetikan command (top) pada terminal
+top ini akan menampilkan informasi secara real-time
+terdapat beberapa mode yang bisa kita pilih disaat menggunakan top
+untuk memilih mode cpu task kita bisa menekan tombol (t)
+untuk mengakses terkait mode memori kita bisa menekan tombol (m)
+dan untuk melihat mode apa saja yang dapat kita gunakan
+kita bisa menekan tombol h untuk help
+untuk keluar dari mode bantuan(help), kita bisa menekan tombol (q)
+dan juga untuk keluar dari top bisa juga menekan tombol (q)
+
+htop 
+htop dibangun sebagai pengembangan dari top, htop juga merupakan system monitoring yang populer
+bagi pengguna linux htop dapat diinstall dengan packet manager sesuai dengan distribusi linux
+untuk ubuntu (sudo apt install htop)
+untuk manjaro (sudo pacman -S htop)
+untuk menggunakan htop kita cukup tuliskan (htop) pada terminal 
+pilihan mode pada htop jauh lebih informatif dibanding dengan top 
+ini bisa kita lihat langsung dimenu paling bawah
+semisal F1 untuk help atau F6 untuk mengurutkan berdasarkan beberapa kategori tertentu
+jika kita tekan tombol F, untuk melihat dari urutan yang ingin kita lihat
+kita bisa gunakan tombol arah panah dan enter untuk memilih
+untuk keluar dari htop kita bisa gunakan tombol q
+
+nmon
+nmon bisa kita install menggunakan packet manager bawaan distro linux masing-masing
+untuk ubuntu (sudo apt install nmon)
+untuk manjaro (sudo pacman -S nmon)
+nmon dapat kita gunakan dengan mengetikan (nmon) di terminal 
+terdapat beberapa parameter untuk memonitoring system menggunakan nmon
+seperti misalnya c untuk cpu, m untuk memori, dan n untuk network
+untuk bantuan kita bisa menekan tombol h 
+untuk menghilangkan monitoring, kita bisa menekan tombol yang tadi kita tekan
+dan untuk keluar dari nmon kita bisa gunakan tombol q 
+
+glances
+glances merupakan system monitoring yang dibangun menggunakan bahasa phyton
+bagi pengguna linux, kita bisa menggunakannya dengan cara meng-installnya lewat packet manager 
+sesuai distro linux masing-masing
+untuk ubuntu (sudo apt install glances)
+untuk manjaro (sudo pacman -S glances)
+
+karena glances berbasis phyton, ia juga memungkinkan untuk di-install diwindows dengan menggunakan pip
+pip merupakan packet manager berbasis python
+untuk menginstal pip kita bisa mendownloadnya menggunakan packet manager 
+untuk ubuntu (sudo apt install pip)
+untuk manjaro pip tidak tersedia dalam packet manager, namun ia tersedia didalam AUR 
+untuk manjaro versi 21.04, AUR ter-integrasi dengan add software 
+maka untuk mendownload dan menginstall pip, kita dapat melakukannya di add software 
+untuk pip sendiri ia bernama pip-tools
+
+lalu untuk menginstall glances melalui packet manager pip 
+bisa kita ketikan (pip install glances) terlepas dari linux ubuntu/manjaro
+karena kita mendownloadnya menggunakan packet manager pip bukan bawaan distro linux
+setelah selesai, untuk menggunakan glances kita tinggal mengetik (glances) diterminal
+namun jika misalnya kita menginstallnya melalui packet manager pip, kita cukup ketikan (pip glances)
+serupa dengan nmon untuk menampilkan terkait cpu kita bisa mengetikan c 
+untuk memori kita tekan tombol m dan n untuk network, dan tombol h untuk help
+jika kita masuk pada mode help, untuk keluar dari mode help kita bisa tekan tombol h kembali atau bisa juga dengan menekan tombol q
+untuk keluar dari glances kita bisa tekan tombol q
+
+gtop
+gtop merupakan system monitoring yang dibangun menggunakan node.js
+maka sebelumnya pastikan kita sudah menginstall node.js terlebih dahulu
+untuk ubuntu bisa dengan mengetikan (sudo apt install nodejs)
+bagi pengguna linux arch dan turunanya kita bisa menginstal node.js dengan mengetikan (sudo pacman -S nodejs)
+namun untuk manjaro linux gtop dapat langsung kita install menggunakan packet manager (sudo pacman -S gtop)
+
+dalam kasus saya menggunakan ubuntu, ia tidak berada didalam packet manager debian
+maka alternative untuk mendownloadnya kita bisa mendownload melalui npm
+sebelumnya kita perlu menginstall npm terlebih dahulu 
+untuk menginstall npm diubuntu bisa dengan mengetik (sudo apt install npm)
+pada manjaro untuk menginstall npm bisa dengan mengetik (sudo pacman -S npm)
+jika selesai kita coba download menggunakan npm (npm install gtop -g)
+lalu tunggu sampai proses selesai
+
+jika sekiranya dalam proses tersebut terdapat error, terdapat juga cara lain seperti dibawah (khusus untuk ubuntu)
+kita bisa install atau update nvm menggunakan curl dengan copy script dibawah
+(curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash)
+setelah terinstall maka check versi dari nvm (nvm --version)
+lalu install node (nvm install node)
+setelah node terinstall kita bisa langsung install gtop
+dengan mengetikkan (npm install gtop -g)
+dan untuk menjalankan aplikasi gtop ini kita tinggal mengetikan (gtop) pada terminal
+untuk aplikasi system monitoring berbasis terminal gtop memiliki tampilan yang bagus
+dan untuk keluar dari gtop kita perlu menekan tombol q
+
+vtop
+bagi pengguna arch linux dan turunannya vtop sudah tersedia di-pacaur
+pacaur ialah packet repository yang digunakan arch linux dan turunannya termasuk manjaro 
+untuk menginstall packet yang tersedia pada packet arch user repository 
+caranya bisa kita install dengan langsung mengetikan (pacaur -S vtop)
+untuk manjaro versi 21.04, pacaur sudah ter-integrasi dengan add software
+untuk menginstall menggunakan pacaur ini dapat kita tulis langsung namanya dikolom pencarian add software (vtop) 
+
+vtop juga dibangun menggunakan node.js, maka kita juga dapat menginstallnya menggunakan npm (npm install vtop) atau (npm install -g vtop )
+untuk memanggilnya kita bisa ketik (vtop) pada terminal
+dan untuk keluar dari vtop kita bisa ketikan q 
+
+gotop
+gotop dibangun dengan bahasa pemrograman go (golang) 
+bagi pengguna arch linux dan distro turunannya ia terdapat di pacaur
+pada manjaro kita bisa mengetikkan pada terminal (pacaur -S gotop)
+ataupun mencarinya dikolom pencarian pada add software (gotop)
+karena ia berbasis golang, memungkinkan gotop juga dapat di-install di sistem operasi macos, windows, maupun linux sendiri
+dengan cara mendownloadnya menggunakan packet manager go yakni goget
+untuk ubuntu ia tidak berada didalam packet manager namun kita dapat mendownloadnya menggunakan wget
+(wget https://github.com/cjbassi/gotop/releases/download/3.0.0/gotop_3.0.0_linux_amd64.deb)
+setelah selesai lakukan proses instalasi (sudo dpkg -i gotop_3.0.0_linux_amd64.deb)
+untuk menjalankannya kita bisa tuliskan (gotop) pada terminal kita
+tampilannya memang memukau dan indah, sama seperti system monitoring lainnya untuk keluar dari gotop kita bisa keluar menggunakan tombol q
+
+
+
+Eps. 5
+Termite dan juga termite-style
+merupakan terminal emulator
+termite : https://github.com/thestinger/termite
+termite-style : https://github.com/adi1090x/termite-style
+
+termite
+termite ialah terminal emulator
+bagi pengguna linux kita dapat menginstallnya menggunakan packet manager bawaan distro masing-masing
+pada linux manjaro, termite tersedia didalam AUR  
+kita bisa menginstallnya dengan mengetikan (pacaur -S termite)
+atau juga pada manjaro versi 21.04, AUR sudah ter-intergrasi dengan add software
+kita dapat menginstallnya dengan mencarinya di-add software (termite)
+pada kasus saya di-ubuntu namanya bukan termite, melainkan termit, tidak ada huruf e di-ujung katanya 
+untuk menginstallnya pada ubuntu, kita dapat mengetikan command (sudo apt install termit)
+proses menggunakannya cukup dengan mengetikan (termite) diterminal, khusus untuk manjaro
+dan untuk ubuntu kita bisa ketikan (termit) pada terminal
+
+termite-style
+termite-style ialah CLI tools yang digunakan untuk mempermudah proses konfigurasi pada termite
+untuk menggunakan termit-style kita perlu memastikan terlebih dahulu, kita sedang menggunakan termite bukan terminal
+untuk menginstall termit-style yaitu kita perlu melakukan cloning directory melalui git
+sebelumnya kita perlu berada di home directory terlebih dahulu
+dengan mengetikan command ($HOME / cd ~)
+setelah berada di home directory, kita bisa copy script dibawah untuk melakukan proses clonning 
+(git clone https://github.com/adi1090x/termite-style)
+setelah proses cloning selesai, terakhir kita berpindah ke repository dari termite-style (cd termite-style)
+lalu install menggunakan command (./install)
+pastikan ia terinstall didalam termite bukan didalam terminal
+setelah kita install ia akan meminta konfirmasi password desktop
+untuk menggunakannya caranya kita cukup mengetikan (termite-style) pada terminal
+termite-style dapat membantu kita dalam mengkonfigurasi skema warna dan juga jenis font pada termite
+untuk mengubah skema-warna kita perlu menekan angka 1
+disana terdapat banyak sekali pilihan warna, dan untuk memilihnya kita cuma memasukan nomornya saja lalu enter
+begitu juga untuk proses mengganti font, kita dapat menekan angka 2
+dan disana terdapat beberapa list pilihan, untuk mengganti font-nya kita tinggal ketikan angka yang kita inginkan lalu enter
+
+untuk kasus saya diUbuntu, termite dapat terinstall dengan menggunakan packet manager (sudo apt install termit)
+namun untuk proses termite-style, disaat saya menginstallnya menggunakan termit
+filenya tidak terbaca dan error, dengan notifikasi termite belum terinstall
+saya beransumsi bahwa meski sama-sama terminal emulator
+namun karena dari segi namanya berbeda, saya berpikir mungkin terdapat pengaruh
+disisi lain mungkin karena lintas sistem operasi juga pasti terdapat beberapa perbedaan seperti dalam melakukan setting dan juga penginstallan 
+sehingga proses settingnya pun akan berbeda, saya sudah melihat dibeberapa situs untuk troubleshooting termit pada ubuntu
+namun proses tersebut masih belum membuahkan hasil
+
+
+
+Eps. 6
+trash-cli
+berfungsi untuk sewaktu-waktu kita melakukan restore disaat menghapus menggunakan terminal
+trash-cli : https://github.com/andreafrancia/trash-cli
+
+salah satu pengalaman buruk dalam mengelola file menggunakan terminal 
+yaitu tidak sengaja menghapus file, kesalahan ini terbilang fatal 
+karena disaat menghapus file/directory menggunakan command (rm) diterminal
+ia tidak bisa dikembalikan lagi, tidak seperti halnya GUI 
+yang mana terdapat fitur trash/recycle-bin untuk melihat file yang telah dihapus
+lewat fitur trash/recycle bin ini juga file tersebut bisa kita kembalikan ke asalnya (restore)
+dan disinilah fungsi dari trash-cli, ia dibuat untuk memfasilitasi fitur trash-bin pada terminal 
+
+semisal kita membuat file dengan ekstensi .txt diterminal (touch test_trash.txt) 
+lalu check menggunakan ls, maka file tersebut berhasil kita buat
+selanjutnya untuk menghapus file, kita bisa lakukan menggunakan command (rm test_trash.txt) 
+atau sesuaikan dengan nama file yang tadi kita buat sebelumnya
+setelah kita enter, lalu kita check menggunakan command ls filenya akan hilang
+dan kita tidak bisa mengembalikan file yang telah terhapus tadi
+
+trans-cli ini dibangun menggunakan phyton
+kita juga dapat mendownloadnya menggunakan packet manager dari phyton yakni pip
+jika kita menginstallnya menggunakan pip pada manjaro, kita dapat menuliskan (sudo pip install trash)
+begitu pun dengan ubuntu (sudo pip install trash) 
+atau kita juga dapat mengunduhnya menggunakan packet manager
+untuk ubuntu trash-cli ini telah tersedia didalam packet manager
+untuk menginstallnya kita dapat mengetikkan (sudo apt install trash-cli)
+begitu juga pada linux manjaro (sudo pacman -S trash-cli)
+
+cara untuk menghapus file menggunakan trash cli terbilang mudah 
+sebelumnya kita demo-kan dengan membuat beberapa file untuk melihat penggunaan trash-cli  
+(touch file_{1..5}.txt) untuk membuat file 1 - 5
+untuk menghapus file dengan menggunakan trash-cli kita cuma mengetikan (trash-put) dilanjut dengan nama file-nya
+semisal kita ingin menghapus file_1.txt maka kita cukup mengetikan (trash-put file_1.txt)
+jika kita ls, file_1.txt akan hilang
+kita juga dapat menghapus file secara sekaligus, dengan cara mengetikan (trash-put beserta nama file lainnya)
+contohnya kita akan menghapus file_2.txt dan file_3.txt
+kita tinggal mengetikan (trash-put file_2.txt file_3.txt)
+jika kita check menggunakan command (ls) kembali maka kedua file tersebut hilang
+kita juga bisa menghapus file menggunakan tanda bintang (*)
+tanda bintang (*) biasanya merepersentasikan semua file
+semisal kita ingin menghapus semua file yang ekstensi filenya ialah .txt
+kita cukup panggil (trash-put *.txt)
+jika kita check menggunakan ls, maka semua file yang berbentuk .txt akan terhapus pada directory yang aktif
+setiap kali kita menghapus menggunakan command (trash-put) 
+file yang dihapus akan dimasukan kedalam trash-bin
+
+untuk melihat trash-bin kita dapat mengetikkan command (trash-list) pada terminal 
+isi dari command trash-list ini digunakan untuk melihat trash-bin kita 
+kita juga dapat melihat file yang telah tadi kita hapus 
+untuk mengembalikan file yang telah terhapus tadi (restore)
+kita dapat mengetikan command (trash-restore) lalu enter
+disana kita dihadapkan dengan file yang telah terhapus dan juga terdapat index disisi kiri-nya
+untuk melakukan restore kita dapat memilih nomor pada index yang dipilih lalu tekan enter
+maka file akan di-restore dan kembali ke tempat asalnya
+
+contoh kita akan mengembalikan file_3.txt
+sewaktu kita mengetikan trash-restore lalu enter  
+kita dapat melihat file_3.txt berada pada index (2) 
+maka kita cukup mengetikan angka indexnya yakni 2 
+disaat kita mengecheck trash-list kembali maka file-3.txt akan hilang
+itu terjadi karena file_3.txt telah kita restore
+file_3.txt akan berada di directory yang kita buat sebelumnya
+
+
+
+Eps. 7
+Fish Shell dan Oh My Fish
+Fish Shell : https://fishshell.com/
+Oh My Fish : https://github.com/oh-my-fish/oh-my-fish
+
+sebelum mengenal fish shell, kita perlu mengetahui shell terlebih dahulu
+shell adalah interpreter yang digunakan oleh sistem operasi untuk menerjemahkan setiap perintah yang kita inputkan
+shell identik dengan terminal dan juga console 
+shell yang paling umum dan sering ditemui dilinux ialah bash (bourne again shell)
+bash shell ini memang umum dibundling oleh distro linux dan bsd
+untuk menjalankan bash shell/terminal, kita cukup tuliskan terminal melalui windows
+atau untuk ubuntu bisa dengan menekan shortcut ( Ctrl + Alt + T)
+didalam bash shell ini, kita dapat menuliskan beberapa perintah seperti pwd, ls, cd, mkdir, dsb
+dimana kita dapat berinteraksi dengan sistem operasi kita dengan memanfaatkan shell ini
+default shell dari ubuntu sendiri ialah bash (22.04) dan untuk manjaro adalah zsh (21.04)
+
+selain dari bash, terdapat banyak shell lain diantaranya yaitu fish
+fish sendiri merupakan kependekkan dari friendly interactirve shell 
+kita dapat menginstallnya menggunakan packet manager bawaan distro linux masing-masing
+untuk ubuntu kita bisa tulis (sudo apt install fish)
+dan untuk manjaro bisa kita tuliskan (sudo pacman -S fish)
+setelah terinstall, kita dapat menjalankannya menggunakan command (fish) pada terminal, lalu enter
+disana kita dapat melihat langsung perubahannya, yang awalnya shell kita bash ataupun zsh sekarang berubah menjadi fish shell
+terdapat juga keterangan dengan tulisan welcome to fish, the friendly interactive shell
+pada fish, kita juga dapat menjalankan beberapa perintah layaknya dibash ataupun zsh
+seperti command pwd, ls, mkdir, cd, dan sebagainya
+
+yang menarik di fish yaitu belum kita mengetik perintah, ia terdapat suggestion atau saran
+contohnya disaat kita akan menuliskan pwd, sebelum mengetikan huruf terakhirnya yakni d
+tulisan pw akan berwarna merah (untuk warna terkadang kasusnya berbeda-beda)
+namun disaat menuliskan pwd, warnanya berubah menjadi biru
+ini menjadikan pembeda antara penulisan perintah yang benar dan juga yang belum komplit, ataupun salah
+
+selain itu terdapat beberapa kelebihan antara fish shell dibanding bash shell
+yang pertama ialah auto suggestion, seperti yang kita contohkan tadi sebelumnya
+dan untuk mengikuti auto suggestionnya, kita dapat menekan tombol panah kanan lalu enter
+yang lebih menarik lagi jika sekiranya kita tidak mengenali parameter di setiap command
+dengan mudah kita dapat melihat suggestionnya dengan cara menekan tab saja, setelah menuliskan command-nya
+seperti misal kita tidak mengetahui parameter apa saja yang terdapat didalam ls
+kita dapat mengetikan ls, dilanjut dengan karatker (-) sebagai parameter dan tekan tab
+untuk melihat suggestion yang lebih rinci lagi, kita dapat scroll ke bawah menggunakan tanda panah bawah 
+ia akan menampilkan banyak sekali suggest dan lengkap, disertai dengan keterangannya
+yang memungkinkan kita untuk mengeksekusi menggunakan parameter command ls ini
+dan fitur ini tidak dapat kita temui didalam bash shell
+
+terdapat hal lain lagi yang menarik, seperti disaat kita ingin berpindah directory menggunakan command (cd)
+setelah menuliskan cd lalu kita menekan tab, kita dapat memilih directory mana yang akan kita masuki 
+
+kita dapat meningkatkan kemampuan fish shell ini dengan menggunakan oh my fish
+oh my fish ini menyediakan layanan yang memungkinkan kita menginstalasi pluggin dan theme pada fish
+pengembangan dari oh my fish ini terinspirasi dari framework serupa yaitu oh my zshell yang dibangun untuk zshell
+zshell sendiri merupakan shell lain yang banyak sekali digunakan selain dari bash
+untuk dapat menginstall oh my fish, kita perlu memastikan git telah terinstall terlebih dahulu diterminal kita
+kita dapat menginstalnya menggunakan packet manager
+cara untuk menginstall git diubuntu ialah dengan command (sudo apt install git)
+untuk manjaro linux adalah (sudo pacman -S git)
+setelah git terinstall, setelahnya kita perlu menginstall curl atau singkatan dari copy url (sudo apt install curl)
+untuk manjaro bisa dengan mengetikkan (sudo pacman -S curl)
+jika git dan curl sudah kita install, selanjutnya kita dapat menginstallnya dengan membaca dari homepage oh my fish ini
+kita dapat menginstallnya dengan cara copy script yang terdapat dihomepage
+lalu paste diterminal dan enter 
+
+curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
+
+setelah proses instalasi, kita dapat melihat logo ataupun tampilannya langsung berubah 
+setelahnya terinstall pun kita dapat melakukan instalasi pluggin dan juga theme 
+ia dapat diakses dengan menuliskan command omf didalam terminal fish bukan bash ataupun zsh 
+karena jika menuliskannya pada terminal bash atau juga zsh, command omf ini tidak akan dikenal
+untuk melakukan update package dan juga pluggins yang terinstall kita dapat mengetikan (omf update)
+setelah selesai maka akan terdapat keterangan bahwa omf is up to date
+
+untuk melihat omf ini memiliki command apa saja yang dapat kita gunakan, kita dapat mengetikan (omf) lalu tab
+disana terdapat daftar dari option yang dapat kita akses dengan menggunakan omf ini 
+ 
+untuk mencoba menginstal pluggin atau theme
+kita bisa memanfaatkan command (omf install) diikuti dengan nama pluggin/theme yang kita inginkan 
+kita juga dapat melihat daftar tampilan pluggin dan theme yang dapat kita install
+dengan mengetikkan omf install lalu tab
+disana kita disuguhkan oleh berbagai pilihan pluggin dan theme yang bisa kita install
+misal kita ingin melakukan instalasi sebuah theme yang bernama agnoster
+kita cuma mengetikkan omf install agnoster, lalu enter
+maka akan terjadi proses downloading diikuti instaling 
+dan theme pun akan langsung berubah
+atau misal kita akan menginstall theme lambda
+omf install lambda, lalu enter
+maka tampilannya pun akan berubah dibandingkan dengan sebelumnya
+atau kita juga dapat mengistall theme toaster dan juga ocean
+
+jika kita ingin berpindah dari satu theme ke theme lain setelah proses instalasi berjalan
+kita cukup menggunakan (omf theme) disertai nama theme yang akan kita tuju
+semisal kita lupa nama theme-nya, kita dapat melihat list theme atau plugins yang telah kita instal dengan mengetikkan (omf list) 
+disana akan menampilkan list theme atau plugin yang telah kita install
+
+beberapa theme yang disuguhkan pada oh my fish juga memiliki fasilitas git aware (terhubung langsung ke git)
+kita tahu bahwa git merupakan vcs dan alangkah membantunya jika memang terhubung dengan shell 
+ataupun theme yang dimiliki oleh shell kita, bisa langsung terhubung dengan git
+
+seperti misal kita akan melakukan cloning repository ke local directory, yakni directory home
+caranya kita ke github dan pilih repository yang akan di-clonning, lalu ke bagian HTTPS dan copy teksnya
+tuliskan (git clone) lalu paste teks yang dicopy tadi
+semisal (git clone https://github.com/FadhilMuh1607/rangkuman.git)
+setelah proses clonningnya selesai kita dapat mencoba masuk ke repository yang sebelumnya kita cloning (cd namaRepositoryClonning)
+jika kita masuk ke repository-nya maka terdapat penanda master-nya 
+ini menunjukkan bahwa kita berada pada master branch
+misal kita akan membuat sebuah file pada repository-nya (touch test.txt) lalu enter
+maka akan terjadi perubahan pada penanda, yang konteksnya bahwa terdapat perubahan pada repository branch master
+untuk melakukan commit, kita dapat melakukan staging terlebih dahulu dengan menuliskan git add .
+disaat kita melihat proses staging pun, terdapat juga perubahan pada statusnya
+lalu untuk melakukakn commit kita bisa tuliskan commit -m 'testing' misalnya
+namun sebelumnya kita perlu konfigurasi git kita, dengan memasukan email dan juga name
+
+git config --global user.email "email.kita@gmail/yahoo.com"
+git config --global user.name "nama kita"
+
+setelah kita isikan lalu enter, jika sebelumnya kita memiliki akun github.
+kita bisa menyamakan untuk nama beserta email sesuai dengan akun github kita
+setelah terconfig, dan kita melakukan commit. Maka tampilannya akan berubah
+
+disini kita dapat mendemo-kan saja bahwa terdapat beberapa theme 
+yang diusung oleh oh my fish yang sudah git aware (atau terhubung langsung ke git)
+dan jika kita terbiasa bekerja menggunakan git, maka ini dapat lebih membantu lagi
+
+untuk instalasi pluggin caranya sama, kita dapat mengetikan (omf install) beserta nama pluggin-nya
+contoh kita akan menginstall pluggin yang bernama pisces
+(omf install pisces) lalu enter
+setelah terinstall, kita dapat melihat efeknya 
+pisces ini pasangan, maksudnya jika kita membuka tanda kutip (') 
+Otomatis ia akan menampilkan pasangan penutupnya
+dan tidak hanya tanda kutip saja, apapun yang bentuknya berpasangan 
+semisal tanda kurung (()), atau kurawal ({})
+kita juga dapat menginstall pluggin lain 
+untuk melihat list dari semua daftar pluggin dan theme
+kita dapat mengetikan (omf install) lalu tekan tab
+disana kita dihadapkan banyak sekali daftar pluggin 
+dan juga theme yang dapat kita install pada fish
+yang mana berfungsi untuk meningkatkan kemampuan pada fish shell kita
+namun kita juga perlu bijak dalam menggunakannya
+karena jika kita menginstall semuanya maka kecepatan dari fish shell sendiri juga akan melamban
+
+untuk melihat pluggin atau theme apa saja yang telah kita install
+kita dapat melihat dengan cara mengetikan (omf list)
+disana akan terlihat pluggin atau theme apa saja yang telah kita install
+selain itu tampilannya pun dipisah antara pluggin dan theme yang telah kita install
+cukup memudahkan tentunya
+
+jika kita ingin melakukan remove pada pluggins atau themes tertentu
+caranya kita dapat mengetikan omf remove diikuti dengan nama pluggin atau theme yang akan kita remove
+contohnya kita akan remove tema lambda (omf remove lambda)
+setelah kita enter, otomatis terdapat notifikasi ia telah terhapus
+jika kita melihatnya lagi menggunakan (omf list) 
+lambda tidak akan ada didalam daftar list pada theme
+
+jika terjadi permasalahan pada oh my fish
+kita dapat melakukan troubleshooting dengan menuliskan command (omf doctor)
+disaat kita menekan enter, ia akan melakukan diagnosis kepada dirinya sendiri
+untuk memastikan ia tidak ada yang salah/error
+termasuk terhadap pluggins dan juga themes yang telah terisntall
+jika terjadi masalah maka omf akan mencoba melakukan recovery terhadap dirinya sendiri
+disertai suggest cara untuk membenarkannya
+
+untuk menjadikan fish sebagai default dari terminal
+kita dapat mengetikan (chsh -s fish) 
+atau juga untuk ubuntu dapat melihat dari file fish itu sendiri (chsh -s /usr/bin/fish)
+lalu masukan password dari akun kita
+setelah itu kita lakukan reebot 
+maka setelahnya default dari terminal kita bukan lagi bash tetapi fish
+
+
+
