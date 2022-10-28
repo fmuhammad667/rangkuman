@@ -1,0 +1,33 @@
+" Settings for VIM / NEOVIM
+:set number
+:set relativenumber
+:set cursorline
+:set showmode
+:set visualbell
+:colorscheme industry
+:syntax on
+
+
+" VIM PLUGINS (vim plug)
+			
+call plug#begin()
+
+" VimPlug VIM-COLORS-SOLARIZED
+Plug 'altercation/vim-colors-solarized'
+
+" VimPlug VIM-AIRLINE
+Plug 'bling/vim-airline'
+
+" VimPlug VIM-AIRLINE-THEMES
+Plug 'vim-airline/vim-airline-themes'
+
+" VimPlug INDENT-GUIDES
+Plug 'nathanaelkane/vim-indent-guides'
+
+" VimPlug SCROLLCOLORS
+Plug 'vim-scripts/ScrollColors'
+
+" VimPlug VIM-EMOJI
+Plug 'junegunn/vim-emoji'
+
+call plug#end()
