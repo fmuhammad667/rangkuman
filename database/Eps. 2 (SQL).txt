@@ -1,0 +1,118 @@
+Eps. 2
+Pengurutan data dengan klausa 'ORDER BY'
+
+ORDER BY digunakan untuk mengurutkan suatu data berdasarkan kolom
+semisal kita ingin menampilkan semua table pada employees namun berdasarkan kolom dari lastname
+maka sintaks yang digunakan ialah
+select * from employees order by lastname;
+jika kita lihat hasil dari query-nya, maka urutannya akan terurut menyesuaikan dari kolom lastname
+default dari order by adalah ascending atau mengurutkan dari kecil ke besar
+semisal jika kita ingin mengurutkan dari besar ke kecil (descending) kita bisa tambahkan diujung query-nya dengan kata "desc" 
+select * from employees order by lastname desc;
+disaat kita lihat hasilnya, maka urutannya akan berubah dari besar ke kecil
+
+semisal pada kasus lain 
+kita diminta menampilkan data secara terurut dimulai dari lastName terlebih dahulu 
+dilanjut dengan firstName setelahnya, kebutuhan ini bisa kita lakukan secara akomodir 
+karena klausa ORDER BY dapat menggunakan lebih dari satu kolom sebagai acuan pengurutan
+maka sintaks yang digunakan ialah
+select * from employees order by lastName, firstName;
+jika kita lihat hasilnya ia akan mengurutkan dari kecil ke besar, sebagaimana default dari ORDER BY yakni ascending
+terdapat 2 nama yang sama diawal yakni Bondur, pada baris pertama yang ditampilkan ialah Bondur Gerard 
+dilanjut dengan Bondur Loui, sebagaimana kata G lebih dahulu dibanding L 
+sebagai artian kita telah mengurutkan bagian firstname juga pada kolom ke-3 
+
+semisal untuk kasus lain
+sama seperti sebelumnya namun kita mengurutkan firstname dengan urutan descending
+tetapi untuk lastname diurutkan secara default atau ascending, kita juga dapat melakukan demikian
+sintaks yang digunakan ialah
+select * from employees ORDER BY lastname, firstname desc;
+jika kita melihat hasilnya maka terdapat perbedaan
+untuk kasus sebelumnya yang pertama kali muncul diawal ialah bondur gerard 
+karena kita mengurutkan firstname-nya berdasarkan default yakni ascending
+namun pada kasus ini kolom pada firstname diurutkan secara descending
+maka yang pertama kali muncul ialah bondur loui bukan bondur gerard
+
+semisal pada kasus lain
+kita perlu menampilkan kolom lastName, firstName, dan jobtitle dari tabel employees 
+dengan mengurutkan dari lastName terlebih dahulu
+maka query yang digunakan ialah
+select lastName, firstName, jobTitle from employees order by lastName
+
+
+
+kita akan ber-eksplorasi dengan menggunakan tabel lain yakni orderdetails
+pertama kita perlu melihat isi dari kolom pada tabel orderdetails dengan cara menggunakan kata describe
+describe orderdetails;
+jika kita melihat hasilnya, pada tabel orderdetails terdapat 5 kolom disertai tipe data, primary key dan lain sebagainya
+
+misal kita mempunyai sebuah kasus
+menampilkan 2 kolom, kolom pertama ialah menampilkan orderNumber 
+dan kolom yang kedua merupakan hasil perkalian antara quantityOrdered dan priceEach
+maka query yang bisa kita tuliskan adalah
+select orderNumber, quantityOrdered * priceEach from orderdetails;
+hasilnya ada 2 kolom, yakni kolom orderNumber dan kolom hasil perkalian dari quantityOrdered dan juga PriceEach
+semisal kita butuh untuk mengurutkan kolom hasil dari perkalian tersebut (quantityOrdered * priceEach)
+kita juga dapat melakukan demikian, dan sintaks yang dapat kita gunakan adalah
+select ordernumber, quantityOrdered * priceEach from orderdetails ORDER BY quantityOrdered * priceEach;
+jika semisal kita ingin mengurutkannyya secara descending (dari besar ke kecil)
+kita dapat menambahkan kata "desc" dibelakang dari query-nya
+select ordernumber, quantityOrdered * priceEach from orderdetails ORDER BY quantityOrdered * priceEach desc;
+maka jika kita lihat hasilnya, pada kolom hasil perkalian tadi akan mengurutkan dari yang terbesar ke paling terkecil
+kita dapat menyederhanakan query ini, dengan memanfaatkan kata kunci "as" atau sering disebut alias
+AS ini digunakan untuk melakukan penyingkatan nama kolom
+semisal kita akan melakukan aliasing untuk kolom hasil dari perkalian
+sebagai mana kita ketahui kolom kedua ini merupakan hasil dari proses 2 kolom yang berbeda
+otomatis disaat selesai menulis order by dilanjut dengan nama kolom hasil perkalian tersebut 
+nama dari kolom tersebut akan panjang karena menyatukan 2 kolom 
+dan dengan menggunakan as ini kita menjadikan 2 kolom hasil proses perkalian ini menjadi kolom dengan nama yang baru 
+kita bisa memberi nama kolom ini sesuai yang kita inginkan, semisal kita akan memberi nama subtotal untuk kolom proses perkalian
+maka sintaks yang digunakan adalah
+select orderNumber, quantityordered * priceEach AS subtotal from orderdetails order by subtotal;
+pada kasus disini setelah kata order by, kita bisa gunakan langsung nama alis yang kita berikan sebelumnya
+dalam kasus ini nama dari alias adalah subtotal, jika kita lihat hasil dari query-nya
+otomatis nama dari kolom ke-2 akan berubah menjadi subtotal
+yang menarik disini nama dari subtotal juga dapat dipakai sebagai acuan untuk proses pengurutan data (order by subtotal;)
+kita juga dapat melakukan proses descending (mengurutkan dari besar ke kecil menggunakan alias ini)
+select orderNumber, quantityordered * priceEach AS subtotal from orderdetails order by subtotal desc;
+
+
+
+Rincian :
+yang perlu diperhatikan didalam klausa order by adalah cara penulisannya
+urutan pertama adalah select yang mana akan diikuti oleh nama kolom yang ingin kita tampilkan 
+baik semua kolom atau pun kolom tertentu saja
+ataupun kita juga dapat membuat kolom baru hasil dari proses kolom tertentu 
+seperti halnya pada kasus tadi yakni membuat kolom baru, hasil dari proses perkalian dari 2 kolom yang berbeda 
+kolom baru yang terbentuk ini bisa kita aliaskan dengan kata kunci AS
+untuk menyingkat dan juga menyederhanakan penulisan
+lalu urutan berikutnya setelah select dan nama kolom yaitu from yang akan diikuti oleh nama dari table yang dimaksud
+untuk melakukan pengurutan data kita dapat menggunakan klausa order by 
+diikuti dengan nama kolom sebagai acuan pengurutan datanya 
+default dari urutan order by akan diurutkan secara ascending (dari kecil ke besar)
+jika kita ingin membalikan dari data besar ke kecil (descending) kita bisa menyertakan kata kunci desc dibelakangnya
+
+tugas 
+buatkan query untuk mencari tahu harga satuan terbesar dari tabel order details
+
+describe orderdetails;
+select * from orderdetails order by priceEach desc;
+
+buatkan query untuk menampilkan data customer yang terurut secara alphabet berdasarkan nama belakangnya
+
+show tables;
+describe customers;
+select * from customers order by contactlastname;
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,79 @@
+Eps. 7
+Seleksi terhadap sekumpulan data yang sudah terkelompok
+dengan menggunakan klausa 'having'
+
+disaat kita bekerja menggunakan database adakalanya kita membutuhkan untuk mengelompokkan data
+yang disertai operasi untuk pengelompokkan seleksi data tersebut
+pada kasus ini kita dapat memadukan klausa 'group by' yang dipadukan dengan klausa 'having'
+klausa having memiliki fungsi yang sama seperti 'where'
+namun untuk perbedaannya sendiri 
+klausa 'where' digunakan untuk menyeleksi baris
+sedangkan 'having' digunakan untuk seleksi kelompok data
+
+semisal terdapat kasus
+untuk menampilkan data tabel orderdetails yang sudah dikelompokkan berdasarkan ordernumber 
+disertai kolom lain yakni total_item dan juga total_revenue yang keduanya merupakan hasil dari agregasi
+maka sintaks yang digunakan adalah
+select ordernumber, sum(quantityordered) as items_count, sum(priceEach * quantityordered) as total_revenue from orderdetails group by ordernumber;
+jika kita lihat hasilnya maka akan menampilkan 3 kolom seperti yang diminta diatas
+semisal kita diminta untuk menampilkan data yang nilai revenue-nya diatas 1000
+kita tahu bahwa untuk kolom total_revenue merupakan nilai yang dihasilkan sekelompok data dan bukan nilai individual
+maka disini kita perlu kebutuhan untuk menyeleksi kelompok data 
+kita dapat menggunakan klausa 'having'
+maka sintaks yang digunakan adalah
+select ordernumber, sum(quantityordered) as items_count, sum(priceEach * quantityordered) as total_revenue from orderdetails group by ordernumber having total_revenue > 1000;
+jika kita lihat hasilnya maka akan menampilkan total_revenue diatas 1000
+atau semisal juga kita dapat mengubah kondisinya menjadi 15000
+select ordernumber, sum(quantityordered) as items_count, sum(priceEach * quantityordered) as total_revenue from orderdetails group by ordernumber having total_revenue > 15000;
+dan hasilnya sama ia akan menampilkan data dengan nilai diatas 15000
+
+serupa dengan klausa 'where' pada klausa 'having' kita bisa gunakan operator logika
+semisal kita ingin menampilkan dengan kondisi diatas 1000 dan juga kolom item_count diatas 600
+maka operator yang digunakan disini adalah operator and
+dan sintaksnya yang digunakan adalah
+select ordernumber, sum(quantityordered) as items_count, sum(priceEach * quantityordered) as total_revenue from orderdetails group by ordernumber having total_revenue > 1000 and items_count > 600;
+maka jika kita lihat hasilnya ia akan menampilkan items_count dengan nilai diatas 600
+dan juga nilai dari revenue diatas 1000
+
+semisal terdapat kasus lain
+kita akan memadukan klausa where untuk seleksi baris
+dan juga having untuk seleksi kelompok data
+kita akan membentuk kelompok data yang bersumber pada tabel orderdetails
+dengan nilai priceEach diatas 100, dimana data ini dikelompokkan berdasarkan ordernumber dan dilengkapi total jumlah item dan juga total revenue
+kali ini kelompok data yang akan kita tampilkan yaitu kelompok data yang total revenue diatas 1000 dan total item diatas 100
+maka sintaks yang digunakan adalah 
+select ordernumber, sum(quantityordered) as items_count, sum(quantityordered * priceEach) as total_revenue from orderdetails where priceEach > 100 group by ordernumber having total_revenue > 1000 and items_count > 100;
+yang perlu diperhatikan disini ialah penulisannya 
+proses seleksi baris akan dimulai terlebih dahulu sebelum pengelompokkan data dan juga seleksi kelompok data
+
+semisal terdapat kasus lain
+kita diminta untuk mengelompokkan data orderdetails berdasarkan kolom status pada tabel orders
+dan data kelompok yang ditampilkan adalah dengan nilai revenue diatas 150000
+sebelumnya kita dapat mengetahui bahwa tabel status terdapat pada tabel orders
+maka kita perlu melakukan inner join sebelum datanya dikelompokkan berdasarkan kolom status
+sedangkan untuk revenue sendiri merupakan penjumlahan dari tabel orderdetails
+maka sintaks yang digunakan 
+select o.status, sum(od.quantityordered * od.priceEach) as total_revenue from orders as o inner join orderdetails as od using(ordernumber) group by o.status having total_revenue > 150000;
+dapat kita lihat bahwa status ordered yang diatas 150000 terdapat 3 status
+yakni cancelled, on hold, dan juga shipped
+yang perlu diperhatikan disini ialah urutan penulisan klausa query-nya
+pertama penulisan sintaks sql akan dimulai dengan select
+dilanjut dengan from untuk posisi tabel
+jika terdapat join maka akan diikuti inner join
+jika terdapat seleksi baris maka akan diikuti klausa where
+lalu jika terdapat pengelompokkan data kita dapat menggunakan klausa group by setelah klausa where
+dan jika terdapat seleksi grup kita dapat menggunakan klausa having
+jika terdapat pengurutan data kita dapat menambahkan order by diakhir
+
+
+
+Tugas
+Buatkan query untuk menampilkan officecode dengan jumlah employees diatas 3
+select officecode, count(*) from employees group by officecode having count(*) > 3;
+select officecode, count(*) as jumlah_employees from employees group by officecode having jumlah_employees > 3;
+
+buatkan query untuk menampilkan country dengan jumlah employees dibawah 8
+select country, count(*) from employees inner join offices using (officecode) group by country having count(*) < 8;
+select of.country, em.officecode, count(em.officecode) as jumlah_employees from employees as em inner join offices as of using (officecode) group by country having jumlah_employees < 8;
+
+

@@ -1,0 +1,87 @@
+Eps. 1
+Seleksi kolom menggunakan klausa 'SELECT'
+
+SQL atau singkatan dari Structured Query Language 
+adalah bahasa yang bersifat standar yang digunakan untuk berinteraksi dengan database
+database dalam bahasa indonesia sering dikenal dengan basis data
+
+terdapat banyak sekali sintaks SQL yang dapat kita gunakan, tergantung dari kebutuhan kita sendiri
+ 
+semisal kita ingin membuka mariadb/mysql menggunakan terminal 
+maka sintaks yang digunakan adalah
+sudo mysql -u root -p (linux)
+jika menggunakan sistem operasi dari windows, kita dapat menghilangkan kata sudo-nya
+ 
+untuk melihat atau menampilkan seluruh database yang terdapat dalam database server
+kita dapat menggunakan sintaks
+show databases;
+
+jika kita sudah melihat semua database yang tersedia, kita dapat memilih databasenya
+dengan menggunakan sintaks 
+use namaDatabases;
+dalam kasus ini kita menggunakan database classicmodels (use classicmodels;)
+
+setelah kita memilih, kita juga dapat melihat isi dari database kita 
+dengan menggunakan sintaks
+show tables;
+
+database dapat di-analogikan sebagai suatu folder/directory 
+sedangkan table adalah file yang tersimpan didalamnya
+table sendiri terdiri dari baris dan kolom
+atau analogi yang sama kita bisa merepersentasikan bahwa database seperti halnya folder/directory 
+yang berisi file excel (baris dan kolom)
+
+
+
+Klausa 'SELECT' 
+select ini umum digunakan untuk menampilkan isi dari suatu table
+semisal kita ingin melihat semua isi dari tabel employees
+maka sintaks SQL yang digunakan adalah 
+select * from employees;
+(*) bintang sering direpersentasikan semua, artinya pada kasus ini kita memilih/menyeleksi semua kolom dari tabel employees
+jika kita lihat hasilnya maka ia akan menampilkan semua isi dari tabel employees 
+
+jika semisal kita ingin melihat semua isi dari suatu tabel lain, 
+maka caranya juga sama seperti sebelumnya, semisal untuk melihat semua data di tabel costumer
+maka sintaks yang digunakan adalah
+select * from customers;
+dan jika kita lihat hasilnya maka akan menampilkan seluruh isi dari tabel yang dimaksud, yakni customers
+
+yang perlu kita ingat disini yaitu urutannya 
+select merupakan keyword pertama yang dilanjut dengan value yakni nama kolom, baik tertentu ataupun semua
+dan kata setelah select yakni from diikuti dengan nama tabelnya
+
+Seleksi kolom lainnya yang digunakan ialah describe
+penulisan dari describe ini contohnya describe namaTabel
+semisal untuk kasus disini ialah describe customers;
+jika kita lihat hasilnya maka terdapat beberapa infromasi yang tersedia pada tabel customers
+seperti halnya tipe-data, null, key, value-nya dan lain sebagainya 
+yang perlu perhatikan disini adalah nama kolom (field) dan tipe data-nya
+
+semisal kita ingin menampilkan satu kolom tertentu
+contohnya kita akan menampilkan kolom lastname pada tabel employees
+maka sintaks yang digunakan adalah
+select namaKolom from namaTabel
+contohnya select lastname from employees;
+
+kita juga dapat menampilkan kolom lain, tidak terpacu harus satu kolom saja
+caranya bisa kita tuliskan select namaKolom1, namaKolom2, namaKolom3, ... from namaTabel;
+semisal disini kita akan menampilkan kolom lastname, fistname, jobtitle dari tabel employees;
+maka sintaks yang digunakan adalah
+select lastname, firstname, jobtitle from employees;
+jika kita lihat hasilnya ia akan menampilkan kolom yang sebelumnya kita seleksi 
+dalam kasus ini terdapat 3 kolom, yakni lastname, firstname, jobtitle dan datanya diambil dari table employees
+
+
+
+Tugas
+tampilkan kolom untuk menampilkan lastname, email, dan jobtitle dari table employees
+describe employees;
+select lastname, email, jobtitle from employees;
+
+tampilkan nama depan dan nama belakang dari table customer
+describe customers;
+select contactfirstname, contactlastname from customers
+
+
+

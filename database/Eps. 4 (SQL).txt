@@ -1,0 +1,83 @@
+Eps. 4
+Pemberian Alias pada kolom & tabel
+
+sebelum menuju pembahasan alias 
+kita akan mengenal fungsi concat terlebih dahulu
+concat adalah fungsi yang dapat digunakan untuk operasi penggabungan teks 
+atau biasa dikenal dengan string concatination
+
+semisal terdapat kasus 
+kita diminta untuk menampilkan kolom baru hasil dari penggabungan kolom firstname, dan juga lastname pada tabel employees
+untuk menyelesaikannya kita dapat menggunakan fungsi concat
+sintaks yang digunakan adalah
+select concat (firstname, lastname) from employees;
+jika kita lihat hasilnya maka terdapat kolom baru dengan value hasil dari penggabungan antara kolom firstname, dan juga lastname 
+namun value dari kolom tersebut, terdapat kekurangan yakni namanya saling berhimpit tanpa dipisah dengan spasi
+jika kita ingin menambahkan pembatas (spasi), kita dapat menuliskan string kosong yang bernilai spasi dipisah menggunakan tanda koma
+maka sintaksnya adalah
+select concat (firstname, ' ', lastname) from employees;
+jika kita lihat hasilnya maka terdapat spasi untuk pemisah dari value firstname dan juga lastname
+
+semisal terdapat kasus lain
+kita diminta untuk menampilkan kolom firstname, dan dipisah menggunakan karakter dash(-) 
+diikuti dengan kolom lastname yang juga dipisah menggunakan dash(-) dan terakhir diikuti dengan kolom email
+maka sintaks yang digunakan adalah
+select concat (firstname, '-', lastname, '-', email) from employees;
+jika melihat hasilnya maka akan menampilkan kolom baru dengan value dari firstname, lastname, dan juga email
+yang dipisah menggunakan tanda dash/strip (-)
+
+selain concat, terdapat juga pengembangan dari fungsi concat yakni concat_ws
+ws ini merupakan singkatan dari width separator
+penulisan dari concat_ws ini jika dibandingkan dengan fungsi concat, penulisannya jauh lebih sederhana
+untuk penulisan pertama-nya yang perlu ditulis ialah kita perlu men-spesifikasikan karakter pemisahnya terlebih dahulu
+semisal kita akan menampilkan seperti halnya sebelumnya yang setiap kolomnya dipisah menggunakan karakter dash (-)
+cara penulisan dari concat_ws ini ialah
+select concat_ws('-', firstname, lastname, email) from employees;
+jika kita lihat hasilnya maka akan sama persis dengan tampilan sebelumnya 
+namun pada concat_ws ini kita dipermudah dengan tidak menulis ulang separator pemisahnya 
+yakni pada kasus ini yaitu karakter dash (-) sebagai pemisahnya
+kita cukup menulis separatornya sekali saja di awal
+
+semisal terdapat kasus lain
+kita diminta untuk menampilkan data sebelumnya 
+yakni gabungan antara fistname, lastname dan juga email menggunakan concat_ws
+hanya saja untuk kasus ini kolom dari email akan dihapus 
+dan pemisahnya tidak menggunakan karakter dash (-) melainkan spasi (' ')
+pada kasus ini juga, kita akan menampilkan kolom fistname, dan lastname secara terpisah
+maka sintaks yang digunakan adalah
+select firstname, lastname, concat_ws (' ', firstname, lastname) from employees;
+jika kita lihat hasilnya maka terdapat 3 kolom 
+yakni kolom firstname, lastname, dan juga kolom baru yang valuenya merupakan gabungan dari kolom firstname dan juga lastname
+jika kita lihat nama dari kolom baru tersebut, namanya kurang enak untuk dibaca dan juga kurang redeable untuk pembaca awam
+maka disini kita akan mengenal 'alias' yang berfungsi agar kita bisa memberi nama pada kolom baru tersebut, sesuai dengan nama kita
+cara pertama untuk membuat alias pada suatu kolom adalah menggunakan keyword 'as'
+semisal pada sintaks sebelumnya kita akan beri alias pada kolom baru tersebut dengan nama kolom fullname 
+maka sintaksnya adalah
+select firstname, lastname, concat_ws (' ', firstname, lastname) as fullname from employees;  
+jika kita lihat hasilnya maka kolom baru dari concat_ws yang sebelumnya akan berubah menjadi nama fullname
+
+terdapat cara kedua pada pemberian nama (alias) pada kolom 
+yaitu langsung saja menuliskan namanya tanpa disertai keyword 'as'
+semisal contohnya kita akan menampilkan query sebelumnya, namun tanpa menggunakan keyword 'as'
+select firstname, lastname, concat_ws (' ', firstname, lastname) fullname from employees; 
+disini jika kita lihat hasilnya maka sama saja dengan sebelumnya 
+namun untuk penulisannya bisa dibilang sederhana karena tidak diikuti kata kunci as
+salah satu keunggulan dari alias ini yaitu kita bisa menggunakannya sebagai acuan untuk klausa order by
+semisal kita akan menggunakan sintaks sebelumnya, dengan mengurutkannya dari kolom yang sudah kita beri alias yakni fullname 
+select firstname, lastname, concat_ws ('_', firstname, lastname, email) as fullname from employees order by fullname; 
+maka jika kita lihat hasilnya data-nya akan diurutkan berdasarkan fullname
+
+selain dari memberi alias pada suatu kolom 
+kita juga dapat memberi alias pada suatu tabel
+semisal kita akan menampilkan kolom firstname dan juga lastname dari tabel employees namun untuk tabel employees kita beri alias
+contoh sintaksnya ialah
+select e.firstname, e.lastname from employees as e;
+jika kita lihat query-nya kita memberi alias e untuk tabel employees
+pemberian alias pada kolom ataupun tabel akan mempermudah pada saat kita menggunakan klausa join
+sama layaknya seperti kolom, alias pada tabel dapat digunakan sebagai acuan untuk pengurutan
+contohnya kita akan mengurutkan berdasarkan kolom lastname dari tabel employees
+select e.firstname, e.lastname from employees as e order by e.lastname;
+jika kita lihat hasilnya maka kolom dari lastname akan terurut dari tabel employees yang sudah kita aliaskan sebagai e
+
+
+

@@ -1,0 +1,132 @@
+Eps. 5
+Menampilkan data yang tersimpan pada sejumlah tabel dalam database 
+dengan menggunakan klausa "inner join"
+
+disaat kita bekerja pada database 
+adakalanya kita membutuhkan melakukan akses data 
+dimana data yang kita butuhkan tersimpan pada 2 atau lebih tabel berbeda
+dan kita butuh untuk menampilkannya sebagai satu kesatuan
+untuk menjalankannya kita dapat memanfaatkan klausa 'join'
+didalam database terdapat beberapa jenis join, diantaranya yaitu inner join
+inner join merupakan bentuk join yang banyak sekali ditemui
+
+semisal kita akan bekerja dengan 2 tabel yang berbeda
+yakni tabel productsline dan juga tabel products
+sebelumnya kita perlu memahami kolom dari ke-2 tabel tersebut
+dengan cara memanfaatkan sintaks 'describe'
+describe products;
+describe productlines;
+
+selain itu kita juga perlu mengetahui value dari setiap kolom pada masing-masing tabel
+untuk melihat isi dari kolomnya kita bisa menggunakan klausa select
+select * from productlines;
+select * from products;
+
+pada masing-masing tabel terdapat primary key
+primary key adalah kolom dari suatu tabel yang nilainya unix dan tidak mengandung duplikasi 
+oleh karenanya primary key dapat digunakan sebagai identitas bagi setiap baris data yang tersimpan pada suatu tabel
+sebagai contohnya pada tabel mahasiswa terdapat kolom nama, alamat, jurusan, nim dsb
+diantara semua kolom tersebut terdapat satu kolom yang unix yang hanya dimiliki oleh mahasiswa yaitu nim 
+karena tidak memungkin bagi 2 orang atau lebih mahasiswa yang berbeda untuk memiliki nim yang sama
+berbeda dengan kolom nama karena memungkinkan untuk mendapati 2 atau lebih mahasiswa dengan nama yang sama
+oleh karenanya maka kolom nim bisa digunakan sebagai primary key dari tabel mahasiswa
+
+tabel products memiliki kolom productCode sebagai primary key
+sedangkan productlines memiliki kolom productline sebagai primay key
+jika kita lihat dari tabel product terdapat kolom productline yang merupakan primary key dari tabel productlines
+dalam database ketika sebuah tabel memiliki suatu kolom yang berasosiasi dengan primary key dari tabel lain 
+maka istilah ini sering disebut dengan foreign key
+keberadaan foreign key pada suatu tabel mengidentifikasikan adanya hubungan antar tabel
+dalam kasus ini, hubungan antara tabel products dan productlines adalah one to many
+sisi one-nya ada pada tabel productlines sebagai pemilik dari primay key
+dan sisi many-nya ada pada tabel product sebagai pemilik foreign key
+karena kedua tabel ini berhubungan maka kita dapat menampilkan data yang bersumber dari kedua tabel ini
+
+terdapat 2 model dari inner join yakni dengan menggunakan on dan juga menggunakan using
+
+semisal kita mempunyai kasus
+yaitu menampilkan kolom productcode, productname dari tabel products 
+dan juga kolom textdescription dari tabel productlines
+maka untuk menyelesaikannya kita dapat menggunakan klausa join 
+sintaks yang digunakan adalah 
+select t1.productcode, t1.productName, t2.textdescription from products as t1 inner join productlines as t2 on t1.productline = t2.productline;
+kita dapat memulai dari klausa from terlebih dahulu, supaya memudahkan kita
+karena kita akan menampilkan 2 tabel yang berbeda dalam satu kesatuan
+kita dapat melakukan aliasing untuk memudahkan penulisan lebih singkat
+semisal untuk tabel products dialiaskan menjadi t1, dan untuk productlines dialiaskan menjadi t2
+tabel product dan productlines akan kita inner join-kan, maka kita gunakan klausa inner join setelah menulis from products as t1 
+lalu berikutnya kita spesifikasikan tabel yang ke-2 yang akan kita hubungkan, dalam kasus ini yakni productline
+lalu selanjutnya klausa inner join juga mensyaratkan kita untuk menspesifikasikan kata kunci 'ON'
+on ini digunakan untuk menghubungkan primary key dan juga foreign key yang terhubung dalam tabel 
+dalam kasus ini key yang akan dihubungkan yakni kolom productline pada tabel product dan juga pada tabel productlines
+baru terakhir kita dapat menampilkan kolom yang akan kita tampilkan pada klausa select
+dengan menyesuaikan pada masing-masing tabel yang sudah kita beri alias
+
+alternative lain untuk menuliskan inner join yaitu dengan memanfaatkan keyword using
+semisal kita akan menampilkan sintaks sebelumnya namun menggunakan keyword 'using'
+maka sintaks yang digunakan adalah
+select t1.productcode, t1.productName, t2.textdescription from products as t1 inner join productlines as t2 using (productline);
+using ini akan diikuti dengan nama kolom yang terdapat pada kedua tabel yakni dalam kasus ini yaitu productline
+untuk penulisan menggunakan using, nama dari kolom tersebut harus berada didalam tanda kurung
+jika tidak maka akan terjadi kesalahan (error)
+dan untuk kata kunci 'using' ini penulisannya lebih simpel dan mudah untuk kita baca
+
+semisal terdapat kasus lain
+kita diminta untuk menampilkan productcode, productname, buyprice pada tabel products 
+dan juga kolom textdescription pada tabel productlines
+tetapi dengan syarat buyprice harus diatas 100
+disini kita perlu melakukan seleksi baris dengan klausa 'where'
+inner join dapat dipadukan dengan seleksi baris dengan menuliskannya setelah klausa 'join'
+maka sintaks yang digunakan adalah
+select t1.productcode, t1.productName, t1.buyprice, t2.textdescription from products as t1 inner join productlines as t2 using (productline) where t1.buyprice > 100;
+hasilnya bisa kita lihat yakni terdapat 2 product yang memenuhi kriteria
+
+semisal terdapat kasus lain
+terdapat 3 tabel yakni products, orderdetails dan orders
+tabel product akan menampung data terkait product dan primary keynya adalah productcode
+untuk tabel orders berperan sebagai nota transaksi, memiliki kolom ordernumber sebagai primary key karena mempunyai nilai unix
+jika kita lihat daftar product yang diperjual belikan terhadap tiap transaksi 
+tidak dicatat dalam tabel orders melainkan pada tabel orderdetails
+pada tabel orderdetails akan memuat 2 buah foreign key yang menghubungkan tabel orders dan juga products
+hubungan dari tabel product dan juga orders ke tabel orderdetails yakni one to many
+disini tabel product dengan orders tidak berhubungan secara langsung
+
+semisal terdapat kasus lain
+kita diminta untuk menampilkan kolom ordernumber, orderdate pada tabel orders 
+kolom productname yang tersimpan pada tabel products 
+dan kolom quantityordered, priceeach pada tabel orderdetails
+kita juga diminta untuk mengurutkannya berdasarkan kolom ordernumber
+maka sintaks yang digunakan adalah
+select o.ordernumber, o.orderdate, p.productname, od.quantityordered, od.priceeach from orders as o inner join orderdetails as od using (ordernumber) inner join products as p using (productcode) order by o.ordernumber;
+untuk penulisan tabel setelah klausa from kita bebas untuk memilih
+namun kita tidak dapat memulai from dengan ordersdetails 
+karena tabel ini berada ditengah-tengah atau diapit oleh tabel orders dan juga products
+untuk klausa order by karena kolom yang akan kita pakai adalah ordernumber 
+yang mana terdapat pada 2 tabel yaitu pada tabel orders dan juga ordersdetails 
+kita dapat memilih diantara keduanya
+jika kita lihat hasilnya kita dapat menampilkan 3 data yang tersebar dalam tabel berbeda 
+ditampilkan dengan satu kesatuan yang utuh
+
+semisal terdapat kasus lain
+kita menampilkan seperti sintaks sebelumnya 
+namun pada kolom ordernumber hanya menampilkan dengan value 10200 saja
+disini kita perlu melakukan seleksi baris
+kita bisa sertakan klausa where setelah klausa dari join, sebelum klausa dari order by
+dengan kondisi seleksi baris yaitu ordernumber-nya 10200
+maka sintaks yang digunakan adalah
+select o.ordernumber, o.orderdate, p.productname, od.quantityordered, od.priceeach from orders as o inner join orderdetails as od using (ordernumber) inner join products as p using (productcode) where o.ordernumber = 10200 order by o.ordernumber ;
+dan jika kita lihat hasilnya maka yang tampil adalah data yang ordernumbernya hanya 10200
+
+yang perlu diperhatikan disini adalah penulisan dari query-nya
+penulisan pertama sudah pasti diawali dengan klausa select, lalu diikuti dengan from 
+dan jika terdapat klausa join maka akan diikuti dengan kata join
+jika terdapat seleksi baris akan diikuti dengan klausa where
+dan terakhir jika terdapat pengurutan data maka akan diikuti klausa order by
+
+tugas
+kita perlu menampilkan seperti halnya sebelumnya dari tabel orderdetails, orders, products 
+namun terdapat kolom baru yang ditambahkan yakni kolom customername 
+dan bisa kita lihat bahwa kolom customername disimpan dalam tabel customers
+berarti kita perlu melakukan inner join yang melibatkan 4 buah tabel
+
+select o.ordernumber, o.orderdate, p.productname, od.quantityordered, od.priceeach, c.customername from products as p inner join orderdetails as od using (productcode) inner join orders as o using (ordernumber) inner join costumers as c using (customernumber) order by ordernumber;

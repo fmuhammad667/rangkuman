@@ -1,0 +1,139 @@
+Eps. 8
+Membuat Table dan Database
+atau sering dikenal dengan istilah DDL (Data Definition Language)
+
+Data Definition Language biasanya mencakup membuat dan menghapus database
+atau juga membuat, mengubah, dan menghapus sebuah table
+DDL ini sangat erat hubungannya dengan mekanisme untuk mengelola database dan struktur table
+
+Semisal terdapat kasus
+kita diminta untuk membuat sebuah database dengan nama test_db
+database dapat dianalogikan sebagai sebuah folder / directory yang dapat menampung beberapa table
+untuk membuat database kita dapat menggunakan command create database namaDatabase-nya
+contoh untuk membuat database dengan kasus diatas
+maka sintaks yang digunakan adalah
+create database test_db;
+jika kita check menggunakan command show databases;
+maka terdapat nama database yang telah kita buat sebelumnya
+lalu untuk menghapus sebuah database, kita dapat menggunakan command drop database 
+semisal kita akan menghapus database yang sebelumnya tadi kita buat
+maka sintaks yang digunakan adalah drop database test_db;
+jika kita check kembali menggunakan command show databases;
+maka database dengan nama test_db sudah tidak lagi berada didalam database server kita
+
+Semisal kita akan membuat database dengan nama database kampus
+maka sintaks yang digunakan adalah create database kampus;
+jika kita check menggunakan command show databases 
+maka terdapat database baru dengan nama kampus
+
+Selanjutnya kita akan membuat sebuah tabel mahasiswa didalam database kampus
+yang mana nantinya tabel ini mempunyai 4 kolom yakni nim, nama, alamat, dan ipk
+yang perlu diperhatikan dalam membuat tabel ialah kita perlu mengetahui posisi database kita
+kita perlu mengaktifkan database yang sebelumnya kita buat yakni kampus
+untuk mengaktifkannya kita dapat menggunakan command use disertai nama databasenya
+use kampus;
+setelah kita aktifkan, kita dapat membuat tabel didalam database ini
+untuk membuat table kita dapat menggunakan command create table diikuti dengan nama tablenya
+semisal untuk kasus ini nama table yang akan diberikan adalah mahasiswa
+selanjutnya setelah dari nama tabel akan diikuti penanda kurung buka dan kurung tutup
+didalam penanda inilah kita akan mendeksripsikan nama-nama kolom apa saja yang akan dimiliki oleh tabel mahasiswa
+semisal kolom pertama yaitu nim, yang mempunyai nilai tipe data varchar yang mempunyai ukuran 8
+kalau semisal kita ingin agar kolom nim ini perlu untuk diisi, kita dapat menambahkan properti not null
+not null artinya yaitu disaat kita menginputkan databaru, maka kolom dari properti not null ini tidak boleh kosong 
+lalu selanjutnya kolom kedua yakni nama yang mempunyai tipe data varchar dan memiliki nilai 50
+kolom berikutnya yaitu alamat yang mempunyai tipe data varchar dan memiliki nilai 150
+terakhir kolom ipk yang mempunyai tipe data floating point
+jika kita ingin menspesifikasikan primary key kita dapat menambahkannya diakhir dengan keyword primary key()
+didalam penanda kurung inilah kita akan menspesifikasikan kolom manakah yang akan menjadi primary key-nya 
+semisal kita akan memberi nim
+berarti sintaks yang digunakan adalah 
+create table mahasiswa (
+	nim varchar(8),
+	nama varchar(50),
+	alamat varchar(150),
+  	ipk float,
+  	primary key(nim)
+);
+jika kita lihat hasilnya menggunakan show tables;
+maka terdapat table baru dengan nama mahasiswa 
+kita juga dapat mencheck deskripsi table dengan menggunakan command describe
+describe mahasiswa;
+dapat kita lihat pada tabel mahasiswa mempunyai 4 kolom yang primary key-nya yakni nim
+untuk menghapus sebuah table kita dapat menggunakan command drop table
+semisal kita akan menghapus table yang baru saja kita buat yakni mahasiswa
+maka sintaksnya ialah drop table mahasiswa;
+jika kita lihat menggunakan show tables maka table mahasiswa sudah tidak kita temui
+
+berikutnya kita akan mempelajari cara untuk melakukan perubahan pada struktur table
+kita dapat menggunakan sintaks sebelumnya yang telah kita buat untuk table mahasiswa
+kita dapat memastikan kembali dengan melakukan check menggunakan command show tables;
+dan juga melihat deskripsi table-nya menggunakan command describe mahasiswa;
+
+Semisal terdapat kasus
+kita perlu menambahkan kolom baru pada tabel mahasiswa yakni kota kelahiran
+disini kondisinya tabel telah terbentuk dan kita perlu memodifikasi struktur tabel
+untuk menjawabnya kita dapat menggunakan command alter table
+alter table ini umum digunakan untuk melakukan perubahan terhadap struktur suatu table
+semisal karena kita akan melakukan perubahan struktur pada table mahasiswa 
+maka kita dapat menuliskan alter table mahasiswa()
+modifikasi yang kita perlukan disini adalah untuk menambah kolom baru
+kita dapat menuliskan kata kunci 'add' diikuti dengan nama kolom baru yang akan kita tambahkan 
+semisal kolom yang akan ditambahkan adalah kota_kelahiran dengan tipe data varchar, dan nilai 50
+maka sintaks yang digunakan adalah
+alter table mahasiswa add kota_kelahiran varchar(50);
+kita dapat melihat hasilnya yakni pada tabel mahasiswa terdapat kolom baru yakni kota_kelahiran
+dengan tipe data varchar dan mempunyai value 50 karakter
+
+Semisal terdapat kasus lain
+kita perlu mengubah nama kolom kota_kelahiran menjadi kota_asal
+kita dapat mengubahnya kembali menggunakan command alter table
+karena kita akan memodifikasi nama kolom maka kita akan menggunakan 'change column'
+lalu diikuti dengan nama kolom yang akan kita modifikasi 
+semisal untuk kasus ini yakni kota_kelahiran
+lalu berikutnya kita akan sertakan nama kolom baru beserta tipe data-nya 
+alter table mahasiswa change column kota_kelahiran kota_asal varchar (60);
+untuk melihat hasil perubahannya bisa kita lihat menggunakan command describe 
+kita dapat melihat kolom kota_kelahiran telah terganti menjadi kota_asal dengan nilai tipe data yakni 60 
+
+Selain untuk menambah ataupun mengubah kolom suatu table 
+alter juga berfungsi untuk menghapus kolom pada suatu table 
+
+Semisal terdapat kasus
+kita diminta untuk menghapus kolom alamat pada tabel mahasiswa
+kita dapat menggunakan fungsi alter table kembali 
+karena kita akan menghapus kolom maka kita akan menggunakan kata kunci drop column
+lalu diikuti dengan nama kolom yang akan kita hapus
+semisal untuk kasus kita disini yang akan kita hapus adalah kolom alamat
+maka sintaks yang digunakan adalah
+alter table mahasiswa drop column alamat;
+jika kita lihat hasilnya menggunakan describe maka kolom dari alamat tidak akan ada didalam tabel mahasiswa
+
+Semisal terdapat kasus
+kita akan mengubah nama tabel mahasiswa menjadi siswa
+karena kita akan mengubah struktur pada table maka kita akan menggunakan command alter table kembali
+table yang akan kita rubah adalah table mahasiswa
+untuk mengubah nama table kita dapat menggunakan kata kunci 'rename to'
+diikuti dengan nama table baru yang kita inginkan
+pada kasus ini kita akan mengubahnya menjadi siswa
+maka sintaks yang digunakan adalah
+alter table mahasiswa rename to siswa;
+kita dapat melihat perubahannya menggunakan command show tables;
+disana tidak ada lagi table dengan nama mahasiswa melainkan yang ada hanyalah table dengan nama siswa
+
+
+
+Tugas
+buatkan sebuah table dengan nama table_barang yang memiliki sejumlah kolom yaitu kode_barang dan nama_barang 
+yang keduanya memiliki tipe data varchar
+table ini dibuat dalam sebuah database yang bernama toko
+create database toko;
+show databases;
+use toko;
+create table table_barang ( kode_barang varchar(50) not null, nama_barang varchar(50), primary key (kode_barang) );
+show tables;
+describe table_barang;
+
+tambahkan sebuah kolom baru pada table_barang dan nama kolom yang ditambahkan adalah kolom harga yang bertipe data integer
+alter table table_barang add harga integer(50);
+
+

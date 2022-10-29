@@ -1,0 +1,124 @@
+Eps. 6
+Mengelompokkan data yang tersimpan dalam tabel database 
+dengan menggunakan klausa 'GROUP BY'
+
+sewaktu kita bekerja menggunakan database 
+adakalanya kita membutuhkan untuk melakukan pengelompokkan data pada value-nya
+untuk menjalankannya kita dapat dengan menggunakan klausa 'group by'
+semisal untuk kasus ini kita akan menggunakan tabel orders 
+namun sebelumnya kita perlu mengetahui kolom dari tabel tersebut
+dengan menggunakan sintaks 'describe'
+describe orders;
+disini dapat kita lihat didalamnya terdapat 7 kolom, termasuk kolom ordernumber sebagai primary key
+kita juga perlu melihat isi dari semua data pada tabel orders
+kita dapat menggunakan klausa 'select' untuk melihatnya
+select * from orders;
+
+semisal kita mempunyai kasus 
+yaitu menampilkan kolom status pada tabel orders beserta semua value-nya 
+maka sintaks yang digunakan adalah 
+select status from orders;
+jika kita lihatnya hasilnya dapat kita ketahui bahwa data dari shipped jumlahnya sangat banyak 
+namun demikian terdapat juga status yang lain
+untuk menyingkatnya, kita bisa menampilkannya dengan cara mengelompokkan datanya 
+kebutuhan ini bisa kita akomodir dengan menggunakan klausa 'group by'
+maka sintaks yang digunakan adalah
+select status from orders group by status;
+jika kita lihat hasilnya maka akan menampilkan sejumlah data yang telah dikelompokkan
+disini sekumpulan data yang tersimpan didalam tabel orders 
+akan dikelompokkan berdasarkan kolom status terlebih dahulu
+baru setelahnya untuk setiap kelompok yang terbentuk, akan kita hitung jumlah baris dan datanya
+contoh penulisan sintaksnya 
+select status, count(*) from orders group by status;
+pertama-tama kita dapat menuliskan klausa select terlebih dahulu 
+dilanjut dengan klausa from, untuk nama tablenya yakni dalam kasus ini ialah orders
+lalu kita gunakan klausa 'group by' untuk mengelompokkan data berdasarkan kolom status
+selain memunculkan data status kita juga ingin menampilkan jumlah data dengan status tertentu 
+untuk melakukannya kita dapat menggunakan fungsi agregasi yakni count()
+jika kita melihat hasil sintaksnya maka akan menampilkan status dan juga jumlah datanya 
+sebagai misal untuk data cancelled terdapat 6 baris dan juga data yang lain sebagainya
+disini data dari tabel orders dikelompokkan berdasarkan kolom status
+artinya data yang mempunyai nilai status yang sama akan berkumpul dikelompokkan menjadi satu 
+sehingga terbentuklah beberapa kelompok data
+semisal dalam kasus ini terdapat 6 data untuk kolom status yang terbentuk 
+yakni cancelled, disputed, in procces, on hold, resolved, dan shipped
+
+sewaktu kita menampilkan status menggunakan klausa select 
+nilai status yang dihasilkan adalah nilai status merepersentasikan setiap kelompok data
+dimana setiap kelompok data yang terbentuk akan memiliki nilai status yang dapat merepersentasikan keseluruhan data dalam kelompok tersebut 
+disini kita mengelompokkan data berdasarkan kolom status
+pengelompokkan data juga dapat dipadukan dengan fungsi agregasi
+fungsi agregasi sendiri adalah fungsi yang dikenakan pada sekumpulan data
+pada kasus ini fungsi yang digunakan adalah count
+count ini berfungsi untuk menghitung jumlah data atau baris dalam suatu kelompok data
+dalam hal ini yang perlu diperhatikan disini adalah ketika suatu tabel telah kita kelompokkan berdasarkan tabel/kolom tertentu
+maka kita tidak dapat mengakses datanya secara individual
+maksud individual disini yaitu data yang tampil merupakan satu diantara data yang lain
+
+semisal untuk kasus lain
+sebelumnya data dari tabel orders telah kita kelompokkan berdasarkan kolom status
+semisal disini kita akan menampilkan kolom baru yakni ordernumber
+semisal untuk sintaksnya 
+select status, count (*), ordernumber from orders group by status;
+jika kita lihat hasilnya maka tidak akan menampilkan pesan error
+namun hasil demikian bukan berarti sintaksnya benar
+terdapat problem disini yaitu nomor yang ditampilkan tidak dapat merepersentasikan dari kolom ordernumber
+semisal untuk status cancelled ia mempunyai 6 data dan untuk data ordernumber yang tampil hanyalah satu yakni 10167
+nomor yang tampil ini hanyalah satu dari 6 yang lainnya 
+semisal kita akan menampilkan data status dan juga ordernumber yang datanya hanya bernilai cancelled
+sintaks yang digunakan adalah
+select status, ordernumber from orders where status = 'cancelled';
+disini kita tidak menambahkan count, karena count merupakan fungsi untuk menghitung jumlah baris dan kolom
+sedangkan kita akan menampilkan secara lengkap data dari status dan juga ordernumber
+jika kita lihat hasilnya terdapat 6 status dari cancelled dan diantaranya memiliki ordernumber 10167
+artinya nilai yang sebelumnya muncul tidak dapat direpersentasikan untuk kolom ordernumber 
+terlagi untuk keseluruhan data dengan status 'cancelled'
+
+semisal untuk kasus lain
+kita akan menampilkan total revenue(pendapatan) untuk setiap status orders
+dapat kita lihat bahwa untuk nilai revenue(pendapatan) dapat dihasilkan dengan perkalian antara quantityordered dengan priceeach
+dan kedua data tersebut terdapat dalam tabel orderdetails
+maka sintaks yang digunakan adalah
+select (quantityordered * priceeach) as revenue from orderdetails;
+kita dapat memulai dengan select, tetapi kita abaikan dulu untuk nilai-nilai yang akan ditampilkan
+dilanjut dengan from untuk nama dari tabel yakni orderdetails
+jika kita lihat hasilnya ia akan menampilkan kolom dengan nama revenue dan isi dari datanya merupakan perkalian antara 2 tabel
+selanjutnya kita akan menampilkan data status pada tabel order untuk setiap nilai revenue ini
+jika kita lihat untuk kolom status terdapat ditabel orders dan kolom revenue berasal dari tabel orders details
+berarti kita perlu melakukan inner join pada kedua tabel tersebut
+jika kita lihat juga kolom tersebut dihubungkan dengan kolom ordernumber
+dan juga akan kita kelompokkan dengan kolom status
+maka sintaks yang digunakan adalah 
+select o.status, (quantityordered * priceeach) as revenue from orders as o inner join orderdetails as od using (ordernumber) group by o.status;
+kita dapat memulai fromnya dari tabel orders ataupun orderdetails
+dilanjut dengan klausa inner join untuk menghubungkannya 
+untuk mempermudah kita dapat melakukan aliasing
+lalu dilanjut degnan kata kunci using disambung dengan nama kolom yang menghubungkan kedua dari tabel
+yang perlu diingat pastikan penulisan kolomnya perlu diapit menggunakan kurung buka dan kurung tutup
+setelah tabel dijoinkan selanjutnya kita dapat mengelompokkan data menggunakan klausa 'group by'
+dan data yang kita joinkan ini akan dikelompokkan berdasarkan kolom status
+
+disini kita perlu berhati-hati kita akan menampilkan total dari revenue(pendapatan), bukan dari revenue(pendapatan)
+sedangkan perkalian dari hasil quantityordered dengan priceeach akan menampilkan revenue(pendapatan)
+dan revenue(pendapatan) ini merupakan data individual, karena datanya sudah dikelompokkan berdasarkan status ordered
+maka data yang individual ini tidak mungkin lagi untuk ditampilkan, dan yang kita tampilkan adalah hasil agregasinya
+agregasi yang dapat kita pakai untuk menjumlahkan suatu nilai yakni fungsi 'sum' 
+dan untuk alias kita dapat mengubahnya dengan alias yang lebih repersentatif yakni total_revenue
+maka sintaks yang dihasilkan adalah
+select o.status, sum(quantityordered * priceeach) as revenue from orders as o inner join orderdetails as od using (ordernumber) group by o.status;
+jika kita lihat hasilnya kita berhasil menampilkan total revenue(pendapatan) untuk setiap dari status order
+dengan memadukan penggunakan klausa inner join dan group by
+
+yang perlu diperhatikan disini adalah urutan penulisan query-nya
+suatu sql query akan dimulai dengan klausa 'select' dilanjut dengan klausa 'from' yang akan diikuti dengan nama tabel
+bila terdapat join, maka akan diikuti dengan klausa join, jika terdapat seleksi baris maka terdapat klausa where
+bila terdapat pengelompokkan data kita dapat menyertakan klausa group by setelah klausa where
+terakhir jika melibatkan pengurutan data kita dapat menggunakan klasua 'order by' diakhir sintaksnya
+
+
+Tugas
+buatkan query untuk menampilkan jumlah employees(karyawan) yang terdapat ditiap officecode
+select officecode, count(*) from employees group by officecode;
+
+buatkna query untuk menampilkan jumalh employees(karyawan) yang terdapat ditiap country atau negara
+select country, count(*) from employees as e inner join offices as of using (officecode) group by of country;

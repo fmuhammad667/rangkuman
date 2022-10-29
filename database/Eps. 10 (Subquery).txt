@@ -1,0 +1,186 @@
+Eps. 10
+Mengenal Subquery dalam database
+
+sesuai dengan namanya subquery yaitu sebuah query yang terdapat didalam diquery lain 
+atau sering kali disebut query bersarang atau nested query
+
+Semisal terdapat kasus
+disini kita akan menggunakan table payments pada database classicmodels
+kita dapat mencheck database kita dengan menggunakan command show databases;
+karena kita akan menggunakan database classicmodels
+kita dapat mengaktifkan database tersebut menggunakan command use classicmodels;
+selanjutnya kita dapat men-check table apa saja yang terdapat didalam database classicmodels
+menggunakan command show tables;
+dapat kita lihat hasilnya daftar dari table pada database classsicmodels
+untuk melihat isi dari table payments kita dapat menggunakan command select
+select * from payments;
+bisa kita lihat table payments terdiri dari 4 kolom
+
+semisal terdapat kasus
+kita diminta untuk menampilkan data payments dengan kolom amount tertinggi
+pada pelajaran sebelumnya kita dapat menggunakan pengurutan data dengan klausa order by 
+dan kita akan mengurutkan datanya dari yang terbesar ke kecil atau secara descanding
+maka kita dapat menggunakan kata kunci desc
+dan sintaks yang dihasilkan adalah
+select * from payments order by amount
+dan dapat kita lihat hasilnya ia akan menampilkan amount dengan urutan paling atas
+hanya saja dengan mekanisme seperti ini akan menampilkan juga keseluruhan data lain yang tersimpan pada talbe payments
+
+kita dapat melakukan hal serupa dengan memanfaatkan subquery
+pertama-tama kita akan mengenal fungsi agregasi max
+fungsi ini adalah menghasilkan nilai terbesar dari sekumpulan data
+
+Semisal terdapat kasus 
+kita akan menampilkan nilai amount tertinggi namun menggunakan fungsi agregasi max
+caranya kita dapat menuliskan select 
+diikuti dengan max dan menyertakan tanda kurung
+lalu didalam tanda kurung kita menyertakan nama kolomnya yakni amount
+lalu untuk klausa from kita akan menuliskan nama dari tablenya
+dalam kasus ini yakni payments 
+maka sintaks yang dihasilkan adalah 
+select max(amount) from payments;
+dengan menggunakan sintaks ini kita dapati bahwa nilai amount tertinggi yakni 120166.58
+selanjutnya kita akan gunakan nilai ini sebagai kondisi untuk melakukan seleksi baris pada table payments
+query yang akan kita tuliskan ialah 
+select * from payments 
+lalu kita akan menyertakan klausa where untuk kondisi baris dengan kondisinya adalah nilai amount-nya harus 120166.58
+dan sintaks yang dihasilkan adalah
+select * from payments where amount = 120166.58;  
+jika kita lihat hasilnya maka akan menampilkan data payments dengan amount tertinggi
+tetapi jika kita lihat menggunakan query ini kita butuh melakukan eksekusi 2 buah query secara terpisah
+query pertama untuk mendapatkan nilai amount tertinggi (max) 
+dan selanjutnya hasil query ini kita gunakan sebagai kondisi diquery berikutnya (amount=120166.58) 
+proses ini bisa kita sederhanakan dengan menggunakan subquery
+
+untuk menggunakan subquery kita dapat menggunakan select
+lalu all (*) diikuti dengan klausa from payments
+karena kita akan gunakan data pada table payments
+lalu kita akan gunakan seleksi baris 
+berarti kita akan gunakan klausa where 
+dan kondisinya berdasarkan nilai dari kolom amount yang tertinggi pada table payments
+dan disinilah letak dari subquery-nya
+berarti kita gunakan tanda kurung 
+dan didalam kurung inilah kita akan tuliskan subquery-nya 
+atau query yang berada di query-lain 
+dimana subquery-nya berupa pencarian nilai maximum dari kolom amount dari table payments
+(select max(amount) from payments)
+maka sintaks yang dihasilkan adalah
+select * from payments where amount = (select max(amount) from payments);
+yang perlu diperhatikan disini ialah untuk subquery-nya atau query yang berada didalam ini
+tidak perlu kita sertakan semicolon (;)
+titik koma akan kita gunakan pada query bagian terluar
+karena titik koma merupakan digunakan untuk mengakhiri statement
+dan ini merupakan satu kesatuan statement 
+hanya saja dalam statement ini terdapat suatu statement lain yang berada pada query besar
+jika kita lihat hasilnya maka akan sama
+sebenarnya disini kita memiliki 2 buah query yang dijadikan satu statement
+format penulisan ini dikenal dengan subquery
+
+Semisal terdapat kasus lain
+kita diminta untuk menampilkan kolom firstname dan lastname pada table employees yang berada dioffice USA
+jika mengacu pada pembelajaran sebelumnya kita dapat menggunakan klausa inner join 
+caranya yaitu kita bisa klausa select dan lompat ke klausa from terlebih dahulu
+select ... from
+kita akan menggunakan 2 table yakni employees dan offices menggunakan inner join 
+dan kedua table ini dihubungkan dengan kolom officecode
+select ... from employees as e inner join offices as o using(officecode)
+setelah kita joinkan kita akan melakukan seleksi baris dengan where dimana kondisinya country harus usa
+select ... from employees as e inner join offices as o using(officecode) where o.country = 'USA';
+terakhir kita selesaikan bagian select yakni menampilkan firstname dan lastname
+select firstname, lastname from employees as e inner join offices as o using(officecode) where o.country = 'USA';
+
+selain dengan menggunakan klausa inner join kebutuhan ini dapat kita gunakan juga menggunakan subquery
+pertama-tama kita akan mencari tahu offices code apa saja yang terdapat dinegara usa
+kita dapat menggunakan query select dilewat menuju table offices
+select ... from offices  
+dan kita akan menggunakan seleksi baris dengan klausa where
+dengan kondisinya yakni country adalah usa
+select ... from offices where country = 'USA';
+berikutnya kita hanya akan menampilkan data officecode saja 
+berarti pada klausa select kita hanya akan menampilkan officecode 
+select officecode from offices where country = 'USA';
+jika kita lihat hasilnya officecode yang terdapat dinegara USA adalah 1,2,3
+selanjutnya kita akan coba menggunakan hasil query ini untuk mencari employees yang bekerja diketiga officecode tersebut
+disini kita akan kompos query kedua yakni
+select dilewat menuju klausa from
+karena kita akan menggunakan table employees maka untuk from kita gunakan employees
+select ... from employees 
+selanjutnya kita akan gunakan seleksi baris dengan klausa where 
+dan seleksi baris akan mengacu pada kolom officecode yang dihasilkan query sebelumnya
+select ... from employees where officecode
+berarti disini kita akan memanfaatkan query sebelumnya sebagai subquery
+kita panggil in dilanjut dengan tanda kurung
+select ... from employees where officecode in()
+dan didalam tanda kurung inilah kita akan memasukan query sebelumnya 
+select ... from employees where officecode in(select officecode from offices where country = 'USA')
+selanjutnya untuk akhir statement kita dapat menutup dengan titik koma
+select ... from employees where officecode in(select officecode from offices where country = 'USA');
+disini yang perlu diperhatikan adalah penggunaan operator in
+kenapa disini kita menggunakan operator IN()
+dan tidak menggunakan operator sama dengan (=)
+alasannya ialah karena untuk bagian subquery ini akan mengembalikan lebih dari satu data yakni dalam kasus kita akan mengembalikan 3 data yakni 1,2,3
+dan disini untuk membandingkan suatu nilai kolom dengan nilai lain yang jumlahnya lebih dari satu kita dapat menggunakan operator in
+lalu pada tahap berikutnya kita akan menampilkan kolom firstname dan lastname
+maka kita dapat melengkapi query selectnya dengan firstname dan lastname
+query yang dihasilkan ialah
+select firstname, lastname from employees where officecode in(select officecode from offices where country = 'USA');
+disini kita memiliki opsi lain untuk menjawab kebutuhan terkait akses data yang melibatkan beberapa table
+
+Semisal terdapat kasus lain yang lebih kompleks
+kita diminta untuk menampilkan nilai rata-rata, nilai tertinggi dan terkecil dari jumlah jenis product untuk tiap order atau nota
+untuk menjawab kebutuhan seperti ini kita dapat menggunakan subquery 
+pertama-tama kita perlu menghitung terlebih dahulu banyaknya jenis product berbeda untuk tiap order 
+disini kita dapat menggunakan klausa group by
+kita dapat menyiapkan klausa select dan dilewat ke from 
+dan kita tau data yang dibutuhkan berada ditable orderdetails 
+select ... from orderdetails
+lalu data-datanya akan digrupkan berdasarkan ordernumber
+berarti kita panggil group by ordernumber
+select ... from orderdetails group by ordernumber 
+selanjutnya disini kita akan melengkapi klausa select
+data yang akan kita tampilkan adalah ordernumber
+lalu kolom kedua yaitu jumlah baris atau item untuk setiap ordernumber ini 
+berarti kita butuh fungsi agregasi count(*)
+select ordernumber, count(ordernumber) from orderdetails group by ordernumber;
+semisal untuk kolom baru yang terbentuk kita dapat aliaskan menjadi items
+select ordernumber, count(ordernumber) as items from orderdetails group by ordernumber;
+bisa kita lihat kolom yang menampung jumlah items untuk setiap ordernumber
+kita aliaskan sebagai kolom items
+selanjutnya kita akan menggunakan data ini sebagai sumber data bagi query berikutnya
+
+kita dapat gunakan klausa select dan lompat menuju klausa from terlebih dahulu 
+select ... from 
+karena kita akan memanfaatkan query sebelumnya menjadi sumber data
+kita dapat memanfaatkan query sebelumnya sebagai subquery-nya
+berarti setelah from kita gunakan tanda kurung 
+select ... from()
+kita dapat memasukan query sebelumnya pada tanda kurung di from sebagai subquery
+select ... from (select ordernumber, count(ordernumber) as item from orderdetails group by ordernumber)
+kita dapat men-aliaskan sumber data yang dihasilkan query ini semisal dengan nama t1 
+dan menutup statementnya menggunakan titik koma;
+select ... from (select ordernumber, count(ordernumber) as item from orderdetails group by ordernumber) as t1;
+berikutnya kita akan melengkapi klausa select 
+data pertama yang akan kita tampilkan adalah nilai rata-rata dari jumlah items dari sumber data ini 
+berarti kita dapat memanggil AVG()
+AVG() ini merupakan fungsi agregasi yang digunakan untuk menghitung nilai average atau nilai rata-rata 
+dan disini nilai rata-ratanya akan mengacu pada kolom items 
+dan kolom items ini bersumber dari data subquery ini yang sudah kita aliaskan menjadi t1
+select AVG(t1.items) from (select ordernumber, count(ordernumber) as item from orderdetails group by ordernumber) as t1;
+data kedua yang akan kita tampilkan yakni nilai tertinggi pada kolom items ini 
+berarti kita bisa panggil fungsi MAX()
+select AVG(t1.items), MAX(t1.items) from (select ordernumber, count(ordernumber) as items from orderdetails group by ordernumber) as t1;
+dan terakhir kita akan menampilkan nilai terkecil 
+dan dapat kita panggil fungsi agregasi MIN()
+MIN() merupakan fungsi agregasi yang bisa kita kenakan pada sekumpulan data dan akan menghasilkan nilai terkecil dari sekumpulan data tesebut
+dan disini kumpulan datanya bersumber dari t1.items
+select AVG(t1.items), MAX(t1.items), MIN(t1.items) from (select ordernumber, count(ordernumber) as items from orderdetails group by ordernumber) as t1;
+jika kita lihat hasilnya bisa kita lihat nilai rata-rata, nilai tertinggi, dan nilai terendah
+studi kasus ini bisa dibilang menarik karena ternyata subquery tidak hanya dapat diterapkan pada klausa where
+tapi ternyata dapat kita gunakan pada from sebagai sumber data 
+
+tugas
+meninjau kembali 2 soal sebelumnya pada sesi inner join
+coba kalian tuliskan kembali query-nya hanya saja tidak menggunakan inner join melainkan menggunakan subquery
+
+
+

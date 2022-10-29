@@ -1,0 +1,211 @@
+Eps. 9
+Menambah, mengubah, menghapus data pada suatu table
+atau sering kali disebut juga dengan data manipulation language (DML)
+
+DML biasanya berfokus pada manipulasi data pada suatu table
+seperti mengisi data, merubah data, juga menghapus data pada suatu table dalam database
+yang kita pelajari disini ialah bagian SQL dari Data Manipulation Language 
+DML sangat erat hubungannya dengan mekanisme untuk menyimpan, mengubah, menghapus data pada suatu table pada database
+
+Semisal kita akan menggunakan database baru
+untuk membuat database baru kita perlu menuliskan sintaks create database diikuti dengan nama databasenya
+semisal kita akan membuat database dengan nama kampus
+maka untuk membuatnya kita dapat mengetikkan create database kampus;
+untuk melihat hasilnya kita dapat menggunakan command show databases;
+dan dapat kita lihat terdapat database baru dengan nama kampus
+selanjutnya untuk mengaktifkan database yang telah kita buat
+kita dapat menggunakan command use diikuti nama database-nya
+untuk kasus ini database yang dipakai adalah database kampus
+maka sintaks yang digunakan adalah use kampus;
+selanjutnya kita akan membuat table dengan nama mahasiswa didalam database kampus ini
+kita dapat menggunakan klausa CREATE TABLE yang diikuti nama tablenya
+dilanjut dengan tanda kurung buka dan kurung tutup yang mana didalamnya
+kita akan menspesifikasikan nama-nama dari kolom pada tablenya beserta tipe data-nya
+semisal kolom pertama yaitu nim dengan tipe data varchar dan ukuranya 8 karakter
+karena kolom nim akan kita jadikan primary key maka nilainya tidak boleh kosong 
+kita perlu menggunakan properti not null
+selanjutnya kolom kedua yaitu nama dengan tipe data varchar dan mempunyai nilai 50
+kolom ketiga yaitu kota dengan tipe data varchar dan mempunyai ukuran 150 karakter
+kolom terakhir yakni ipk dengan tipe data float
+terakhir karena kolom nim kita set menjadi primary key
+diakhir kita tuliskan keyword primary key disertai tanda kurung untuk nama dari kolom yang akan kita set menjadi primary key
+maka sintaks yang dihasilkan adalah
+create table mahasiswa(
+	nim varchar(8) not null,
+  	nama varchar(50),
+  	kota varchar(150),
+  	ipk float,
+  	primary key(nim)
+);
+untuk memastikan apakah kolom telah terbentuk 
+kita dapat mengechecknya menggunakan klausa show tables;
+dan juga melihat deskripsi dari table menggunakan klausa describe diikuti dengan nama table-nya
+describe mahasiswa;
+
+Semisal terdapat kasus
+kita akan menambahkan data mahasiswa dengan nama bejo dengan nim 111 
+dia berasal dari kota bogor, dan memiliki ipk 2,24
+untuk menambahkan data ke suatu table kita dapat menggunakan klausa 'insert into'
+klausa 'insert into' ini akan diikuti dengan nama table yang akan kita input
+diikuti dengan kata kunci values dilanjut dengan tanda kurung
+didalam tanda kurung setelah kata values ini kita akan menspesifikasikan isi atau data yang akan kita inputkan ke dalam table 
+dalam kasus ini yakni table mahasiswa
+maka sintaks yang dihasilkan adalah
+insert into mahasiswa values ('111', 'Bejo', 'Bogor', 2.24);
+untuk memastikan datanya apakah telah terinput kedalam table mahasiswa
+kita dapat menampilkannya menggunakan query select
+select * from mahasiswa;
+dan dapat kita lihat bahwa datanya sudah masuk kedalam table dari mahasiswa
+yang perlu diperhatikan disini adalah data yang ditambahkan harus lengkap 
+dalam artian setiap kolom yang disertakan harus ada dan tidak boleh kosong
+selain itu pengisian data harus sesuai dengan urutan dari kolom pada table
+semisal untuk pertama yang harus diinput ialah nim, nama, kota, dan terakhir ipk
+
+Semisal terdapat kasus lain
+kita diminta menambahkan data mahasiswa baru dengan nama tejo dengan nim 222 
+karena tejo merupakan mahasiswa baru, ia belum melengkapi beberapa persyaratan pada kolom seperti kota dan juga ipk
+untuk menjawabnya kita masih bisa menggunakan klausa 'insert into'
+meski terdapat format penulisan yang berbeda
+kita dapat memanggil 'insert into mahasiswa' karena kita akan menginputkan datanya ke table mahasiswa
+lalu berikutnya untuk keseluruhan dari table mahasiswa, terdapat 4 kolom yang dimiliki
+namun kita akan menginputkan 2 data saja yakni pada kolom nim dan juga nama
+untuk kedua kolom yang kita inputkan datanya perlu kita spesifikasikan didalam tanda kurung setelah kata dari table mahasiswa
+semisal contohnya 'insert into mahasiswa(nim, nama)'
+selanjutnya klausa insert into ini bisa kita lengkapi menggunakan klausa values 
+pada klausa values disini, karena data yang diinputkan hanya ada 2, yakni nim dan nama
+maka kita hanya menspesifikasikan 2 nilai saja yaitu 222 untuk nim, dan tejo untuk kolom nama
+maka hasil dari query-nya ialah
+insert into mahasiswa(nim, nama) values('222', 'Tejo');
+yang perlu diperhatikan disini ialah urutannya harus sesuai
+semisal pada kasus ini, kita mengurutkannya dari nim terlebih dahulu dilanjut dengan nama
+maka untuk mengisi datanya kita perlu mengisi data nim terlebih dahulu, dilanjut data selanjutnya yaitu data nama
+untuk melihat hasilnya kita dapat melihat kembali menggunakan klausa select
+select * from mahasiswa;
+dapat kita lihat hasilnya data tejo sudah terinput kedalam table mahasiswa namun dengan kolom kota dan ipk yang kosong 
+
+hal yang menarik dalam penulisan format kedua ini yaitu kita bebas untuk mengubah pengisian urutan datanya
+semisal kita akan menginputkan data mahasiswa baru dengan urutan nama terlebih dahulu dilanjut dengan ipk dan terakhir yakni nim
+untuk value dari mahasiswa baru tersebut yaitu dengan nama cecep, dengan nilai ipk 1.58 dan nimnya yaitu 333
+padahal urutan kolom yang diinputkan tidak sesuai dengan urutan kolom dalam table
+karena urutan pertama dari table mahasiswa yakni kolom nim, nama, kota dan terakhir ipk
+tapi kita bisa leluasa melakukan perubahan dalam urutan data
+dan sintaks yang dihasilkan adalah demikian
+insert into mahasiswa(nama, ipk, nim) values ('cecep', 1.58, '333');
+jika kita lihat hasilnya menggunakan select
+kita dapati data ketiga yakni cecep, sudah terinput dengan sempurna
+meskipun format dalam penulisan tidak terurut seperti pada table
+yang penting disini adalah data yang diinputkan harus mengikuti dari data yang di-spesifikasikan diawal
+
+Semisal terdapat kasus lain 
+kita akan memasukan banyak data sekaligus kedalam suatu table
+semisal kita akan menginputkan 3 data sekaligus kedalam table
+dengan menggunakan satu klausa 'insert into'
+kita dapat menspesifikasikan 'insert into mahasiswa'
+dilanjut dengan spesifikasikan kolom apa saja yang akan kita isikan datanya
+semisal untuk kasus ini kita akan menginputkan kolom nim, nama, dan kota
+insert into mahasiswa(nim, nama, kota)
+selanjutnya diikuti dengan klausa values, dilanjut dengan tanda kurung
+insert into mahasiswa(nim, nama, kota) values()
+didalam tanda kurung inilah kita akan spesifikasikan data yang akan kita inputkan kedalam table mahasiswa
+semisal untuk pertama yaitu dengan nim 444, bernama wati, kota asal yakni semarang
+insert into mahasiswa(nim, nama, kota) values('444', 'Wati', 'Semarang')
+untuk menambahkan data berikutnya kita bisa spesifikasikan dengan cara memberi tanda koma setelah tanda kurung
+insert into mahasiswa(nim, nama, kota) values('444', 'Wati', 'Semarang'), 
+lalu kita buat penanda kurung yang baru setelah tanda koma 
+insert into mahasiswa(nim, nama, kota) values('444', 'Wati', 'Semarang'), ()
+ditanda kurung inilah kita akan menspesifikasikan data mahasiswa berikutnya
+semisal untuk yang kedua yakni mempunyai nim 555, bernama ani dan berasal dari surabaya
+insert into mahasiswa(nim, nama, kota) values('444', 'Wati', 'Semarang'), ('555', 'Ani', 'Surabaya')
+untuk data yang ketiga yakni memiliki nim 666, dengan nama ratih, dan berasal dari kota malang
+insert into mahasiswa(nim, nama, kota) values('444', 'Wati', 'Semarang'), ('555', 'Ani', 'Surabaya'), ('666', 'Ratih', 'Malang');
+untuk melihat hasilnya kita dapat melihat menggunakan klausa select
+select * from mahasiswa
+dan dapat kita lihat hasilnya terdapat 3 data baru yang telah kita inputkan ke table mahasiswa
+
+Mengubah data yang tersimpan pada suatu Table
+Semisal terdapat kasus lain
+kita akan mengubah data siswa dengan nim '555' yakni merubah kolom kota menjadi sidoarjo
+untuk merubah data pada suatu table kita dapat menggunakan klausa 'update'
+nantinya klausa update ini akan diikuti nama table yang akan kita ubah datanya
+dalam hal ini yakni mahasiswa
+update mahasiswa
+selanjutnya kita spesifikasikan perubahan apa yang akan kita lakukan 
+disini kita dapat menggunakan kata kunci set diikuti nama kolom yang akan kita ubah datanya
+update mahasiswa set kota = ...
+disini kolom yang akan kita rubah yakni data pada kolom kota, dengan data baru yang diterapkan adalah sidoarjo
+maka sintaksnya ialah
+update mahasiswa set kota = 'Sidoarjo' 
+tak cukup sampai disitu kita perlu menspesifikasikannya menggunakan klausa where
+update mahasiswa set kota = 'Sidoarjo' where
+where disini akan diberi kondisi, dan untuk kasus kita disini perubahan kota menjadi sidoarjo akan kita terapkan 
+ke mahasiswa yang mempunyai nim 555 yakni Ani
+maka disini kita tinggal tulis where nim='555'
+update mahasiswa set kota = 'Sidoarjo' where nim = '555';
+dapat kita lihat disini nim dengan 555 sebelumnya mempunyai value kota surabaya
+untuk melihat perubahan pada data, kita dapat panggil kembali klausa select
+select * from mahasiswa
+jika kita lihat pada nim yang mempunyai value 555 yakni ani pada kolom kota sudah berubah menjadi sidoarjo 
+
+kita juga dapat melakukan update terhadap lebih dari satu kolom 
+Semisal terdapat kasus
+kita akan merubah data mahasiswa dengan nim 222 dimana perubahan datanya 
+yakni kolom kota akan kita beri nilai bekasi dan kolom ipk akan diberi 3.55
+karena kita akan melakukan perubahan data, kita dapat memanggil klausa update dilanjut dengan nama tablenya
+update mahasiswa
+perubahan data yang akan kita ubah kita spesifikasikan menggunakan kata kunci set
+update mahasiswa set
+lalu diikuti dengan nama kolom dan nilai perubahannya 
+disini kolom yang akan kita rubah yakni kolom kota dengan value yakni bekasi
+dan juga kolom ipk dimana nilainya yakni 3.55
+update mahasiswa set kota='Bekasi', ipk=3.55
+selanjutnya kita akan melakukan spesifikasikan klausa where 
+dimana update data ini akan dilakukan pada baris dengan nim 222
+update mahasiswa set kota='Bekasi', ipk=3.55 where nim='222';
+untuk memastikan perubahan data, kita dapat eksekusi kembali klausa select
+select * from mahasiswa;
+dan dapat kita lihat untuk mahasiswa dengan nim 222 alias tejo
+pada kolom kotanya berubah menjadi bekasi dan ipknya menjadi 3.55
+
+Kesalahan yang umum terjadi pada klausa update yakni lupa menggunakan klausa where
+semisal terdapat kasus 
+kita butuh merubah ipk dengan nilai nim 111 menjadi 1.75 tapi kita lupa menyertakan klausa where
+maka sintaks yang dihasilkan adalah 
+update mahasiswa set ipk=1.75;
+semisal kita lupa menyertakan klausa where dan langsung menutup statementnya menggunakan titik koma (;)
+jika kita lihat hasilnya maka semua kolom pada ipk mahasiswa akan berubah menjadi 1.75
+penggunaan klausa update tanpa disertai klausa where ini cukup fatal 
+karena perubahan yang dilakukan akan dikenakan pada seluruh data yang tersimpan pada tabel
+dalam kasus ini semua ipk pada table mahasiswa akan berubah menjadi 1.75
+ini bisa menjadi malapetaka besar jika database yang kita gunakan adalah milik company
+perlu kita ingat untuk klausa 'update' sebelum mengeksekusi sintaks kita perlu membaca ulang sintaksnya dengan teliti
+
+Terakhir kita akan menghapus data yang tersimpan pada suatu table
+Semisal terdapat kasus
+kita akan menghapus data mahasiswa dengan nim 444 yakni wati 
+untuk melakukan penghapusan data pada suatu table kita dapat menggunakan klausa 'delete from'
+kita dapat menulis 'delete from' diikuti nama table yang akan kita lakukan perubahan datanya
+dalam kasus ini yakni mahasiswa
+delete from mahasiswa
+lalu selanjutnya kita perlu menspesifikasikan klausa where
+karena disini kita hanya menghapus data untuk mahasiswa yang mempunyai nim 444
+maka penulisan dari sintaksnya adalah demikian
+delete from mahasiswa where nim='444';
+untuk melihat apakah data sudah terhapus atau tidak 
+kita dapat menggunakan klausa select
+select * from mahasiswa;
+dapat kita lihat data mahasiswa dengan nim 444 sudah tidak ada lagi didalam table mahasiswa
+
+Serupa dengan update penggunaaan klausa 'delete from' tanpa diikuti dengan klausa 'where' akan berakibat fatal
+semisal kita menulis 'delete from' tapi kita lupa menuliskan klausa 'where'
+dimana kita langsung menutup statementnya dengan menggunakan titik koma(;)
+maka hasil dari sintaksnya adalah demikian
+delete from mahasiswa;
+jika kita lihat hasilnya menggunakan klausa select
+select * from mahasiswa
+penggunaan klausa 'delete from' tanpa disertai klausa 'where' ini
+akan mengakibatkan penghapusan semua data yang tersimpan pada suatu table
+kita perlu berhati-hati dalam penggunaan klausa update dan juga delete from ini 
+pastikan agar kita selalu menyertakan klausa where 
+
+
+

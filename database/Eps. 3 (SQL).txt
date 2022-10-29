@@ -1,0 +1,111 @@
+Eps. 3
+Seleksi baris atau filtering data didalam database dengan klausa 'WHERE'
+
+where biasanya digunakan untuk melakukan seleksi baris atau filtering data
+semisal kita mempunyai kasus
+yaitu menampilkan kolom lastname, fistname, dan jobtitle pada table employees 
+yang jobtitle-nya hanya memiliki nilai (sales rep), artinya selain dari sales rep tidak akan ditampilkan
+maka query yang digunakan adalah
+select lastname, firstname, jobtitle from employees where jobtitle = 'Sales Rep';
+untuk melakukan seleksi baris kita dapat menggunakan klausa (WHERE)
+diikuti dengan kondisinya, dalam kasus ini kondisinya ialah kolom job title-nya yang memiliki nilai sales rep
+karena kolom jobtitle menampung tipe text (varchar) maka penulisannya menggunakan petik tunggal (') 'sales rep'
+jika kita lihat hasilnya maka semua baris dari jobtitlenya akan menampilkan sales rep, selainnya maka tidak dimunculkan
+
+semisal terdapat kasus lain
+kita diminta untuk menampilkan kolom lastname, firstname, jobtitle dan officecode dari tabel employees
+dan value dari kolom jobtitle hanya sales rep saja dan office code-nya hanya bernilai 1
+maka disini terdapat 2 kondisi, untuk menyelesaikannya kita dapat menambahkan operator logika and (&) 
+diikuti dengan kondisi ataupun syarat ke-2, maka sintaks query yang digunakan adalah 
+select lastname, firstname, jobtitle, officecode from employees where jobtitle = 'sales rep' & officecode = 1;
+operator AND akan berjalan jika kedua kondisi atau syarat tersebut benar
+jika kita lihat hasilnya maka akan menampilkan kolom jobtitle yang mempunyai nilai sales rep dan officecode yang mempunyai nilai 1
+selain dari operator AND, terdapat juga operator lain yakni OR
+jika pada operator AND kondisi keduanya harus benar
+berbeda dengan AND, pada operator OR jika salah satu saja sudah benar atau terpenuhi maka akan ditampilkan
+semisal jika kita rubah sintaks sebelumnya menjadi operator OR
+select lastname, firstname, jobtitle, officecode from employees where jobtitle = 'sales rep' or officecode = 1;
+hasilnya ia akan menampilkan dalam jumlah banyak dibanding sebelumnya
+ia akan menampilkan jobtitle selain dari sales rep, dan juga officecode dengan value 1
+berlaku juga sebaliknya ia akan menampilkan jobtitle sales rep dengan officecode selain dari satu
+
+kita bisa menambahkan klausa 'order by' pada kasus ini
+semisal kita akan mengurutkannya berdasarkan officecode dan juga jobtitle
+maka sintaks yang digunakan adalah
+select lastname, firstname, jobtitle, officecode from employees where jobtitle = 'sales rep' or officecode = 1 order by officecode, jobtitle;
+maka hasilnya akan menampilkan dari value officecode secara berurut diikuti dengan jobtitle yang juga berurut 
+yang perlu diperhatikan jika menambahkan klausa 'order by' adalah cara penulisannya
+yaitu select terlebih dahulu dilanjut dengan from, lalu where dan terakhir yakni order by
+
+semisal pada kasus lain 
+yaitu menampilkan kolom sebelumnya (lastname, firstname, jobtitle, dan officecode) pada tabel employees, 
+yang mana value dari officecode-nya mempunyai nilai dengan rentan antara 1 - 3
+maka untuk menjalankannya kita dapat menggunakan operator between
+dan sintaks yang digunakan adalah
+select lastname, firstname, jobtitle, officecode from employees where officecode between 1 and 3 order by officecode, jobtitle;
+jika kita lihat hasilnya maka yang muncul adalah nilai officecode dengan nilai rentan 1 - 3 saja
+
+semisal terdapat kasus lain 
+yaitu menyeleksi data yang value dari lastname-nya harus diakhir dengan kata atau karakter 'son'
+maka untuk kasus disini kita perlu menggunakan operator pembanding karakter string yakni LIKE
+sintaks yang dapat kita gunakan adalah
+select lastname, firstname, jobtitle, officecode from employees where lastname like '%son' order by officecode, jobtitle;
+dan hasilnya ia akan menampilkan value dari kolom lastname yang mempunyai akhiran 'son'
+pada sintaks ini terdapat karakter persen (%) 
+persen ini direpersentasikan karakter apapun dengan jumlah berapa pun
+artinya pada operator like ini akan mencari karakter awalan apapun namun dengan akhiran kata 'son'
+selain dari karakter persen yang merepersentasikan apapun 
+terdapat juga simbol lain yakni underscore (_)
+berbeda dengan persen, underscore merepersentasikan apapun dengan jumlah satu karakter
+semisal kita akan menggunakan sintaks sebelumnya namun pada kolom firstname kita akan melakukan seleksi baris
+degan menggunakan underscore (_)
+misal sintaks sql-nya adalah
+select lastname, firstname, jobtitle, officecode from employees where firstname like '_a%'  order by officecode, jobtitle;
+maka hasilnya ia akan memfilter pada kolom firstname yang karakter pertamanya apa saja yang penting karakter yang ke-2 adalah huruf a
+dan setelah huruf a dilanjut dengan karakter persen (%) yang merepersentasikan karakter apapun dalam jumlah bebas
+
+semisal terdapat kasus lain
+kita diminta menampilkan kolom sebelumnya (lastname, firstname, jobtitle, dan officecode) pada tabel employees
+namun pada officecode value yang diminta hanya menampilkan angka 1, 3, dan 7
+maka disini kita dapat menggunakan operator IN 
+operator IN mempunyai kesamaan logika dengan operator OR 
+artinya salah satu benar maka akan terpenuhi, hanya saja penulisannya lebih komplek
+dan sintaks yang digunakan adalah
+select lastname, firstname, jobtitle, officecode from employees where officecode IN (1,3,7) order by officecode, jobtitle;
+artinya kita ingin memilih baris dengan syarat officecode-nya 1 atau 3, ataupun 7
+dan hasilnya pun akan menampilkan officecode dengan value 1,3, dan juga 7
+
+semisal pada kasus lain
+kita diminta menampilkan kolom sebelumnya (lastname, firstname, jobtitle, dan officecode) pada tabel employees
+dan menampilkan kolom officecode-nya yang mempunyai nilai lebih besar dari 5
+disini kita dapat menggunakan klausa lebih besar (>) 
+sintaks yang digunakan adalah
+select lastname, firstname, jobtitle, officecode from employees where officecode > 5 order by officecode, jobtitle;
+dan jika kita lihat hasilnya maka yang tampil hanyalah nilai officecode-nya yang lebih besar dari 5, yakni 6 dan juga 7
+kita juga dapat menggunakan klausa lain seperti lebih besar dari atau sama dengan (>=)
+kurang dari (<), kurang dari atau sama dengan (<=) dan juga sama dengan (=)
+
+semisal pada kasus lain 
+kita akan menampilkan tabel employees dengan kolom lastname, firstname, dan reportsto
+select lastname, firstname, reportsto from employees;
+jika kita lihat hasilnya terdapat kolom dari reportsto yang mempunyai value kosong semisal untuk nama murphy
+kita dihadapkan untuk menampilkan data yang kolom reportsto nya kosong
+kosong biasanya direpersentasikan dengan null/nall 
+kita dapat mengidentifikasikannya dengan melihat operator IS NULL
+sintaks yang digunakan adalah
+select lastname, firstname, reportsto from employees where reportsto is null;
+jika kita lihat hasilnya maka akan menampilkan yang kolomm reportstonya kosong
+
+
+Tugas
+buatkan query yang menampilkan data dari tabel orderdetails yang quantityorder-nya diatas 40
+show tables;
+describe orderdetails;
+select * from orderdetails where quantityordered > 40 order by quantityordered;
+
+buatkan query untuk menampilkan data dari tabel orders yang statusnya on hold, disputed, atau cancelled
+show tables;
+describe orderes;
+select * from orders where status in ('on hold', 'disputed', 'cancelled') order by status;
+
+
